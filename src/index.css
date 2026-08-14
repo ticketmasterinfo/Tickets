@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-averta: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Primary Brand Palette */
+    --tm-blue-primary: #024ddf;
+    --tm-blue-hover: #0139a7;
+    --tm-blue-active: #012e85;
+
+    /* Neutrals */
+    --tm-dark-bg: #121212;
+    --tm-dark-surface: #1f1f1f;
+    --tm-bg-main: #f6f6f6;
+    --tm-surface-white: #ffffff;
+
+    /* Borders & Dividers */
+    --tm-border-light: #bfbfbf;
+    --tm-border-subtle: #ebebeb;
+    --tm-border-dark: #949494;
+
+    /* Accent & Status */
+    --tm-accent-gold: #ffb932;
+    --tm-accent-green: #00875a;
+    --tm-resale-pink: #d91b5c;
+  }
+
+  body {
+    font-family: var(--font-averta);
+    color: #121212;
+    background-color: #f6f6f6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography Token Classes */
+  .type-mauna {
+    font-size: 44px;
+    line-height: 44px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+  @media (min-width: 768px) {
+    .type-mauna {
+      font-size: 54px;
+      line-height: 52px;
+    }
+  }
+
+  .type-everest {
+    font-size: 32px;
+    line-height: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) {
+    .type-everest {
+      font-size: 44px;
+      line-height: 44px;
+    }
+  }
+
+  .type-kilimanjaro {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 768px) {
+    .type-kilimanjaro {
+      font-size: 32px;
+      line-height: 36px;
+    }
+  }
+
+  .type-matterhorn {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .type-matterhorn {
+      font-size: 28px;
+      line-height: 34px;
+    }
+  }
+
+  .type-vinson {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .type-vinson {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+
+  .type-blanc {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .type-blanc {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  .type-fiji {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+  }
+
+  .type-rainier {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .type-etna {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+
+  .type-snowdon {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+/* Custom Utilities */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start-card {
+  scroll-snap-align: start;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Elevation Shadows */
+.elevation-1 {
+  box-shadow: 0px 1px 4px 0px rgba(18, 18, 18, 0.12);
+}
+
+.elevation-2 {
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.22);
+}
+
+.elevation-3 {
+  box-shadow: 0px 12px 32px 0px rgba(18, 18, 18, 0.28);
+}
+
+/* Accessibility Focus Ring */
+.tm-focus {
+  outline: 2px solid #024ddf;
+  outline-offset: 2px;
+}
+
