@@ -173,10 +173,10 @@ export const HappeningThisWeekend: React.FC<HappeningThisWeekendProps> = ({ onSe
     >
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#121212] tracking-tight">
+          <h2 className="type-everest text-[#121212] font-extrabold tracking-tight">
             Happening This Weekend
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+          <p className="type-etna text-gray-500 mt-0.5">
             Verified tickets for hot arena concerts, baseball matchups & live theater tonight and tomorrow
           </p>
         </div>
@@ -227,29 +227,29 @@ export const HappeningThisWeekend: React.FC<HappeningThisWeekendProps> = ({ onSe
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-2.5 left-2.5">
-                  <div className="inline-flex items-center space-x-1 bg-black/80 backdrop-blur-xs text-white text-[11px] font-bold px-2 py-0.5 rounded shadow">
+                  <div className="inline-flex items-center space-x-1 bg-black/80 backdrop-blur-xs text-white type-snowdon px-2 py-0.5 rounded shadow">
                     <Clock className="w-3 h-3 text-[#ffb932]" />
                     <span>{item.badge}</span>
                   </div>
                 </div>
-                <div className="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-bold uppercase px-1.5 py-0.5 rounded">
+                <div className="absolute bottom-2 right-2 bg-black/75 text-white type-snowdon px-1.5 py-0.5 rounded">
                   {item.category}
                 </div>
               </div>
 
               {/* Text content */}
               <div className="p-3.5 space-y-1.5">
-                <div className="text-xs font-semibold text-[#024ddf] flex items-center space-x-1.5">
+                <div className="type-etna font-semibold text-[#024ddf] flex items-center space-x-1.5">
                   <span>{item.dateDisplay}</span>
                   <span>&bull;</span>
                   <span>{item.timeDisplay}</span>
                 </div>
 
-                <h3 className="text-sm font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors line-clamp-2 leading-tight">
+                <h3 className="type-blanc text-sm font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors line-clamp-2 leading-tight">
                   {item.name}
                 </h3>
 
-                <p className="text-xs text-gray-500 truncate flex items-center">
+                <p className="type-etna text-gray-500 truncate flex items-center">
                   <MapPin className="w-3 h-3 mr-1 shrink-0 text-gray-400" />
                   <span>{item.venue} &bull; {item.city}, {item.state}</span>
                 </p>
@@ -258,12 +258,12 @@ export const HappeningThisWeekend: React.FC<HappeningThisWeekendProps> = ({ onSe
 
             <div className="px-3.5 pb-3.5 pt-1 border-t border-gray-100 flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-gray-400 block uppercase font-bold">Verified From</span>
-                <span className="text-sm font-extrabold text-[#024ddf]">
+                <span className="type-snowdon text-gray-400 block">Verified From</span>
+                <span className="type-blanc font-extrabold text-[#024ddf]">
                   ${item.priceFrom}
                 </span>
               </div>
-              <span className="bg-[#024ddf] group-hover:bg-[#0139a7] text-white text-xs font-bold px-3 py-1.5 rounded transition-colors flex items-center space-x-1">
+              <span className="bg-[#024ddf] group-hover:bg-[#0139a7] active:bg-[#012e85] text-white text-xs font-bold px-3 py-1.5 rounded transition-colors flex items-center space-x-1 shadow-xs">
                 <Ticket className="w-3 h-3" />
                 <span>See Tickets</span>
               </span>

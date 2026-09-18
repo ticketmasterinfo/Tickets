@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Ticket as TicketIcon,
-  User,
   ChevronDown
 } from 'lucide-react';
 import { PurchasedTicket } from '../../types';
@@ -188,15 +187,6 @@ export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
                 {purchasedTickets.length}
               </span>
             )}
-          </button>
-
-          <button
-            id="top-account-btn"
-            onClick={onOpenMyTickets}
-            className="flex items-center space-x-1 text-gray-200 hover:text-white px-2 py-1 rounded transition-colors duration-200 hover:bg-white/10 cursor-pointer text-xs"
-          >
-            <User className="w-3.5 h-3.5" />
-            <span className="font-medium">Sign In</span>
           </button>
         </div>
 

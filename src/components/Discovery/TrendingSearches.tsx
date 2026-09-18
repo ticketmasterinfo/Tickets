@@ -95,10 +95,10 @@ export const TrendingSearches: React.FC<TrendingSearchesProps> = ({ onSelectPerf
     >
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#121212] tracking-tight">
+          <h2 className="type-everest text-[#121212] font-extrabold tracking-tight">
             Trending Searches
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+          <p className="type-etna text-gray-500 mt-0.5">
             Most in-demand artists and upcoming attractions this week
           </p>
         </div>
@@ -139,7 +139,7 @@ export const TrendingSearches: React.FC<TrendingSearchesProps> = ({ onSelectPerf
             <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-gray-200 shadow-xs border border-gray-200">
               <img 
                 src={item.imageUrl} 
-                alt={item.name}
+                alt={item.name} 
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = item.fallbackImage;
                 }}
@@ -148,10 +148,10 @@ export const TrendingSearches: React.FC<TrendingSearchesProps> = ({ onSelectPerf
               />
             </div>
             <div className="pt-2 px-0.5">
-              <span className="inline-block text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+              <span className="type-snowdon text-gray-500 block truncate">
                 {item.genre}
               </span>
-              <h3 className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
+              <h3 className="type-blanc font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
                 {item.name}
               </h3>
             </div>

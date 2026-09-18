@@ -1,0 +1,63 @@
+version: '1.0.{build}'
+
+image: Visual Studio 2017
+
+clone_folder: C:\gopath\src\github.com\Ticketmaster\spinner
+shallow_clone: true
+
+environment:
+  GOPATH: C:\gopath
+
+install:
+  - set PATH=%GOPATH%\bin;%PATH%
+  - ps: Start-FileDownload 'https://github.com/Masterminds/glide/releases/download/v0.12.3/glide-v0.12.3-windows-amd64.zip'
+  - ps: Expand-Archive -Path glide-v0.12.3-windows-amd64.zip
+  - ps: Copy-Item .\glide-v0.12.3-windows-amd64\windows-amd64\glide.exe .\glide.exe
+  - go get github.com/mitchellh/gox
+  - go version
+  - go env
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test_script:
+  - go test .\cmd --coverprofile=cover.cov
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+before_build:
+  - glide up
+
+build_script:
+  - ps: gox.exe -os="windows" -os="linux" -arch="amd64" -ldflags="-X cmd.version=$env:APPVEYOR_BUILD_VERSION" -output="./build/{{.OS}}_{{.Arch}}/spinner_v$env:APPVEYOR_BUILD_VERSION"
+
+after_build:
+  - ps: .\create_archives.ps1
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+
+  # pushing a single file
+  - path: build/spinner*.zip
+    name: spinner
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+deploy:
+  provider: GitHub
+  release: spinner-v$(appveyor_build_version)
+  tag: $(appveyor_repo_tag_name)
+  description: Automated Release of v$(appveyor_build_version)
+  artifact: spinner
+  auth_token:
+    secure: Ybs71jVRS1MGw7R0K7cck+/ythstsNGBxUnNapldSQzcRQtJqOZOEo6+pfXBzdue
+  on:
+    appveyor_repo_tag: true

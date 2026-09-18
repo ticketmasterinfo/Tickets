@@ -74,22 +74,22 @@ export const HeroHighlights: React.FC<HeroHighlightsProps> = ({
 
             {/* Content */}
             <div className="relative z-10 max-w-2xl space-y-2">
-              <div className="inline-flex items-center space-x-2 bg-[#ffb932] text-black font-black text-xs uppercase px-3 py-1 rounded tracking-wider shadow">
+              <div className="inline-flex items-center space-x-2 bg-[#ffb932] text-black type-snowdon px-3 py-1 rounded tracking-wider shadow">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>On Sale Now</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight drop-shadow-md">
+              <h1 className="type-mauna font-black text-white leading-tight drop-shadow-md">
                 2 Concert Tickets for $55
               </h1>
-              <p className="text-sm sm:text-base text-gray-200 max-w-xl font-medium">
+              <p className="type-rainier text-gray-200 max-w-xl font-medium">
                 Live Nation Summer of Live presents lawn passes and reserved 2-packs for over 1,000 summer amphitheater shows.
               </p>
               <div className="pt-2 flex items-center space-x-3">
-                <span className="bg-[#024ddf] hover:bg-[#0139a7] text-white font-bold text-sm px-5 py-2.5 rounded-lg inline-flex items-center space-x-2 transition-all shadow-md group-hover:bg-[#0139a7]">
+                <span className="bg-[#024ddf] hover:bg-[#0139a7] text-white type-fiji px-5 py-2.5 rounded-lg inline-flex items-center space-x-2 transition-all shadow-md group-hover:bg-[#0139a7]">
                   <Ticket className="w-4 h-4" />
                   <span>Get Offer Tickets</span>
                 </span>
-                <span className="text-xs text-gray-300 font-semibold underline underline-offset-4">
+                <span className="type-etna text-gray-300 font-semibold underline underline-offset-4">
                   Terms & participating venues apply
                 </span>
               </div>
@@ -116,20 +116,20 @@ export const HeroHighlights: React.FC<HeroHighlightsProps> = ({
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-white/10">
+                    <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-xs text-white type-snowdon px-2 py-0.5 rounded border border-white/10">
                       {spot.badge}
                     </div>
                   </div>
                   <div className="p-3 flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-[11px] font-semibold text-blue-400 block truncate">
+                      <span className="type-snowdon text-blue-400 block truncate">
                         {spot.subtitle}
                       </span>
-                      <h2 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-1 mt-0.5">
+                      <h2 className="type-blanc font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-1 mt-0.5">
                         {spot.title}
                       </h2>
                     </div>
-                    <div className="mt-2.5 pt-2 border-t border-gray-800/60 flex items-center justify-between text-xs text-gray-400 group-hover:text-white transition-colors">
+                    <div className="mt-2.5 pt-2 border-t border-gray-800/60 flex items-center justify-between type-etna text-gray-400 group-hover:text-white transition-colors">
                       <span className="font-semibold text-[11px]">View Experience</span>
                       <ChevronRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                     </div>

@@ -83,10 +83,10 @@ export const SponsoredPresales: React.FC<SponsoredPresalesProps> = ({
       {/* Header with location selector */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-gray-100">
         <div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#121212] tracking-tight">
+          <h2 className="type-everest text-[#121212] font-extrabold tracking-tight">
             Sponsored Presales and Offers
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+          <p className="type-etna text-gray-500 mt-0.5">
             Cardmember access, early unlock codes, and official partner presale windows
           </p>
         </div>
@@ -121,7 +121,7 @@ export const SponsoredPresales: React.FC<SponsoredPresalesProps> = ({
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-2.5 left-2.5">
-                  <span className="bg-[#00875a] text-white text-[11px] font-black uppercase px-2 py-0.5 rounded shadow">
+                  <span className="bg-[#00875a] text-white type-snowdon px-2 py-0.5 rounded shadow">
                     Presale
                   </span>
                 </div>
@@ -129,13 +129,13 @@ export const SponsoredPresales: React.FC<SponsoredPresalesProps> = ({
 
               {/* Event Info */}
               <div className="p-4 space-y-1">
-                <span className="text-xs font-semibold text-gray-500 block">
+                <span className="type-etna font-semibold text-gray-500 block">
                   {item.eventDate} &bull; {item.eventTime}
                 </span>
-                <h3 className="text-base font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors line-clamp-1">
+                <h3 className="type-blanc font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors line-clamp-1">
                   {item.artist}
                 </h3>
-                <p className="text-xs text-gray-500 truncate">
+                <p className="type-etna text-gray-500 truncate">
                   {item.city}, {item.state} &bull; {item.venue}
                 </p>
               </div>
@@ -154,7 +154,7 @@ export const SponsoredPresales: React.FC<SponsoredPresalesProps> = ({
                 </div>
               </div>
 
-              <span className="text-xs font-bold text-[#024ddf] group-hover:underline flex items-center shrink-0">
+              <span className="type-snowdon text-[#024ddf] group-hover:underline flex items-center shrink-0">
                 Unlock
               </span>
             </div>

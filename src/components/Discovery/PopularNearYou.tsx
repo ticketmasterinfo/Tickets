@@ -202,7 +202,7 @@ const CategoryCarouselRow: React.FC<CategoryCarouselRowProps> = ({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+        <h3 className="type-vinson font-bold text-gray-900">
           {title}
         </h3>
 
@@ -249,7 +249,7 @@ const CategoryCarouselRow: React.FC<CategoryCarouselRowProps> = ({
             <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shadow-xs">
               <img 
                 src={item.imageUrl} 
-                alt={item.name}
+                alt={item.name} 
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = item.fallbackImage;
                 }}
@@ -258,10 +258,10 @@ const CategoryCarouselRow: React.FC<CategoryCarouselRowProps> = ({
               />
             </div>
             <div className="pt-2 px-0.5">
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block truncate">
+              <span className="type-snowdon text-gray-500 block truncate">
                 {item.genre}
               </span>
-              <h4 className="text-sm font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
+              <h4 className="type-blanc font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
                 {item.name}
               </h4>
             </div>
@@ -282,10 +282,10 @@ export const PopularNearYou: React.FC<PopularNearYouProps> = ({
       className="my-10 space-y-8 w-full"
     >
       <div>
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#121212] tracking-tight">
+        <h2 className="type-everest text-[#121212] font-extrabold tracking-tight">
           Popular Near You
         </h2>
-        <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+        <p className="type-etna text-gray-500 mt-0.5">
           Top-ranked touring acts, regional sports teams, and acclaimed stage shows
         </p>
       </div>

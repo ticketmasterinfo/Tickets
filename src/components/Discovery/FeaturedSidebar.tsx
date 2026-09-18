@@ -67,7 +67,7 @@ export const FeaturedSidebar: React.FC<FeaturedSidebarProps> = ({ onActionClick 
     >
       {/* Featured Header */}
       <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-xs">
-        <h2 className="text-lg font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4">
+        <h2 className="type-vinson font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4">
           Featured
         </h2>
 
@@ -88,17 +88,17 @@ export const FeaturedSidebar: React.FC<FeaturedSidebarProps> = ({ onActionClick 
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-white/10 flex items-center space-x-1">
+                  <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-xs text-white type-snowdon px-2 py-0.5 rounded border border-white/10 flex items-center space-x-1">
                     {item.icon}
                     <span>{item.badge}</span>
                   </div>
                 </div>
 
                 <div className="p-3">
-                  <h3 className="text-sm font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors">
+                  <h3 className="type-blanc text-sm font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-gray-500 line-clamp-2 mt-0.5">
+                  <p className="type-etna text-xs text-gray-500 line-clamp-2 mt-0.5">
                     {item.subtitle}
                   </p>
                 </div>
@@ -112,9 +112,9 @@ export const FeaturedSidebar: React.FC<FeaturedSidebarProps> = ({ onActionClick 
       <div className="bg-[#121212] text-white rounded-2xl p-5 border border-gray-800 space-y-3 shadow-md">
         <div className="flex items-center space-x-2">
           <ShieldCheck className="w-5 h-5 text-emerald-400" />
-          <h3 className="text-sm font-bold">100% Buyer Guarantee</h3>
+          <h3 className="type-blanc text-sm font-bold">100% Buyer Guarantee</h3>
         </div>
-        <p className="text-xs text-gray-400 leading-relaxed">
+        <p className="type-etna text-xs text-gray-400 leading-relaxed">
           Every ticket is 100% verified by our primary venue partnerships and guaranteed authentic for seamless barcode entry.
         </p>
         <div className="pt-1">
