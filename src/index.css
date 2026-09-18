@@ -2,8 +2,48 @@
 
 @layer base {
   :root {
-    --font-averta: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-averta: 'Averta', helvetica, arial, sans-serif;
     
+    /* Typography scale tokens from Ticketmaster design system */
+    --mauna-font-size-number: 44;
+    --everest-font-size-number: 32;
+    --kilimanjaro-font-size-number: 24;
+    --matterhorn-font-size-number: 24;
+    --vinson-font-size-number: 22;
+    --blanc-font-size-number: 18;
+    --fiji-font-size-number: 18;
+    --rainier-font-size-number: 16;
+    --boising-font-size-number: 16;
+    --etna-font-size-number: 14;
+    --nevis-font-size-number: 14;
+    --snowdon-font-size-number: 12;
+
+    --mauna-font-size: 44px;
+    --everest-font-size: 32px;
+    --kilimanjaro-font-size: 24px;
+    --matterhorn-font-size: 24px;
+    --vinson-font-size: 22px;
+    --blanc-font-size: 18px;
+    --fiji-font-size: 18px;
+    --rainier-font-size: 16px;
+    --boising-font-size: 16px;
+    --etna-font-size: 14px;
+    --nevis-font-size: 14px;
+    --snowdon-font-size: 12px;
+
+    --mauna-line-height: 44px;
+    --everest-line-height: 32px;
+    --kilimanjaro-line-height: 26px;
+    --matterhorn-line-height: 30px;
+    --vinson-line-height: 24px;
+    --blanc-line-height: 22px;
+    --fiji-line-height: 26px;
+    --rainier-line-height: 22px;
+    --boising-line-height: 22px;
+    --etna-line-height: 18px;
+    --nevis-line-height: 18px;
+    --snowdon-line-height: 20px;
+
     /* Primary Brand Palette */
     --tm-blue-primary: #024ddf;
     --tm-blue-hover: #0139a7;
@@ -26,8 +66,55 @@
     --tm-resale-pink: #d91b5c;
   }
 
+  @media (min-width: 900px) {
+    :root {
+      --mauna-font-size-number: 54;
+      --everest-font-size-number: 44;
+      --kilimanjaro-font-size-number: 32;
+      --matterhorn-font-size-number: 28;
+      --vinson-font-size-number: 24;
+      --blanc-font-size-number: 20;
+      --fiji-font-size-number: 18;
+      --rainier-font-size-number: 16;
+      --boising-font-size-number: 16;
+      --etna-font-size-number: 14;
+      --nevis-font-size-number: 14;
+      --snowdon-font-size-number: 12;
+
+      --mauna-font-size: 54px;
+      --everest-font-size: 44px;
+      --kilimanjaro-font-size: 32px;
+      --matterhorn-font-size: 28px;
+      --vinson-font-size: 24px;
+      --blanc-font-size: 20px;
+      --fiji-font-size: 18px;
+      --rainier-font-size: 16px;
+      --boising-font-size: 16px;
+      --etna-font-size: 14px;
+      --nevis-font-size: 14px;
+      --snowdon-font-size: 12px;
+
+      --mauna-line-height: 44px;
+      --everest-line-height: 44px;
+      --kilimanjaro-line-height: 34px;
+      --matterhorn-line-height: 34px;
+      --vinson-line-height: 28px;
+      --blanc-line-height: 24px;
+      --fiji-line-height: 26px;
+      --rainier-line-height: 24px;
+      --boising-line-height: 24px;
+      --etna-line-height: 20px;
+      --nevis-line-height: 20px;
+      --snowdon-line-height: 20px;
+    }
+  }
+
   body {
     font-family: var(--font-averta);
+    font-size: var(--rainier-font-size, 16px);
+    line-height: var(--rainier-line-height, 22px);
+    letter-spacing: 0.02em;
+    font-weight: 400;
     color: #121212;
     background-color: #f6f6f6;
     -webkit-font-smoothing: antialiased;
@@ -172,4 +259,181 @@
   outline: 2px solid #024ddf;
   outline-offset: 2px;
 }
+
+/* Ticketmaster Design System Button Classes */
+.jJTzjl {
+  background-color: rgb(2, 77, 223); /* Ticketmaster Blue #024ddf */
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.jJTzjl:not(:disabled):hover {
+  border-color: #0139a7;
+  background-color: #0139a7;
+  color: #ffffff;
+}
+
+.jJTzjl:not(:disabled):active {
+  border-color: #012e85;
+  background-color: #012e85;
+}
+
+.jJTzjl:disabled {
+  border-color: #ebebeb;
+  color: #949494;
+  background-color: #ebebeb;
+  cursor: not-allowed;
+}
+
+.icSHZa {
+  border: 1px solid rgb(2, 77, 223);
+  color: rgb(2, 77, 223);
+  background-color: transparent;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 44px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.icSHZa:not(:disabled):hover {
+  background-color: rgb(1, 57, 167);
+  border-color: rgb(1, 57, 167);
+  color: #fff;
+}
+
+.icSHZa:not(:disabled):active {
+  border-color: #012e85;
+  background-color: #012e85;
+}
+
+.icSHZa:disabled {
+  border-color: #949494;
+  color: #949494;
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+/* Icons & SVGs */
+.ibzDQZ {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: transform 0.2s ease-out;
+  fill: currentColor;
+}
+
+.eMgojy {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: transform 0.2s ease-out;
+  fill: #024ddf;
+}
+
+.iha-dkM {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: transform 0.2s ease-out;
+  fill: #646464;
+}
+
+.gOyhDC {
+  background-color: transparent;
+  color: #121212;
+  border: 1px solid #c3c3c3;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 44px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.gOyhDC:not(:disabled):hover {
+  border-color: #0d0d0d;
+  color: #ffffff;
+  background-color: #0d0d0d;
+}
+
+/* Ticketmaster Navigation Bar & Action Classes with Subtle Transition Background */
+.sc-1fbd0e2a-0.ceNYbE,
+.sc-1fbd0e2a-0.eTwfaS {
+  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1), color 200ms cubic-bezier(0.2, 0, 0, 1), box-shadow 200ms ease;
+  border-radius: 4px;
+}
+
+.sc-1fbd0e2a-0.ceNYbE:not(.is-active):hover,
+.sc-1fbd0e2a-0.eTwfaS:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.sc-1fbd0e2a-0.ceNYbE:not(.is-active):active,
+.sc-1fbd0e2a-0.eTwfaS:active {
+  background-color: rgba(1, 46, 133, 0.9);
+  color: #ffffff;
+}
+
+/* Sign In / Register Account Button */
+.sc-574d9268-0.bqynt {
+  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1), color 200ms cubic-bezier(0.2, 0, 0, 1), transform 150ms ease;
+  border-radius: 4px;
+}
+
+.sc-574d9268-0.bqynt:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.sc-574d9268-0.bqynt:active {
+  background-color: rgba(1, 46, 133, 0.9);
+}
+
+/* Search bar toggle & mobile hamburger button */
+.sc-9c727161-4.htmrzb,
+.sc-b49c9602-2.dROoME {
+  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1);
+  border-radius: 4px;
+}
+
+.sc-9c727161-4.htmrzb:hover,
+.sc-b49c9602-2.dROoME:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.sc-9c727161-4.htmrzb:active,
+.sc-b49c9602-2.dROoME:active {
+  background-color: rgba(1, 46, 133, 0.9);
+}
+
 
