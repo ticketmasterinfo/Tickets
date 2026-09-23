@@ -11,6 +11,7 @@ interface EventCardProps {
   event: EventItem;
   onSelectEvent: (event: EventItem) => void;
   onViewDetails: (event: EventItem) => void;
+  onSelectPerformer?: (performerName: string) => void;
   layout?: 'grid' | 'list';
 }
 
@@ -18,6 +19,7 @@ export const EventCard: React.FC<EventCardProps> = ({
   event,
   onSelectEvent,
   onViewDetails,
+  onSelectPerformer,
   layout = 'grid'
 }) => {
   const dateObj = new Date(event.date_time.exact_date + 'T12:00:00');
@@ -76,10 +78,24 @@ export const EventCard: React.FC<EventCardProps> = ({
               {event.identity.event_title}
             </h3>
 
-            <p className="text-xs text-gray-600 flex items-center mt-1">
-              <MapPin className="w-3.5 h-3.5 text-gray-400 mr-1 shrink-0" />
-              <span>{event.location.venue_name} &bull; {event.location.city}, {event.location.state}</span>
-            </p>
+            <div className="flex items-center justify-between mt-1">
+              <p className="text-xs text-gray-600 flex items-center">
+                <MapPin className="w-3.5 h-3.5 text-gray-400 mr-1 shrink-0" />
+                <span>{event.location.venue_name} &bull; {event.location.city}, {event.location.state}</span>
+              </p>
+              {onSelectPerformer && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectPerformer(event.identity.main_performer);
+                  }}
+                  className="text-[11px] font-bold text-[#024ddf] hover:underline cursor-pointer flex items-center"
+                >
+                  <span>{event.identity.main_performer} Tour Dates &rarr;</span>
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
@@ -186,11 +202,25 @@ export const EventCard: React.FC<EventCardProps> = ({
             {event.identity.event_title}
           </h3>
 
-          {/* Venue Info */}
-          <p className="text-xs text-gray-600 flex items-center mt-2">
-            <MapPin className="w-3.5 h-3.5 text-gray-400 mr-1.5 shrink-0" />
-            <span className="truncate">{event.location.venue_name}</span>
-          </p>
+          {/* Venue Info & Artist Tour Link */}
+          <div className="mt-2 space-y-1">
+            <p className="text-xs text-gray-600 flex items-center">
+              <MapPin className="w-3.5 h-3.5 text-gray-400 mr-1.5 shrink-0" />
+              <span className="truncate">{event.location.venue_name}</span>
+            </p>
+            {onSelectPerformer && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectPerformer(event.identity.main_performer);
+                }}
+                className="text-[11px] font-bold text-[#024ddf] hover:underline cursor-pointer flex items-center"
+              >
+                <span>All {event.identity.main_performer} Tour Dates &rarr;</span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Card Footer: Price & CTA */}

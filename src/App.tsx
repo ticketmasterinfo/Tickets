@@ -16,9 +16,12 @@ import {
   FilterOptions, 
   SeatZone, 
   SelectedTicketGroup, 
-  PurchasedTicket 
+  PurchasedTicket,
+  ArtistProfile
 } from './types';
-import { EVENTS_DATA, SEAT_ZONES_PRESETS } from './data/eventsData';
+import { EVENTS_DATA, SEAT_ZONES_PRESETS, getEventSeatZones } from './data/eventsData';
+import { getArtistProfile } from './data/artistsData';
+import { ArtistExperienceView } from './components/Artist/ArtistExperienceView';
 import { TopUtilityBar } from './components/Header/TopUtilityBar';
 import { MainNav } from './components/Header/MainNav';
 import { OmniboxSearch } from './components/Header/OmniboxSearch';
@@ -43,6 +46,7 @@ import { PopularCitiesSection } from './components/Discovery/PopularCitiesSectio
 import { BrowsingPausedModal } from './components/Security/BrowsingPausedModal';
 import { FeedbackWidget } from './components/Feedback/FeedbackWidget';
 import { Footer } from './components/Footer/Footer';
+import { SignInModal } from './components/Header/SignInModal';
 
 export default function App() {
   // Primary States
@@ -66,6 +70,7 @@ export default function App() {
 
   // Booking & Seating State
   const [bookingEvent, setBookingEvent] = useState<EventItem | null>(null);
+  const [selectedArtist, setSelectedArtist] = useState<ArtistProfile | null>(null);
   const [selectedZone, setSelectedZone] = useState<SeatZone | null>(SEAT_ZONES_PRESETS.default[1]); // Default to GA Floor
   const [ticketQuantity, setTicketQuantity] = useState<number>(2);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -75,6 +80,13 @@ export default function App() {
   const [checkoutData, setCheckoutData] = useState<{ event: EventItem; group: SelectedTicketGroup } | null>(null);
   const [isMyTicketsOpen, setIsMyTicketsOpen] = useState(false);
   const [isBrowsingPausedOpen, setIsBrowsingPausedOpen] = useState(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+
+  // User Authentication State
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>({
+    name: 'Alex Morgan',
+    email: 'ticketmastersincinfo@gmail.com'
+  });
 
   // Purchased Tickets store with 1 initial sample ticket for instant exploration
   const [purchasedTickets, setPurchasedTickets] = useState<PurchasedTicket[]>([
@@ -155,6 +167,7 @@ export default function App() {
 
   // Handlers
   const handleCategorySelect = (category: string) => {
+    setSelectedArtist(null);
     setActiveCategory(category);
     setFilters(prev => ({ ...prev, category: category }));
     
@@ -170,11 +183,21 @@ export default function App() {
     }
   };
 
+  const handleOpenArtist = (performerName: string) => {
+    const profile = getArtistProfile(performerName, events);
+    setSelectedArtist(profile);
+    setBookingEvent(null);
+    if (detailEvent) {
+      setDetailEvent(null);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleOpenBooking = (event?: EventItem) => {
     const targetEvent = event || EVENTS_DATA[0];
     setBookingEvent(targetEvent);
-    // Auto set appropriate zone
-    setSelectedZone(SEAT_ZONES_PRESETS.default[1]);
+    const zones = getEventSeatZones(targetEvent);
+    setSelectedZone(zones[1] || zones[0]);
     setSelectedSeats([]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -197,22 +220,16 @@ export default function App() {
     });
   };
 
-  const handleOrderComplete = (newTicket: PurchasedTicket) => {
-    setPurchasedTickets(prev => [newTicket, ...prev]);
+  const handleOrderComplete = (newTickets: PurchasedTicket[] | PurchasedTicket) => {
+    const ticketsArray = Array.isArray(newTickets) ? newTickets : [newTickets];
+    setPurchasedTickets(prev => [...ticketsArray, ...prev]);
     setCheckoutData(null);
     setBookingEvent(null);
     setIsMyTicketsOpen(true);
   };
 
   const handleSearchPerformer = (performerName: string) => {
-    setFilters(prev => ({
-      ...prev,
-      searchQuery: performerName
-    }));
-    const el = document.getElementById('discovery-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleOpenArtist(performerName);
   };
 
   return (
@@ -226,17 +243,33 @@ export default function App() {
         onOpenSell={() => {
           alert('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.');
         }}
+        onOpenSignIn={() => setIsSignInModalOpen(true)}
         onOpenSecurityStatus={() => setIsBrowsingPausedOpen(true)}
+        user={currentUser}
+        onSignOut={() => setCurrentUser(null)}
       />
 
       {/* 2. DUAL-BAR MAIN HEADER (#024ddf) */}
-      <header id="main-header" className="sticky top-0 z-40 bg-[#024ddf] shadow-md">
-        <MainNav 
-          activeCategory={activeCategory}
-          onSelectCategory={handleCategorySelect}
-          onOpenMyTickets={() => setIsMyTicketsOpen(true)}
-        />
-      </header>
+      <MainNav 
+        activeCategory={activeCategory}
+        onSelectCategory={handleCategorySelect}
+        onOpenMyTickets={() => setIsMyTicketsOpen(true)}
+        onOpenSignIn={() => setIsSignInModalOpen(true)}
+        purchasedCount={purchasedTickets.length}
+        events={events}
+        searchQuery={filters.searchQuery}
+        onSearchChange={(q) => setFilters(prev => ({ ...prev, searchQuery: q }))}
+        selectedCity={filters.city}
+        onCityChange={(c) => setFilters(prev => ({ ...prev, city: c }))}
+        onSelectEvent={handleOpenBooking}
+        onSelectPerformer={handleOpenArtist}
+        onExecuteSearch={() => {
+          const el = document.getElementById('discovery-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+        user={currentUser}
+        onSignOut={() => setCurrentUser(null)}
+      />
 
       {/* VIEW ORCHESTRATION: SEATING/BOOKING VIEW OR HOME DISCOVERY VIEW */}
       {bookingEvent ? (
@@ -269,12 +302,12 @@ export default function App() {
           </div>
 
           {/* Event Header Banner in Booking Mode */}
-          <div className="bg-[#121212] rounded-2xl p-6 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-center space-x-4">
+          <div className="bg-[#121212] rounded-2xl p-4 sm:p-6 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <img 
                 src={bookingEvent.identity.image_url} 
                 alt={bookingEvent.identity.event_title}
-                className="w-20 h-20 rounded-xl object-cover border border-white/10 shadow-md shrink-0"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border border-white/10 shadow-md shrink-0"
                 referrerPolicy="no-referrer"
               />
               <div className="space-y-1">
@@ -334,11 +367,27 @@ export default function App() {
                 onQuantityChange={(qty) => setTicketQuantity(qty)}
                 selectedSeats={selectedSeats}
                 onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
+                availableZones={getEventSeatZones(bookingEvent)}
+                onSelectZone={(zone) => setSelectedZone(zone)}
               />
             </div>
 
           </div>
 
+        </main>
+      ) : selectedArtist ? (
+        /* ==================== DEDICATED ARTIST TOUR & TICKET PAGE ==================== */
+        <main id="artist-experience-view" className="flex-1 w-full">
+          <ArtistExperienceView 
+            artist={selectedArtist}
+            onBack={() => {
+              setSelectedArtist(null);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectEvent={(event) => {
+              handleOpenBooking(event);
+            }}
+          />
         </main>
       ) : (
         /* ==================== HOME / DISCOVERY EXPERIENCE ==================== */
@@ -368,6 +417,7 @@ export default function App() {
               dateRange={filters.dateRange}
               onDateRangeChange={(r) => setFilters(prev => ({ ...prev, dateRange: r }))}
               onSelectEvent={handleOpenBooking}
+              onSelectPerformer={handleOpenArtist}
               onExecuteSearch={() => {
                 const el = document.getElementById('discovery-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -402,6 +452,7 @@ export default function App() {
                 events={events.filter(e => e.identity.category === 'Concerts')}
                 onSelectEvent={handleOpenBooking}
                 onViewDetails={(evt) => setDetailEvent(evt)}
+                onSelectPerformer={handleOpenArtist}
                 onViewAll={() => handleCategorySelect('Concerts')}
               />
 
@@ -413,6 +464,7 @@ export default function App() {
                 events={events.filter(e => e.identity.category === 'Sports')}
                 onSelectEvent={handleOpenBooking}
                 onViewDetails={(evt) => setDetailEvent(evt)}
+                onSelectPerformer={handleOpenArtist}
                 onViewAll={() => handleCategorySelect('Sports')}
               />
 
@@ -424,6 +476,7 @@ export default function App() {
                 events={events.filter(e => e.identity.category === 'Arts & Theater')}
                 onSelectEvent={handleOpenBooking}
                 onViewDetails={(evt) => setDetailEvent(evt)}
+                onSelectPerformer={handleOpenArtist}
                 onViewAll={() => handleCategorySelect('Arts & Theater')}
               />
             </div>
@@ -511,6 +564,7 @@ export default function App() {
                     })}
                     onSelectEvent={handleOpenBooking}
                     onViewDetails={(evt) => setDetailEvent(evt)}
+                    onSelectPerformer={handleOpenArtist}
                     layout={layoutMode}
                     onToggleLayout={(l) => setLayoutMode(l)}
                   />
@@ -562,6 +616,7 @@ export default function App() {
           event={detailEvent}
           onClose={() => setDetailEvent(null)}
           onSelectEventForBooking={handleOpenBooking}
+          onOpenArtist={handleOpenArtist}
         />
       )}
 
@@ -571,14 +626,25 @@ export default function App() {
         onClose={() => setIsBrowsingPausedOpen(false)}
         onSignIn={() => {
           setIsBrowsingPausedOpen(false);
-          setIsMyTicketsOpen(true);
+          setIsSignInModalOpen(true);
         }}
       />
 
-      {/* 19. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
+      {/* 19. SIGN IN / REGISTER MODAL */}
+      <SignInModal 
+        isOpen={isSignInModalOpen}
+        onClose={() => setIsSignInModalOpen(false)}
+        currentUserEmail={currentUser?.email}
+        onSuccessSignIn={(email, name) => {
+          setCurrentUser({ email, name });
+          setIsSignInModalOpen(false);
+        }}
+      />
+
+      {/* 20. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
       <FeedbackWidget />
 
-      {/* 20. COMPREHENSIVE DARK FOOTER (#121212) */}
+      {/* 21. COMPREHENSIVE DARK FOOTER (#121212) */}
       <Footer />
 
     </div>

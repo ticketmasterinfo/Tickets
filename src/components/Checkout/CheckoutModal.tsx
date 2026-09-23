@@ -8,9 +8,12 @@ import {
   CheckCircle2, 
   Lock, 
   ArrowRight,
-  Ticket
+  Ticket,
+  Download
 } from 'lucide-react';
 import { EventItem, SelectedTicketGroup, PurchasedTicket } from '../../types';
+import { downloadTicketPDF, downloadAllTicketsPDF } from '../../utils/ticketDownloader';
+import { TicketmasterLogo } from '../Common/TicketmasterLogo';
 
 interface CheckoutModalProps {
   event: EventItem;
@@ -35,6 +38,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [attendeeEmail, setAttendeeEmail] = useState('ticketmastersincinfo@gmail.com');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [completedTickets, setCompletedTickets] = useState<PurchasedTicket[]>([]);
 
   // Reservation countdown timer
   useEffect(() => {
@@ -57,7 +61,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
     setTimeout(() => {
       setIsProcessing(false);
-      setIsSuccess(true);
 
       // Generate ticket entries
       const orderId = `TM-${Math.floor(10000000 + Math.random() * 90000000)}`;
@@ -82,14 +85,23 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           barcode: `49${Math.floor(1000000000 + Math.random() * 9000000000)}`,
           purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
           attendeeName,
-          attendeeEmail
+          attendeeEmail,
+          gate: ticketGroup.zoneName.includes('VIP') ? 'VIP Gate A' : 'Gate 2 / Concourse',
+          ticketType: ticketGroup.zoneName.includes('VIP') ? 'VIP' : 'Standard'
         });
       }
 
-      setTimeout(() => {
-        onOrderComplete(newTickets);
-      }, 1200);
+      setCompletedTickets(newTickets);
+      setIsSuccess(true);
     }, 1800);
+  };
+
+  const handleDownloadFromCheckout = () => {
+    if (completedTickets.length === 1) {
+      downloadTicketPDF(completedTickets[0]);
+    } else if (completedTickets.length > 1) {
+      downloadAllTicketsPDF(completedTickets);
+    }
   };
 
   return (
@@ -105,11 +117,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       >
         {/* Top Header with Timer */}
         <div className="bg-[#121212] text-white p-4 sm:p-5 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-xl font-black italic uppercase tracking-tighter text-white">
-              ticket<span className="text-[#ffb932]">master</span>
-            </span>
-            <span className="text-xs text-gray-400 font-semibold border-l border-gray-700 pl-2">
+          <div className="flex items-center space-x-3">
+            <TicketmasterLogo className="h-6 w-auto" color="#ffffff" />
+            <span className="text-xs text-gray-400 font-semibold border-l border-gray-700 pl-3">
               Secure Checkout
             </span>
           </div>
@@ -133,7 +143,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
         {isSuccess ? (
           /* SUCCESS STATE */
-          <div className="p-8 text-center space-y-4">
+          <div className="p-6 sm:p-8 text-center space-y-4">
             <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
               <CheckCircle2 className="w-10 h-10" />
             </div>
@@ -143,11 +153,35 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             <p className="type-rainier text-gray-600 max-w-md mx-auto">
               Your order for <strong>{event.identity.event_title}</strong> has been confirmed. Mobile tickets with dynamic SafeTix barcodes have been sent to <strong>{attendeeEmail}</strong>.
             </p>
-            <div className="pt-4">
-              <div className="inline-flex items-center space-x-2 bg-blue-50 text-[#024ddf] px-4 py-2 rounded-lg font-bold text-sm">
-                <Ticket className="w-4 h-4" />
-                <span>Loading your verified mobile entry passes...</span>
+
+            {completedTickets.length > 0 && (
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3.5 text-left max-w-sm mx-auto text-xs space-y-1">
+                <div className="flex justify-between font-bold text-gray-900">
+                  <span>Order #{completedTickets[0].orderId}</span>
+                  <span className="text-[#024ddf]">{completedTickets.length} Ticket(s)</span>
+                </div>
+                <div className="text-gray-600">{completedTickets[0].zoneName}</div>
               </div>
+            )}
+
+            <div className="pt-2 max-w-sm mx-auto space-y-2">
+              <button
+                id="checkout-success-download-btn"
+                onClick={handleDownloadFromCheckout}
+                className="w-full bg-[#024ddf] hover:bg-[#0139a7] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md cursor-pointer transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download {completedTickets.length > 1 ? `All ${completedTickets.length} Tickets (PDF)` : 'e-Ticket (PDF)'}</span>
+              </button>
+
+              <button
+                id="checkout-success-view-btn"
+                onClick={() => onOrderComplete(completedTickets)}
+                className="w-full bg-gray-900 hover:bg-black text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 cursor-pointer transition-colors text-xs"
+              >
+                <Smartphone className="w-4 h-4" />
+                <span>View in My Tickets</span>
+              </button>
             </div>
           </div>
         ) : (

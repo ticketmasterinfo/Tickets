@@ -9,8 +9,9 @@ import {
   Accessibility, 
   Users, 
   Ticket, 
-  Sparkles,
-  Info
+  Sparkles, 
+  Info,
+  ChevronRight
 } from 'lucide-react';
 import { EventItem } from '../../types';
 
@@ -18,12 +19,14 @@ interface EventDetailModalProps {
   event: EventItem | null;
   onClose: () => void;
   onSelectEventForBooking: (event: EventItem) => void;
+  onOpenArtist?: (artistName: string) => void;
 }
 
 export const EventDetailModal: React.FC<EventDetailModalProps> = ({
   event,
   onClose,
-  onSelectEventForBooking
+  onSelectEventForBooking,
+  onOpenArtist
 }) => {
   if (!event) return null;
 
@@ -112,19 +115,41 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
           {/* Lineup & Performers */}
           {event.identity.lineup && event.identity.lineup.length > 0 && (
             <div className="space-y-2">
-              <h4 className="type-vinson text-gray-900 font-bold flex items-center space-x-2">
-                <Users className="w-4 h-4 text-[#024ddf]" />
-                <span>Featured Lineup</span>
-              </h4>
+              <div className="flex items-center justify-between">
+                <h4 className="type-vinson text-gray-900 font-bold flex items-center space-x-2">
+                  <Users className="w-4 h-4 text-[#024ddf]" />
+                  <span>Featured Lineup</span>
+                </h4>
+                {onOpenArtist && (
+                  <button
+                    onClick={() => {
+                      onClose();
+                      onOpenArtist(event.identity.main_performer);
+                    }}
+                    className="text-xs font-bold text-[#024ddf] hover:underline flex items-center cursor-pointer"
+                  >
+                    <span>View All Tour Dates for {event.identity.main_performer}</span>
+                    <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
+                  </button>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {event.identity.lineup.map((performer, idx) => (
-                  <span
+                  <button
                     key={idx}
-                    className="bg-gray-100 border border-gray-200 text-gray-800 font-semibold text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5"
+                    onClick={() => {
+                      if (onOpenArtist) {
+                        onClose();
+                        onOpenArtist(performer);
+                      }
+                    }}
+                    className="bg-gray-100 hover:bg-blue-50 hover:text-[#024ddf] hover:border-blue-300 border border-gray-200 text-gray-800 font-semibold text-xs px-3 py-1.5 rounded-lg flex items-center space-x-1.5 transition-colors cursor-pointer"
+                    title={`View artist profile & tour dates for ${performer}`}
                   >
                     <Sparkles className="w-3 h-3 text-[#ffb932]" />
                     <span>{performer}</span>
-                  </span>
+                    <span className="text-[10px] text-gray-400">&bull; Tour</span>
+                  </button>
                 ))}
               </div>
             </div>

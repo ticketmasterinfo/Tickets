@@ -1,125 +1,187 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --font-averta: 'Averta', helvetica, arial, sans-serif;
-    
-    /* Typography scale tokens from Ticketmaster design system */
-    --mauna-font-size-number: 44;
-    --everest-font-size-number: 32;
-    --kilimanjaro-font-size-number: 24;
-    --matterhorn-font-size-number: 24;
-    --vinson-font-size-number: 22;
-    --blanc-font-size-number: 18;
+@font-face {
+  font-weight: 900;
+  font-family: 'Averta';
+  font-style: normal;
+  font-display: fallback;
+  src: url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-black.woff2) format('woff2'), url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-black.woff) format('woff');
+}
+
+@font-face {
+  font-weight: 800;
+  font-family: 'Averta';
+  font-style: normal;
+  font-display: fallback;
+  src: url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-extrabold.woff2) format('woff2'), url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-extrabold.woff) format('woff');
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: 'Averta';
+  font-style: normal;
+  font-display: fallback;
+  src: url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-bold.woff2) format('woff2'), url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-bold.woff) format('woff');
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'Averta';
+  font-style: normal;
+  font-display: fallback;
+  src: url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-semibold.woff2) format('woff2'), url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-semibold.woff) format('woff');
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Averta';
+  font-style: normal;
+  font-display: fallback;
+  src: url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-regular.woff2) format('woff2'), url(//uk.tmconst.com/rc-fb209c0d/fonts/averta-regular.woff) format('woff');
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  line-height: 1.4;
+  scroll-behavior: smooth;
+  --mauna-font-size-number: 44;
+  --everest-font-size-number: 32;
+  --kilimanjaro-font-size-number: 24;
+  --matterhorn-font-size-number: 24;
+  --vinson-font-size-number: 22;
+  --blanc-font-size-number: 18;
+  --fiji-font-size-number: 18;
+  --rainier-font-size-number: 16;
+  --boising-font-size-number: 16;
+  --etna-font-size-number: 14;
+  --nevis-font-size-number: 14;
+  --snowdon-font-size-number: 12;
+  --mauna-font-size: 44px;
+  --everest-font-size: 32px;
+  --kilimanjaro-font-size: 24px;
+  --matterhorn-font-size: 24px;
+  --vinson-font-size: 22px;
+  --blanc-font-size: 18px;
+  --fiji-font-size: 18px;
+  --rainier-font-size: 16px;
+  --boising-font-size: 16px;
+  --etna-font-size: 14px;
+  --nevis-font-size: 14px;
+  --snowdon-font-size: 12px;
+  --mauna-line-height: 44px;
+  --everest-line-height: 32px;
+  --kilimanjaro-line-height: 26px;
+  --matterhorn-line-height: 30px;
+  --vinson-line-height: 24px;
+  --blanc-line-height: 22px;
+  --fiji-line-height: 26px;
+  --rainier-line-height: 22px;
+  --boising-line-height: 22px;
+  --etna-line-height: 18px;
+  --nevis-line-height: 18px;
+  --snowdon-line-height: 20px;
+
+  /* Primary Brand Palette */
+  --tm-blue-primary: #024ddf;
+  --tm-blue-hover: #0139a7;
+  --tm-blue-active: #012e85;
+
+  /* Neutrals */
+  --tm-dark-bg: #121212;
+  --tm-dark-surface: #1f1f1f;
+  --tm-bg-main: #f6f6f6;
+  --tm-surface-white: #ffffff;
+
+  /* Borders & Dividers */
+  --tm-border-light: #bfbfbf;
+  --tm-border-subtle: #ebebeb;
+  --tm-border-dark: #949494;
+
+  /* Accent & Status */
+  --tm-accent-gold: #ffb932;
+  --tm-accent-green: #00875a;
+  --tm-resale-pink: #d91b5c;
+}
+
+@media (min-width: 900px) {
+  html {
+    --mauna-font-size-number: 54;
+    --everest-font-size-number: 44;
+    --kilimanjaro-font-size-number: 32;
+    --matterhorn-font-size-number: 28;
+    --vinson-font-size-number: 24;
+    --blanc-font-size-number: 20;
     --fiji-font-size-number: 18;
     --rainier-font-size-number: 16;
     --boising-font-size-number: 16;
     --etna-font-size-number: 14;
     --nevis-font-size-number: 14;
     --snowdon-font-size-number: 12;
-
-    --mauna-font-size: 44px;
-    --everest-font-size: 32px;
-    --kilimanjaro-font-size: 24px;
-    --matterhorn-font-size: 24px;
-    --vinson-font-size: 22px;
-    --blanc-font-size: 18px;
+    --mauna-font-size: 54px;
+    --everest-font-size: 44px;
+    --kilimanjaro-font-size: 32px;
+    --matterhorn-font-size: 28px;
+    --vinson-font-size: 24px;
+    --blanc-font-size: 20px;
     --fiji-font-size: 18px;
     --rainier-font-size: 16px;
     --boising-font-size: 16px;
     --etna-font-size: 14px;
     --nevis-font-size: 14px;
     --snowdon-font-size: 12px;
-
     --mauna-line-height: 44px;
-    --everest-line-height: 32px;
-    --kilimanjaro-line-height: 26px;
-    --matterhorn-line-height: 30px;
-    --vinson-line-height: 24px;
-    --blanc-line-height: 22px;
+    --everest-line-height: 44px;
+    --kilimanjaro-line-height: 34px;
+    --matterhorn-line-height: 34px;
+    --vinson-line-height: 28px;
+    --blanc-line-height: 24px;
     --fiji-line-height: 26px;
-    --rainier-line-height: 22px;
-    --boising-line-height: 22px;
-    --etna-line-height: 18px;
-    --nevis-line-height: 18px;
+    --rainier-line-height: 24px;
+    --boising-line-height: 24px;
+    --etna-line-height: 20px;
+    --nevis-line-height: 20px;
     --snowdon-line-height: 20px;
-
-    /* Primary Brand Palette */
-    --tm-blue-primary: #024ddf;
-    --tm-blue-hover: #0139a7;
-    --tm-blue-active: #012e85;
-
-    /* Neutrals */
-    --tm-dark-bg: #121212;
-    --tm-dark-surface: #1f1f1f;
-    --tm-bg-main: #f6f6f6;
-    --tm-surface-white: #ffffff;
-
-    /* Borders & Dividers */
-    --tm-border-light: #bfbfbf;
-    --tm-border-subtle: #ebebeb;
-    --tm-border-dark: #949494;
-
-    /* Accent & Status */
-    --tm-accent-gold: #ffb932;
-    --tm-accent-green: #00875a;
-    --tm-resale-pink: #d91b5c;
   }
+}
 
-  @media (min-width: 900px) {
-    :root {
-      --mauna-font-size-number: 54;
-      --everest-font-size-number: 44;
-      --kilimanjaro-font-size-number: 32;
-      --matterhorn-font-size-number: 28;
-      --vinson-font-size-number: 24;
-      --blanc-font-size-number: 20;
-      --fiji-font-size-number: 18;
-      --rainier-font-size-number: 16;
-      --boising-font-size-number: 16;
-      --etna-font-size-number: 14;
-      --nevis-font-size-number: 14;
-      --snowdon-font-size-number: 12;
+*, ::before, ::after {
+  box-sizing: inherit;
+}
 
-      --mauna-font-size: 54px;
-      --everest-font-size: 44px;
-      --kilimanjaro-font-size: 32px;
-      --matterhorn-font-size: 28px;
-      --vinson-font-size: 24px;
-      --blanc-font-size: 20px;
-      --fiji-font-size: 18px;
-      --rainier-font-size: 16px;
-      --boising-font-size: 16px;
-      --etna-font-size: 14px;
-      --nevis-font-size: 14px;
-      --snowdon-font-size: 12px;
+body {
+  font-size: var(--rainier-font-size, 16px);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  color: rgb(18, 18, 18);
+  font-family: Averta, helvetica, arial, sans-serif;
+  line-height: 1.4;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+}
 
-      --mauna-line-height: 44px;
-      --everest-line-height: 44px;
-      --kilimanjaro-line-height: 34px;
-      --matterhorn-line-height: 34px;
-      --vinson-line-height: 28px;
-      --blanc-line-height: 24px;
-      --fiji-line-height: 26px;
-      --rainier-line-height: 24px;
-      --boising-line-height: 24px;
-      --etna-line-height: 20px;
-      --nevis-line-height: 20px;
-      --snowdon-line-height: 20px;
-    }
+/* Ticketmaster Utility Bar Classes */
+.cCqgoW {
+  display: none;
+}
+@media (min-width: 900px) {
+  .cCqgoW {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-end;
+    margin-inline-end: -10px;
   }
+}
 
-  body {
-    font-family: var(--font-averta);
-    font-size: var(--rainier-font-size, 16px);
-    line-height: var(--rainier-line-height, 22px);
-    letter-spacing: 0.02em;
-    font-weight: 400;
-    color: #121212;
-    background-color: #f6f6f6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+.hFFFXm {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
 
   /* Typography Token Classes */
   .type-mauna {
@@ -222,7 +284,6 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
-}
 
 /* Custom Utilities */
 .snap-x-mandatory {
@@ -435,5 +496,154 @@
 .sc-b49c9602-2.dROoME:active {
   background-color: rgba(1, 46, 133, 0.9);
 }
+
+/* PayPal Preferred Partner Badge */
+.sc-1947e591-1.MkPJj,
+.MkPJj,
+#top-paypal-partner img {
+  display: block;
+  vertical-align: middle;
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Ticketmaster Top Utility Bar Elements */
+#top-utility-bar {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 14px;
+}
+
+.sc-a618d3b1-0.gFMDrF,
+.gFMDrF {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 36px;
+}
+
+.sc-39b36d9a-0.jbRPoP,
+.jbRPoP {
+  display: flex;
+  align-items: center;
+}
+
+.sc-39b36d9a-2.Sajtl,
+.Sajtl {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+.sc-39b36d9a-2.Sajtl:hover,
+.Sajtl:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.sc-39b36d9a-5.GMtQO,
+.GMtQO {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 1.85em;
+  height: 1.85em;
+}
+
+.VisuallyHidden-sc-8buqks-0.jZNwtS,
+.jZNwtS {
+  border: 0px;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0px;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.sc-a618d3b1-2.gLPCaG,
+.gLPCaG {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.sc-a618d3b1-4.ibHGSp,
+.ibHGSp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #c4c4c4;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  line-height: 1.4;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+.sc-a618d3b1-4.ibHGSp:hover,
+.ibHGSp:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sc-a618d3b1-4.ibHGSp svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.sc-a618d3b1-7.eOiYfI,
+.eOiYfI {
+  fill: #024ddf;
+}
+
+.sc-a618d3b1-5.dlkGxy,
+.dlkGxy {
+  fill: #ffb932;
+}
+
+.sc-a618d3b1-1.bbMoWu,
+.bbMoWu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sc-1947e591-0.fbRQkm,
+.fbRQkm {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 6px;
+  border-radius: 4px;
+  transition: opacity 200ms ease;
+}
+.sc-1947e591-0.fbRQkm:hover,
+.fbRQkm:hover {
+  opacity: 0.8;
+}
+
 
 

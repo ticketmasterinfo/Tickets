@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Calendar } from 'lucide-react';
 
 export interface PopularPerformerItem {
   name: string;
@@ -244,7 +244,7 @@ const CategoryCarouselRow: React.FC<CategoryCarouselRowProps> = ({
           <div 
             key={item.name}
             onClick={() => onSelectPerformer(item.name)}
-            className="shrink-0 w-[180px] sm:w-[210px] snap-start group cursor-pointer"
+            className="shrink-0 w-[180px] sm:w-[210px] snap-start group cursor-pointer bg-white rounded-xl p-2 border border-gray-200 hover:border-[#024ddf] hover:shadow-md transition-all flex flex-col justify-between"
           >
             <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shadow-xs">
               <img 
@@ -256,14 +256,22 @@ const CategoryCarouselRow: React.FC<CategoryCarouselRowProps> = ({
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
+              <span className="absolute bottom-2 left-2 bg-[#121212]/85 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
+                <Calendar className="w-3 h-3 mr-1 text-[#ffb932]" />
+                <span>See Dates</span>
+              </span>
             </div>
-            <div className="pt-2 px-0.5">
+            <div className="pt-2 px-0.5 space-y-0.5">
               <span className="type-snowdon text-gray-500 block truncate">
                 {item.genre}
               </span>
               <h4 className="type-blanc font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
                 {item.name}
               </h4>
+              <div className="pt-1 flex items-center justify-between text-[11px] font-bold text-[#024ddf]">
+                <span>All Dates & Tickets</span>
+                <span className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+              </div>
             </div>
           </div>
         ))}

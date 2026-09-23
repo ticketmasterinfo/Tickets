@@ -922,3 +922,396 @@ export const SEAT_ZONES_PRESETS: Record<string, SeatZone[]> = {
     }
   ]
 };
+
+/**
+ * Generates dynamic, realistic seat zones scaled to each event's specific pricing and category
+ */
+export function getEventSeatZones(event: EventItem): SeatZone[] {
+  const minP = event.pricing.min_price || 65;
+  const maxP = event.pricing.max_price || 350;
+  const range = Math.max(20, maxP - minP);
+  const category = event.identity.category;
+
+  let seed = 0;
+  for (let i = 0; i < event.identity.event_id.length; i++) {
+    seed += event.identity.event_id.charCodeAt(i);
+  }
+
+  if (category === 'Concerts') {
+    return [
+      {
+        id: 'zone-vip',
+        name: 'VIP Front Stage & Diamond Club',
+        code: 'VIP-PIT',
+        tier: 'VIP',
+        color: '#ffb932',
+        hoverColor: '#f59e0b',
+        price: Math.round(maxP),
+        availableCount: 4 + (seed % 9),
+        totalCount: 40,
+        description: 'First 5 rows closest to stage. Includes dedicated VIP lounge, early venue entry, and exclusive merchandise bundle.',
+        perks: ['Exclusive Tour Poster', 'Early Venue Entry', 'Complimentary VIP Bar Voucher', 'Dedicated Concierge'],
+        ticketType: 'VIP',
+        isSellingFast: true,
+        centerPos: { x: 300, y: 150 }
+      },
+      {
+        id: 'zone-floor',
+        name: 'General Admission Floor (GA Pit)',
+        code: 'GA-PIT',
+        tier: 'Floor',
+        color: '#024ddf',
+        hoverColor: '#0139a7',
+        price: Math.round(minP + range * 0.65),
+        availableCount: 18 + (seed % 28),
+        totalCount: 150,
+        description: 'Standing room area directly in front of the main stage. High-energy concert atmosphere.',
+        perks: ['Up-close performer view', 'Direct stage access'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 240 }
+      },
+      {
+        id: 'zone-lower-101',
+        name: 'Lower Bowl - Section 101-104 (Center)',
+        code: 'SEC-102',
+        tier: 'Lower',
+        color: '#00875a',
+        hoverColor: '#059669',
+        price: Math.round(minP + range * 0.44),
+        availableCount: 35 + (seed % 35),
+        totalCount: 220,
+        description: 'Prime elevated center-court/center-stage sightlines with unobstructed acoustic coverage.',
+        perks: ['Padded arena seating', 'In-seat mobile food ordering'],
+        ticketType: 'Standard',
+        centerPos: { x: 170, y: 280 }
+      },
+      {
+        id: 'zone-lower-105',
+        name: 'Lower Bowl - Section 105-108 (Sides)',
+        code: 'SEC-106',
+        tier: 'Lower',
+        color: '#10b981',
+        hoverColor: '#047857',
+        price: Math.round(minP + range * 0.28),
+        availableCount: 50 + (seed % 45),
+        totalCount: 260,
+        description: 'Excellent side elevated viewpoint close to venue concourse amenities and exits.',
+        perks: ['Fast concourse access', 'Excellent angle of production stage'],
+        ticketType: 'Standard',
+        centerPos: { x: 430, y: 280 }
+      },
+      {
+        id: 'zone-upper-201',
+        name: 'Upper Tier - Section 201-208 (Mid-Level)',
+        code: 'SEC-204',
+        tier: 'Upper',
+        color: '#6366f1',
+        hoverColor: '#4f46e5',
+        price: Math.round(minP + range * 0.16),
+        availableCount: 80 + (seed % 60),
+        totalCount: 400,
+        description: 'Panoramic arena view with full view of light shows and large LED screens.',
+        perks: ['Great value', 'Panoramic light show visuals'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 380 }
+      },
+      {
+        id: 'zone-upper-301',
+        name: 'Upper Balcony - Section 301-314',
+        code: 'SEC-308',
+        tier: 'Upper',
+        color: '#8b5cf6',
+        hoverColor: '#7c3aed',
+        price: Math.round(minP),
+        availableCount: 120 + (seed % 80),
+        totalCount: 500,
+        description: 'Budget-friendly arena seats with clear central line of sight to main stage screens.',
+        perks: ['Most affordable entry', 'Direct elevator access'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 440 }
+      }
+    ];
+  } else if (category === 'Sports') {
+    return [
+      {
+        id: 'zone-vip',
+        name: 'Courtside / Field-Level Club Seats',
+        code: 'COURT-1',
+        tier: 'VIP',
+        color: '#ffb932',
+        hoverColor: '#f59e0b',
+        price: Math.round(maxP),
+        availableCount: 3 + (seed % 7),
+        totalCount: 30,
+        description: 'Front row action feet away from players. Includes private premium all-inclusive club lounge access and valet parking.',
+        perks: ['All-Inclusive Club Dining & Drinks', 'VIP Stadium Entrance', 'In-Seat Waiter Service', 'Valet Parking Pass'],
+        ticketType: 'VIP',
+        isSellingFast: true,
+        centerPos: { x: 300, y: 150 }
+      },
+      {
+        id: 'zone-floor',
+        name: 'Lower Bowl Center Court (Sec 101-102)',
+        code: 'SEC-101',
+        tier: 'Floor',
+        color: '#024ddf',
+        hoverColor: '#0139a7',
+        price: Math.round(minP + range * 0.62),
+        availableCount: 16 + (seed % 24),
+        totalCount: 140,
+        description: 'Prime center-court / midfield elevated seats between the team benches.',
+        perks: ['TV Broadcast Viewpoint', 'Padded seats with cup holders'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 240 }
+      },
+      {
+        id: 'zone-lower-101',
+        name: 'Lower Bowl Baseline / Corners (Sec 103-108)',
+        code: 'SEC-104',
+        tier: 'Lower',
+        color: '#00875a',
+        hoverColor: '#059669',
+        price: Math.round(minP + range * 0.42),
+        availableCount: 38 + (seed % 30),
+        totalCount: 220,
+        description: 'Close proximity to basket / endzone action and team tunnel entrances.',
+        perks: ['Player Tunnel Sightlines', 'Concourse access'],
+        ticketType: 'Standard',
+        centerPos: { x: 170, y: 280 }
+      },
+      {
+        id: 'zone-lower-105',
+        name: 'Club Mezzanine Level (Sec 201-208)',
+        code: 'CLUB-202',
+        tier: 'Lower',
+        color: '#10b981',
+        hoverColor: '#047857',
+        price: Math.round(minP + range * 0.28),
+        availableCount: 45 + (seed % 40),
+        totalCount: 250,
+        description: 'Executive club level with wide padded chairs, shorter restroom lines, and upscale concession bars.',
+        perks: ['Exclusive Club Concourse', 'Private Restrooms'],
+        ticketType: 'Standard',
+        centerPos: { x: 430, y: 280 }
+      },
+      {
+        id: 'zone-upper-201',
+        name: 'Upper Promenade Center (Sec 301-308)',
+        code: 'SEC-304',
+        tier: 'Upper',
+        color: '#6366f1',
+        hoverColor: '#4f46e5',
+        price: Math.round(minP + range * 0.15),
+        availableCount: 75 + (seed % 55),
+        totalCount: 380,
+        description: 'Panoramic arena view with giant Jumbotron views and passionate fan atmosphere.',
+        perks: ['Full Game Tactical View', 'Great crowd energy'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 380 }
+      },
+      {
+        id: 'zone-upper-301',
+        name: 'Upper Deck Corner & End (Sec 309-324)',
+        code: 'SEC-318',
+        tier: 'Upper',
+        color: '#8b5cf6',
+        hoverColor: '#7c3aed',
+        price: Math.round(minP),
+        availableCount: 110 + (seed % 70),
+        totalCount: 450,
+        description: 'Most affordable admission to catch the live game action in person.',
+        perks: ['Value Price Point', 'Express elevator access'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 440 }
+      }
+    ];
+  } else if (category === 'Arts & Theater') {
+    return [
+      {
+        id: 'zone-vip',
+        name: 'Premium Center Orchestra & House Lounge',
+        code: 'ORCH-VIP',
+        tier: 'VIP',
+        color: '#ffb932',
+        hoverColor: '#f59e0b',
+        price: Math.round(maxP),
+        availableCount: 5 + (seed % 6),
+        totalCount: 35,
+        description: 'Rows A-E dead center orchestra. Complimentary pre-show champagne, commemorative playbill, and private coat check.',
+        perks: ['Center Stage Sightlines', 'Pre-Show Lounge Access', 'Commemorative Playbill', 'Private Coat Check'],
+        ticketType: 'VIP',
+        isSellingFast: true,
+        centerPos: { x: 300, y: 150 }
+      },
+      {
+        id: 'zone-floor',
+        name: 'Front Orchestra (Rows F-M)',
+        code: 'ORCH-CTR',
+        tier: 'Floor',
+        color: '#024ddf',
+        hoverColor: '#0139a7',
+        price: Math.round(minP + range * 0.65),
+        availableCount: 20 + (seed % 20),
+        totalCount: 120,
+        description: 'Exceptional proximity to performers, stage expressions, and the live orchestra pit.',
+        perks: ['Acoustic perfection', 'Close view of performers'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 240 }
+      },
+      {
+        id: 'zone-lower-101',
+        name: 'Rear Orchestra (Rows N-Z)',
+        code: 'ORCH-REAR',
+        tier: 'Lower',
+        color: '#00875a',
+        hoverColor: '#059669',
+        price: Math.round(minP + range * 0.44),
+        availableCount: 35 + (seed % 30),
+        totalCount: 180,
+        description: 'Full stage panorama under the mezzanine overhang with balanced theater acoustics.',
+        perks: ['Full stage view', 'Wide theater seats'],
+        ticketType: 'Standard',
+        centerPos: { x: 170, y: 280 }
+      },
+      {
+        id: 'zone-lower-105',
+        name: 'Front Mezzanine / Royal Circle',
+        code: 'MEZZ-CTR',
+        tier: 'Lower',
+        color: '#10b981',
+        hoverColor: '#047857',
+        price: Math.round(minP + range * 0.32),
+        availableCount: 42 + (seed % 35),
+        totalCount: 200,
+        description: 'The preferred theatrical critic view: Elevated center angle capturing full choreography.',
+        perks: ['Unobstructed elevated sightline', 'Perfect view of staging'],
+        ticketType: 'Standard',
+        centerPos: { x: 430, y: 280 }
+      },
+      {
+        id: 'zone-upper-201',
+        name: 'Rear Mezzanine',
+        code: 'MEZZ-REAR',
+        tier: 'Upper',
+        color: '#6366f1',
+        hoverColor: '#4f46e5',
+        price: Math.round(minP + range * 0.18),
+        availableCount: 65 + (seed % 45),
+        totalCount: 300,
+        description: 'Great elevated sightline to theatrical sets and lighting design at an affordable price point.',
+        perks: ['Elevated rake', 'Full production view'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 380 }
+      },
+      {
+        id: 'zone-upper-301',
+        name: 'Balcony / Gallery',
+        code: 'BALC',
+        tier: 'Upper',
+        color: '#8b5cf6',
+        hoverColor: '#7c3aed',
+        price: Math.round(minP),
+        availableCount: 90 + (seed % 60),
+        totalCount: 350,
+        description: 'Affordable admission into historic theater house with clear sightline to main stage.',
+        perks: ['Lowest admission price', 'Historic theater atmosphere'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 440 }
+      }
+    ];
+  } else {
+    return [
+      {
+        id: 'zone-vip',
+        name: 'VIP Front Row & Character Meet & Greet',
+        code: 'VIP-ICE',
+        tier: 'VIP',
+        color: '#ffb932',
+        hoverColor: '#f59e0b',
+        price: Math.round(maxP),
+        availableCount: 4 + (seed % 5),
+        totalCount: 25,
+        description: 'Front row seats with exclusive pre-show character meet and greet experience and commemorative souvenir gift.',
+        perks: ['Character Meet & Greet Photo', 'Souvenir Gift Bag', 'Early Venue Admission', 'Dedicated Family Host'],
+        ticketType: 'VIP',
+        isSellingFast: true,
+        centerPos: { x: 300, y: 150 }
+      },
+      {
+        id: 'zone-floor',
+        name: 'Lower Level Ice / Floor Center',
+        code: 'SEC-101',
+        tier: 'Floor',
+        color: '#024ddf',
+        hoverColor: '#0139a7',
+        price: Math.round(minP + range * 0.60),
+        availableCount: 22 + (seed % 20),
+        totalCount: 130,
+        description: 'Up close to the performance arena where kids can see every detail of the show.',
+        perks: ['Close to performers', 'Great for kids and photo ops'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 240 }
+      },
+      {
+        id: 'zone-lower-101',
+        name: 'Lower Level Center (Sec 102-104)',
+        code: 'SEC-103',
+        tier: 'Lower',
+        color: '#00875a',
+        hoverColor: '#059669',
+        price: Math.round(minP + range * 0.40),
+        availableCount: 40 + (seed % 30),
+        totalCount: 200,
+        description: 'Centered elevation with balanced views of the entire arena floor.',
+        perks: ['Padded seating', 'Easy stroller parking access'],
+        ticketType: 'Standard',
+        centerPos: { x: 170, y: 280 }
+      },
+      {
+        id: 'zone-lower-105',
+        name: 'Lower Level Sides (Sec 105-108)',
+        code: 'SEC-107',
+        tier: 'Lower',
+        color: '#10b981',
+        hoverColor: '#047857',
+        price: Math.round(minP + range * 0.25),
+        availableCount: 55 + (seed % 40),
+        totalCount: 220,
+        description: 'Convenient side sections closest to concession snacks and family restrooms.',
+        perks: ['Fast exit & entrance', 'Snack stands nearby'],
+        ticketType: 'Standard',
+        centerPos: { x: 430, y: 280 }
+      },
+      {
+        id: 'zone-upper-201',
+        name: 'Upper Concourse Center (Sec 201-208)',
+        code: 'SEC-203',
+        tier: 'Upper',
+        color: '#6366f1',
+        hoverColor: '#4f46e5',
+        price: Math.round(minP + range * 0.14),
+        availableCount: 85 + (seed % 50),
+        totalCount: 320,
+        description: 'Great overview of the entire ice/stage production at family-friendly rates.',
+        perks: ['Full production view', 'Family budget friendly'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 380 }
+      },
+      {
+        id: 'zone-upper-301',
+        name: 'Upper Balcony (Sec 301-314)',
+        code: 'SEC-305',
+        tier: 'Upper',
+        color: '#8b5cf6',
+        hoverColor: '#7c3aed',
+        price: Math.round(minP),
+        availableCount: 130 + (seed % 70),
+        totalCount: 450,
+        description: 'Most affordable family tickets to enjoy the show together.',
+        perks: ['Most economical tickets', 'Direct elevator access'],
+        ticketType: 'Standard',
+        centerPos: { x: 300, y: 440 }
+      }
+    ];
+  }
+}

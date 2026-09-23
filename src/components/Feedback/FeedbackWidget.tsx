@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, MessageSquare, Star } from 'lucide-react';
+import { TicketmasterEmblem } from '../Common/TicketmasterLogo';
 
 export const FeedbackWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,20 +31,7 @@ export const FeedbackWidget: React.FC = () => {
           className="bg-[#121212] hover:bg-[#222222] active:bg-[#000000] text-white px-3.5 py-2 rounded-full shadow-2xl border border-gray-700 flex items-center space-x-2 text-xs font-bold transition-all duration-200 transform hover:scale-105 active:scale-95 cursor-pointer"
           aria-label="Provide Website Feedback"
         >
-          {/* Ticketmaster italicized signature 't' icon */}
-          <svg 
-            width="18" 
-            height="18" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="shrink-0"
-          >
-            <path 
-              d="M10.736 15.86c0-.522.08-.993.159-1.307l1.286-5.88h3.154l.554-2.562h-3.155l.87-4-3.785 1.23-.606 2.77H6.667l-.556 2.561h2.552l-.998 4.55c-.237 1.07-.45 2.09-.45 3.135 0 2.59 1.682 3.532 4.073 3.532.607 0 1.288-.186 1.895-.316l.604-2.72a4.716 4.716 0 0 1-1.71.314c-.789 0-1.34-.496-1.34-1.307z" 
-              fill="#ffffff" 
-            />
-          </svg>
+          <TicketmasterEmblem size={18} color="#ffffff" className="shrink-0" />
           <span>Feedback</span>
         </button>
       </div>
@@ -77,9 +65,9 @@ export const FeedbackWidget: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="flex items-center space-x-2">
-                  <div className="w-7 h-7 bg-[#024ddf] text-white rounded-full flex items-center justify-center font-black italic text-xs">
-                    t
+                <div className="flex items-center space-x-2.5">
+                  <div className="w-7 h-7 bg-[#024ddf] text-white rounded-full flex items-center justify-center p-1 shrink-0">
+                    <TicketmasterEmblem size={16} color="#ffffff" />
                   </div>
                   <div>
                     <h3 id="feedback-dialog-title" className="text-base font-extrabold text-gray-900 leading-tight">

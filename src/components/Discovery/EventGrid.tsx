@@ -11,6 +11,7 @@ interface EventGridProps {
   onResetFilters: () => void;
   onSelectEvent: (event: EventItem) => void;
   onViewDetails: (event: EventItem) => void;
+  onSelectPerformer?: (performerName: string) => void;
   layout: 'grid' | 'list';
   onToggleLayout: (layout: 'grid' | 'list') => void;
 }
@@ -23,6 +24,7 @@ export const EventGrid: React.FC<EventGridProps> = ({
   onResetFilters,
   onSelectEvent,
   onViewDetails,
+  onSelectPerformer,
   layout,
   onToggleLayout
 }) => {
@@ -184,6 +186,7 @@ export const EventGrid: React.FC<EventGridProps> = ({
               event={event}
               onSelectEvent={onSelectEvent}
               onViewDetails={onViewDetails}
+              onSelectPerformer={onSelectPerformer}
               layout={layout}
             />
           ))}

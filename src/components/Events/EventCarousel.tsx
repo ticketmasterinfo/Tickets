@@ -9,6 +9,7 @@ interface EventCarouselProps {
   events: EventItem[];
   onSelectEvent: (event: EventItem) => void;
   onViewDetails: (event: EventItem) => void;
+  onSelectPerformer?: (performerName: string) => void;
   onViewAll?: () => void;
   badgeText?: string;
 }
@@ -19,6 +20,7 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   events,
   onSelectEvent,
   onViewDetails,
+  onSelectPerformer,
   onViewAll,
   badgeText
 }) => {
@@ -34,8 +36,8 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
   if (!events.length) return null;
 
   return (
-    <section className="py-6 sm:py-8" aria-label={title}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <section className="py-4 w-full" aria-label={title}>
+      <div className="w-full">
         
         {/* Carousel Header */}
         <div className="flex items-end justify-between mb-4">
@@ -99,6 +101,7 @@ export const EventCarousel: React.FC<EventCarouselProps> = ({
                 event={event}
                 onSelectEvent={onSelectEvent}
                 onViewDetails={onViewDetails}
+                onSelectPerformer={onSelectPerformer}
                 layout="grid"
               />
             </div>

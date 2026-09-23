@@ -21,6 +21,7 @@ interface OmniboxSearchProps {
   dateRange: string;
   onDateRangeChange: (range: 'all' | 'today' | 'this_weekend' | 'this_month' | 'future') => void;
   onSelectEvent: (event: EventItem) => void;
+  onSelectPerformer?: (performerName: string) => void;
   onExecuteSearch: () => void;
 }
 
@@ -33,6 +34,7 @@ export const OmniboxSearch: React.FC<OmniboxSearchProps> = ({
   dateRange,
   onDateRangeChange,
   onSelectEvent,
+  onSelectPerformer,
   onExecuteSearch
 }) => {
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState(false);
@@ -296,6 +298,19 @@ export const OmniboxSearch: React.FC<OmniboxSearchProps> = ({
                       <Building2 className="w-3 h-3 mr-1" />
                       {evt.location.venue_name} • {evt.location.city}, {evt.location.state}
                     </p>
+                    {onSelectPerformer && evt.identity.main_performer && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsAutocompleteOpen(false);
+                          onSelectPerformer(evt.identity.main_performer);
+                        }}
+                        className="text-[11px] font-bold text-[#024ddf] hover:underline mt-1 inline-flex items-center"
+                      >
+                        <span>View {evt.identity.main_performer} Tour Dates &rarr;</span>
+                      </button>
+                    )}
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-xs text-gray-500 block">From</span>

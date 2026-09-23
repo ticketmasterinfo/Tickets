@@ -73,6 +73,8 @@ export interface SeatZone {
   perks?: string[];
   svgPath?: string;
   centerPos: { x: number; y: number };
+  ticketType?: 'Standard' | 'VIP' | 'Platinum' | 'Resale' | 'Presale';
+  isSellingFast?: boolean;
 }
 
 export interface SeatUnit {
@@ -114,6 +116,52 @@ export interface PurchasedTicket {
   purchaseDate: string;
   attendeeName: string;
   attendeeEmail: string;
+  gate?: string;
+  ticketType?: string;
+}
+
+export interface ArtistTourDate {
+  eventId: string;
+  date: string;
+  dayOfWeek: string;
+  month: string;
+  dayNumber: string;
+  time: string;
+  doorsTime: string;
+  eventTitle: string;
+  venueName: string;
+  city: string;
+  state: string;
+  country: string;
+  minPrice: number;
+  maxPrice: number;
+  status: 'On Sale' | 'Selling Fast' | 'Few Tickets Left' | 'Presale';
+  hasVip: boolean;
+  hasResale: boolean;
+  eventItem: EventItem;
+}
+
+export interface ArtistProfile {
+  id: string;
+  slug: string;
+  name: string;
+  genre: string;
+  subgenre: string;
+  heroImageUrl: string;
+  bannerImageUrl: string;
+  avatarUrl: string;
+  verified: boolean;
+  fanCount: string;
+  rating: number;
+  reviewCount: number;
+  tourName: string;
+  headlineNotice?: string;
+  biography: string;
+  careerHighlights: string[];
+  topTracks: { title: string; album: string; duration: string; streams?: string }[];
+  vipPackages: { title: string; price: number; perks: string[] }[];
+  tourDates: ArtistTourDate[];
+  faqs: { question: string; answer: string }[];
 }
 
 export interface FilterOptions {

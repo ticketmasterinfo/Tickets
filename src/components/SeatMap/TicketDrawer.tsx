@@ -21,6 +21,8 @@ interface TicketDrawerProps {
   selectedSeats: string[];
   onProceedToCheckout: (ticketGroup: SelectedTicketGroup) => void;
   onClose?: () => void;
+  availableZones?: SeatZone[];
+  onSelectZone?: (zone: SeatZone) => void;
 }
 
 export const TicketDrawer: React.FC<TicketDrawerProps> = ({
@@ -29,7 +31,9 @@ export const TicketDrawer: React.FC<TicketDrawerProps> = ({
   quantity,
   onQuantityChange,
   selectedSeats,
-  onProceedToCheckout
+  onProceedToCheckout,
+  availableZones,
+  onSelectZone
 }) => {
   const [promoCode, setPromoCode] = useState('');
   const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
@@ -91,7 +95,7 @@ export const TicketDrawer: React.FC<TicketDrawerProps> = ({
   return (
     <div 
       id="ticket-selection-drawer"
-      className="bg-white rounded-2xl border border-gray-200 shadow-xl p-5 md:p-6 flex flex-col justify-between space-y-6"
+      className="bg-white rounded-2xl border border-gray-200 shadow-xl p-4 sm:p-6 flex flex-col justify-between space-y-6"
     >
       {/* Drawer Header */}
       <div className="space-y-3 pb-4 border-b border-gray-100">
@@ -118,6 +122,55 @@ export const TicketDrawer: React.FC<TicketDrawerProps> = ({
             {selectedZone ? selectedZone.description : 'Click any section on the map to configure your seats and pricing.'}
           </p>
         </div>
+
+        {/* Real-time Zone & Price Switcher if availableZones passed */}
+        {availableZones && availableZones.length > 0 && (
+          <div className="space-y-1.5">
+            <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
+              Available Sections & Prices
+            </span>
+            <div className="grid grid-cols-1 gap-1.5 max-h-36 overflow-y-auto pr-1">
+              {availableZones.map((zone) => {
+                const isSelected = selectedZone?.id === zone.id;
+                return (
+                  <button
+                    key={zone.id}
+                    type="button"
+                    onClick={() => onSelectZone && onSelectZone(zone)}
+                    className={`text-left p-2 rounded-lg border transition-all flex items-center justify-between cursor-pointer ${
+                      isSelected 
+                        ? 'border-[#024ddf] bg-blue-50/70 shadow-xs' 
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2 min-w-0">
+                      <span 
+                        className="w-2.5 h-2.5 rounded-full shrink-0" 
+                        style={{ backgroundColor: zone.color }}
+                      />
+                      <div className="truncate">
+                        <span className="text-xs font-bold text-gray-900 block truncate">
+                          {zone.name}
+                        </span>
+                        <span className="text-[10px] text-gray-500">
+                          {zone.availableCount} seats left &bull; Row {zone.rowRange}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0 ml-2">
+                      <span className="text-xs font-black text-[#024ddf]">
+                        ${showAllInPricing ? zone.priceWithFees : zone.basePrice}
+                      </span>
+                      {showAllInPricing && (
+                        <span className="text-[9px] text-gray-400 block">incl. fees</span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Selected Zone Perks */}
         {selectedZone?.perks && selectedZone.perks.length > 0 && (
