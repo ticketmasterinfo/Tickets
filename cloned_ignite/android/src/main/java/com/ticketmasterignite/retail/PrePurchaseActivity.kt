@@ -1,0 +1,106 @@
+package com.ticketmasterignite.retail
+
+import android.os.Bundle
+import android.graphics.Color
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
+import com.ticketmasterignite.R
+import com.ticketmaster.discoveryapi.models.DiscoveryAbstractEntity
+import com.ticketmaster.discoveryapi.models.DiscoveryVenue
+import com.ticketmaster.discoveryapi.models.DiscoveryAttraction
+import com.ticketmaster.prepurchase.TMPrePurchase
+import com.ticketmaster.prepurchase.TMPrePurchaseFragmentFactory
+import com.ticketmaster.prepurchase.TMPrePurchaseWebsiteConfiguration
+import com.ticketmaster.prepurchase.listener.TMPrePurchaseCountrySelectorListener
+import com.ticketmaster.prepurchase.listener.TMPrePurchaseFavoritesListener
+import com.ticketmaster.prepurchase.listener.TMPrePurchaseSharingListener
+import com.ticketmaster.prepurchase.listener.TMPrePurchaseUserAnalyticsListener
+import com.ticketmaster.prepurchase.listener.TMPrePurchaseWebAnalyticsListener
+import com.ticketmasterignite.Environment
+import com.ticketmasterignite.MarketDomain
+
+class PrePurchaseActivity : AppCompatActivity() {
+    private lateinit var fragment: Fragment
+    private val userAnalyticsListener: TMPrePurchaseUserAnalyticsListener =
+      PrePurchaseUserAnalyticsListener()
+    private val countryPickerListener: TMPrePurchaseCountrySelectorListener =
+      PrePurchaseCountryPickerListener()
+    private val favoritesListener: TMPrePurchaseFavoritesListener =
+      PrePurchaseFavoritesListener()
+    private val sharingListener: TMPrePurchaseSharingListener =
+      PrePurchaseSharingListener()
+    private val webAnalyticsListener: TMPrePurchaseWebAnalyticsListener =
+      PrePurchaseWebAnalyticsListener()
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
+            false
+        setContentView(R.layout.prepurchase_layout)
+
+        val container = findViewById<View>(R.id.prepurchase_container)
+        val initialPaddingTop = container.paddingTop
+        container.setBackgroundColor(Color.BLACK)
+        ViewCompat.setOnApplyWindowInsetsListener(container) { view, insets ->
+            val topInsets = insets.getInsets(
+                WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            view.updatePadding(top = initialPaddingTop + topInsets.top)
+            insets
+        }
+        ViewCompat.requestApplyInsets(container)
+
+        val tmPrePurchase = TMPrePurchase(
+                environment = Environment.getTMEnvironment(Config.get("environment")),
+                discoveryAPIKey = Config.get("apiKey"),
+                brandColor = Color.parseColor(Config.get("primaryColor"))
+        )
+        val venueId = intent.getStringExtra("venueId")
+        val attractionId = intent.getStringExtra("attractionId")
+
+        val discoveryVenue: DiscoveryAbstractEntity = if (!venueId.isNullOrEmpty()) {
+            DiscoveryVenue(hostID = venueId)
+        } else {
+            DiscoveryAttraction(hostID = attractionId)
+        }
+        val marketDomain = Config.get("marketDomain")
+        val tmPrePurchaseWebsiteConfiguration = TMPrePurchaseWebsiteConfiguration(
+                discoveryVenue,
+                MarketDomain.getMarketDomain(marketDomain),
+        )
+
+        val bundle = tmPrePurchase.getPrePurchaseBundle(
+                tmPrePurchaseWebsiteConfiguration
+        )
+
+        val factory = TMPrePurchaseFragmentFactory(
+                tmPrePurchaseNavigationListener = PrePurchaseNavigationListener(
+                        context = this,
+                        apiKey = tmPrePurchase.discoveryAPIKey.orEmpty(),
+                ) {
+                    finish()
+                },
+          tmPrePurchaseUserAnalyticsListener = userAnalyticsListener,
+          tmPrePurchaseWebAnalyticsListener = webAnalyticsListener,
+          tmPrePurchaseFavoritesListener = favoritesListener,
+          tmPrePurchaseCountryPickerListener = countryPickerListener,
+          tmPrePurchaseShareListener = sharingListener,
+        ).apply {
+            supportFragmentManager.fragmentFactory = this
+        }
+
+        fragment = factory.instantiatePrePurchase(ClassLoader.getSystemClassLoader()).apply {
+            arguments = bundle
+        }
+
+        supportFragmentManager.beginTransaction()
+                .add(R.id.prepurchase_container, fragment)
+                .commit()
+    }
+}
