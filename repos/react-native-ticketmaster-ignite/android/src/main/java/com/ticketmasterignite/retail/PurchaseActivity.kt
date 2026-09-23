@@ -1,0 +1,81 @@
+package com.ticketmasterignite.retail
+
+import EventHeader
+import android.os.Bundle
+import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
+import com.ticketmasterignite.R
+import com.ticketmaster.foundation.entity.TMAuthenticationParams
+import com.ticketmaster.purchase.TMPurchase
+import com.ticketmaster.purchase.TMPurchaseFragmentFactory
+import com.ticketmaster.purchase.TMPurchaseWebsiteConfiguration
+import com.ticketmaster.purchase.listener.TMPurchaseFavoritesListener
+import com.ticketmaster.purchase.listener.TMPurchaseSharingListener
+import com.ticketmaster.purchase.listener.TMPurchaseUserAnalyticsListener
+import com.ticketmaster.purchase.listener.TMPurchaseWebAnalyticsListener
+import com.ticketmasterignite.Environment
+import com.ticketmasterignite.MarketDomain
+
+class PurchaseActivity : AppCompatActivity() {
+  private val userAnalyticsListener: TMPurchaseUserAnalyticsListener =
+    PurchaseUserAnalyticsListener { finish() }
+  private val webAnalyticsListener: TMPurchaseWebAnalyticsListener =
+    PurchaseWebAnalyticsListener()
+  private val sharingListener: TMPurchaseSharingListener =
+    PurchaseSharingListener()
+  private val favoritesListener: TMPurchaseFavoritesListener =
+    PurchaseFavoritesListener()
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.purchase_layout)
+    val eventHeaderType = Config.get("eventHeaderType")
+
+    if (savedInstanceState == null) {
+      val tmPurchase = TMPurchase(
+        apiKey = Config.get("apiKey"),
+        environment = Environment.getTMEnvironment(Config.get("environment")),
+        brandColor = Color.parseColor(Config.get("primaryColor"))
+      )
+
+      val marketDomain = Config.get("marketDomain")
+      val tmPurchaseWebsiteConfiguration = TMPurchaseWebsiteConfiguration(
+        intent.getStringExtra("eventId").orEmpty(),
+        MarketDomain.getMarketDomain(marketDomain),
+        showShareToolbarButton = EventHeader.getShowShareToolbarButtonValue(eventHeaderType),
+      )
+
+      val factory = TMPurchaseFragmentFactory(
+        tmPurchaseNavigationListener = PurchaseNavigationListener {
+          finish()
+        },
+        tmPurchaseFavoritesListener = favoritesListener,
+        tmPurchaseShareListener = sharingListener,
+        tmPurchaseUserAnalyticsListener = userAnalyticsListener,
+        tmPurchaseWebAnalyticsListener = webAnalyticsListener
+      ).apply {
+        supportFragmentManager.fragmentFactory = this
+      }
+
+      val tmAuthenticationParams = TMAuthenticationParams(
+        apiKey = Config.get("apiKey"),
+        clientName = Config.get("clientName"),
+        region = Region.getRegion(),
+        environment = Environment.getTMXDeploymentEnvironment(Config.get("environment"))
+      )
+
+      val bundle = tmPurchase.getPurchaseBundle(
+        tmPurchaseWebsiteConfiguration,
+        tmAuthenticationParams
+      )
+
+      val purchaseEDPFragment =
+        factory.instantiatePurchase(ClassLoader.getSystemClassLoader()).apply {
+          arguments = bundle
+        }
+      supportFragmentManager.beginTransaction()
+        .add(R.id.purchase_container, purchaseEDPFragment)
+        .commit()
+    }
+  }
+}

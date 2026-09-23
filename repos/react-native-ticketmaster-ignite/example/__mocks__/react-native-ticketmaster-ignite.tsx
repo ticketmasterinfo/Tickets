@@ -1,0 +1,33 @@
+import { View, Text } from 'react-native';
+import React from 'react';
+
+export const useIgnite = jest.fn(() => ({
+  logout: jest.fn(),
+  login: jest.fn(),
+  getToken: jest.fn(),
+  getIsLoggedIn: jest.fn(),
+  authState: jest.fn(() => ({ isLoggedIn: false })),
+  isLoggingIn: false,
+}));
+
+export const RetailSdk = {
+  presentPurchase: jest.fn(),
+  presentPrePurchaseVenue: jest.fn(),
+  presentPrePurchaseAttraction: jest.fn(),
+};
+
+export const TicketsSdkEmbeddedIos = jest.fn(() => {
+  return (
+    <View>
+      <Text>Hello Test</Text>
+    </View>
+  );
+});
+
+export const TicketsSdkEmbeddedAndroid = jest.fn(() => {
+  return (
+    <View>
+      <Text>Hello Android</Text>
+    </View>
+  );
+});
