@@ -43,8 +43,12 @@
 html {
   box-sizing: border-box;
   height: 100%;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   line-height: 1.4;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
   --mauna-font-size-number: 44;
   --everest-font-size-number: 32;
   --kilimanjaro-font-size-number: 24;
@@ -154,13 +158,26 @@ body {
   letter-spacing: 0.02em;
   font-weight: 400;
   width: 100%;
-  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100%;
   margin: 0px;
   color: rgb(18, 18, 18);
-  font-family: Averta, helvetica, arial, sans-serif;
+  font-family: Averta, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.4;
-  text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Ticketmaster Utility Bar Classes */
@@ -644,6 +661,31 @@ body {
 .fbRQkm:hover {
   opacity: 0.8;
 }
+
+/* Mobile & Touch Performance Rules */
+@media (max-width: 640px) {
+  .snap-x {
+    scroll-padding-left: 12px;
+    scroll-padding-right: 12px;
+  }
+}
+
+/* Smooth Momentum Scrolling */
+.smooth-momentum-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+}
+
+/* Hide scrollbars for clean carousel UI */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 
 
