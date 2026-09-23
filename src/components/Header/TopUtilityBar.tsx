@@ -3,6 +3,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { PurchasedTicket } from '../../types';
+import paypalLogo from '../../assets/paypal_small.svg';
 
 interface TopUtilityBarProps {
   purchasedTickets?: PurchasedTicket[];
@@ -157,20 +158,28 @@ export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
         </nav>
 
         {/* PayPal Preferred Payments Partner */}
-        <div className="sc-a618d3b1-1 bbMoWu h-full flex items-center">
+        <div className="sc-a618d3b1-1 bbMoWu h-full flex items-center justify-center shrink-0">
           <a 
             id="top-paypal-partner"
             href="https://www.paypal.com/cm/home" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="sc-1947e591-0 fbRQkm h-full flex items-center !p-0"
+            className="sc-1947e591-0 fbRQkm h-full flex items-center justify-center !p-0"
             title="PayPal Preferred Payments Partner"
           >
             <img 
-              src="//uk.tmconst.com/rc-fb209c0d/images/ads/paypal_small.svg" 
+              src={paypalLogo} 
               alt="PayPal Preferred Payments Partner" 
-              className="sc-1947e591-1 MkPJj !h-full w-auto object-contain max-h-full"
-              referrerPolicy="no-referrer"
+              className="sc-1947e591-1 MkPJj h-7 max-h-full w-auto object-contain block my-auto"
+              loading="eager"
+              decoding="sync"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.dataset.fallback) {
+                  target.dataset.fallback = '1';
+                  target.src = "/images/paypal_small.svg";
+                }
+              }}
             />
           </a>
         </div>
