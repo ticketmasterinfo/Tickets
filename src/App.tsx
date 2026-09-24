@@ -47,6 +47,7 @@ import { BrowsingPausedModal } from './components/Security/BrowsingPausedModal';
 import { FeedbackWidget } from './components/Feedback/FeedbackWidget';
 import { Footer } from './components/Footer/Footer';
 import { SignInModal } from './components/Header/SignInModal';
+import { TicketmasterTravelView } from './components/Travel/TicketmasterTravelView';
 
 export default function App() {
   // Primary States
@@ -81,6 +82,7 @@ export default function App() {
   const [isMyTicketsOpen, setIsMyTicketsOpen] = useState(false);
   const [isBrowsingPausedOpen, setIsBrowsingPausedOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isTravelOpen, setIsTravelOpen] = useState(false);
 
   // User Authentication State
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>({
@@ -232,6 +234,32 @@ export default function App() {
     handleOpenArtist(performerName);
   };
 
+  if (isTravelOpen) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#121212] text-white font-averta">
+        <TicketmasterTravelView 
+          onBackToHome={() => {
+            setIsTravelOpen(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onSelectEvent={(event) => {
+            setIsTravelOpen(false);
+            handleOpenBooking(event);
+          }}
+          events={events}
+        />
+        {checkoutData && (
+          <CheckoutModal 
+            event={checkoutData.event}
+            ticketGroup={checkoutData.group}
+            onClose={() => setCheckoutData(null)}
+            onOrderComplete={handleOrderComplete}
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#f6f6f6] text-[#121212] font-averta">
       
@@ -242,6 +270,10 @@ export default function App() {
         onOpenHelp={() => setIsBrowsingPausedOpen(true)}
         onOpenSell={() => {
           alert('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.');
+        }}
+        onOpenTravel={() => {
+          setIsTravelOpen(true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         onOpenSignIn={() => setIsSignInModalOpen(true)}
         onOpenSecurityStatus={() => setIsBrowsingPausedOpen(true)}
@@ -534,7 +566,8 @@ export default function App() {
                         } else if (actionId === 'featured-sell') {
                           alert('Ticketmaster Verified Resale: Enter your event code or select tickets in "My Tickets" to list safely.');
                         } else if (actionId === 'featured-hotels') {
-                          alert('Ticketmaster Travel: Save up to 25% when booking hotels with verified event tickets.');
+                          setIsTravelOpen(true);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         } else {
                           const el = document.getElementById('discovery-section');
                           if (el) el.scrollIntoView({ behavior: 'smooth' });

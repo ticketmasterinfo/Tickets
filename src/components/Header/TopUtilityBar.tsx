@@ -10,6 +10,7 @@ interface TopUtilityBarProps {
   onOpenMyTickets?: () => void;
   onOpenHelp: () => void;
   onOpenSell: () => void;
+  onOpenTravel?: () => void;
   onOpenSignIn?: () => void;
   onOpenSecurityStatus?: () => void;
   onSelectCountry?: (country: string) => void;
@@ -20,6 +21,7 @@ interface TopUtilityBarProps {
 export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
   onOpenHelp,
   onOpenSell,
+  onOpenTravel,
   onSelectCountry
 }) => {
   const [selectedCountry, setSelectedCountry] = useState('US');
@@ -105,9 +107,15 @@ export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
           <ul role="list" className="UnstyledList-sc-ix96mm-0 sc-a618d3b1-3 hFFFXm cCqgoW">
             <li role="listitem">
               <a 
+                id="top-travel-hotels-link"
                 href="https://travel.ticketmaster.com/?_uid=889e276a-3cb8-4acf-a535-a4c4c098cbbc&utm_source=TM_Homepage_Homepage_NAV_Icon_TTravel&utm_medium=TMUS_header_icon&utm_campaign=Nav_TM_Homepage&utm_id=TTravel_TM_Homepage_Nav_Icon" 
-                className="sc-a618d3b1-4 ibHGSp"
-                onClick={(e) => { e.preventDefault(); alert('Ticketmaster Travel: Book nearby hotels for your event nights.'); }}
+                className="sc-a618d3b1-4 ibHGSp cursor-pointer"
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  if (onOpenTravel) {
+                    onOpenTravel();
+                  }
+                }}
               >
                 <svg className="BaseSvg-sc-yh8lnd-0 EventHotelsIcon___StyledBaseSvg-sc-mxpuhn-0 ibzDQZ sc-a618d3b1-7 eOiYfI" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false">
                   <path d="M18.5 10H17V7.22L16.1 6H7.9L7 7.22V10H5.5V4.58L6.24 3.5H17.76L18.5 4.58zM17 11.5H20.38L21.5 12.62V17.5H2.5V12.62L3.62 11.5zM15.5 10H8.5V7.72L8.66 7.5H15.34L15.5 7.72zM4 4.11V10H3L1 12V22H2.5V19H21.5V22H23V12L21 10H20V4.11L18.55 2H5.45z"></path>
