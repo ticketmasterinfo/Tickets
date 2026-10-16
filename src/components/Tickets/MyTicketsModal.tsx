@@ -19,15 +19,18 @@ import {
 import { PurchasedTicket } from '../../types';
 import { downloadTicketPDF, downloadAllTicketsPDF, printTicket } from '../../utils/ticketDownloader';
 import { TicketmasterLogo } from '../Common/TicketmasterLogo';
+import { TicketQRCode } from './TicketQRCode';
 
 interface MyTicketsModalProps {
   tickets: PurchasedTicket[];
   onClose: () => void;
+  onOpenScannedPass?: (ticket: PurchasedTicket) => void;
 }
 
 export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
   tickets,
-  onClose
+  onClose,
+  onOpenScannedPass
 }) => {
   const [activeTicketIndex, setActiveTicketIndex] = useState(0);
   const [copiedTransfer, setCopiedTransfer] = useState(false);
@@ -76,9 +79,9 @@ export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
     setTimeout(() => setCopiedTransfer(false), 3000);
   };
 
-  const handleDownloadCurrentTicket = () => {
+  const handleDownloadCurrentTicket = async () => {
     setDownloadingId(currentTicket.ticketId);
-    downloadTicketPDF(currentTicket);
+    await downloadTicketPDF(currentTicket);
     setDownloadSuccess(true);
     setTimeout(() => {
       setDownloadingId(null);
@@ -86,9 +89,9 @@ export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
     }, 2500);
   };
 
-  const handleDownloadAll = () => {
+  const handleDownloadAll = async () => {
     setDownloadingId('ALL');
-    downloadAllTicketsPDF(tickets);
+    await downloadAllTicketsPDF(tickets);
     setDownloadSuccess(true);
     setTimeout(() => {
       setDownloadingId(null);
@@ -96,8 +99,8 @@ export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
     }, 2500);
   };
 
-  const handlePrintCurrentTicket = () => {
-    printTicket(currentTicket);
+  const handlePrintCurrentTicket = async () => {
+    await printTicket(currentTicket);
   };
 
   return (
@@ -214,42 +217,8 @@ export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
             </div>
           </div>
 
-          {/* DYNAMIC ANIMATED SAFETIX BARCODE */}
-          <div className="bg-white text-gray-900 rounded-2xl p-4 sm:p-5 text-center shadow-lg relative overflow-hidden">
-            {/* Animated SafeTix scanning beam */}
-            <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#024ddf] to-transparent animate-pulse top-3"></div>
-
-            <div className="space-y-1 mb-2 flex flex-col items-center">
-              <div className="flex items-center justify-center space-x-1.5">
-                <TicketmasterLogo className="h-3.5 w-auto" color="#024ddf" />
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#024ddf]">
-                  SAFETIX™ &bull; VALID ENTRY
-                </span>
-              </div>
-              <p className="text-xs text-gray-500 font-medium">
-                Hold near scanner at entry turnstile
-              </p>
-            </div>
-
-            {/* Visual Barcode Bars */}
-            <div className="py-2 flex items-center justify-center space-x-1 overflow-hidden h-16 bg-gray-50 rounded-lg border border-gray-200">
-              {[3, 1, 4, 2, 5, 2, 1, 4, 3, 2, 6, 2, 1, 4, 3, 2, 5, 1, 3, 2, 4, 1, 5, 2, 3, 1, 4, 2].map((w, i) => (
-                <div 
-                  key={i} 
-                  className={`bg-gray-900 h-12 rounded-xs ${w === 1 ? 'w-0.5' : w === 2 ? 'w-1' : w === 3 ? 'w-1.5' : w === 4 ? 'w-2' : 'w-2.5'}`}
-                />
-              ))}
-            </div>
-
-            {/* Dynamic Numeric Code & Refresh Notice */}
-            <div className="mt-2 text-xs font-mono font-bold tracking-widest text-gray-700">
-              {currentTicket.barcode}
-            </div>
-            <div className="text-[10px] text-gray-400 flex items-center justify-center space-x-1 mt-1">
-              <ShieldCheck className="w-3 h-3 text-green-600 shrink-0" />
-              <span>Verified Authentic • Order #{currentTicket.orderId}</span>
-            </div>
-          </div>
+          {/* DYNAMIC GENERATED SAFETIX QR CODE ENTRY PASS */}
+          <TicketQRCode ticket={currentTicket} onOpenScannedPass={onOpenScannedPass} />
 
           {/* Event Details Micro-list */}
           <div className="bg-[#1a1a1a] rounded-xl p-3.5 border border-gray-800 space-y-1.5 text-xs text-gray-300">

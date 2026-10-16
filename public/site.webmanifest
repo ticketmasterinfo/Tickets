@@ -1,19 +1,33 @@
 {
+  "id": "/",
   "name": "Ticketmaster",
   "short_name": "Ticketmaster",
+  "description": "Official Ticketmaster app for concerts, sports, theater and live events with SafeTix verified entry.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#121212",
+  "background_color": "#121212",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/pwa-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "/pwa-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ],
-  "theme_color": "#024ddf",
-  "background_color": "#121212",
-  "display": "standalone"
+  ]
 }
+

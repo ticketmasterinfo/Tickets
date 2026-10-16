@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -39,7 +39,9 @@ import { InteractiveSeatMap } from './components/SeatMap/InteractiveSeatMap';
 import { TicketDrawer } from './components/SeatMap/TicketDrawer';
 import { CheckoutModal } from './components/Checkout/CheckoutModal';
 import { MyTicketsModal } from './components/Tickets/MyTicketsModal';
+import { ScannedPassModal } from './components/Tickets/ScannedPassModal';
 import { EventDetailModal } from './components/EventDetail/EventDetailModal';
+import { decodeTicketPass, resolveScannedPass } from './utils/ticketUrlHelper';
 import { EntertainmentGuides } from './components/Discovery/EntertainmentGuides';
 import { DiscoverArticles } from './components/Discovery/DiscoverArticles';
 import { PopularCitiesSection } from './components/Discovery/PopularCitiesSection';
@@ -48,6 +50,15 @@ import { FeedbackWidget } from './components/Feedback/FeedbackWidget';
 import { Footer } from './components/Footer/Footer';
 import { SignInModal } from './components/Header/SignInModal';
 import { TicketmasterTravelView } from './components/Travel/TicketmasterTravelView';
+import { MobileSplashScreen } from './components/Mobile/MobileSplashScreen';
+import { MobileBottomNav, MobileTab } from './components/Mobile/MobileBottomNav';
+import { MobileHomeView } from './components/Mobile/MobileHomeView';
+import { MobileTicketsView } from './components/Mobile/MobileTicketsView';
+import { MobileAccountView } from './components/Mobile/MobileAccountView';
+import { MobileWatchlistView } from './components/Mobile/MobileWatchlistView';
+import { InstallAppModal } from './components/Mobile/InstallAppModal';
+import { CitySelectorModal } from './components/Mobile/CitySelectorModal';
+import { MobileAppHeaderBanner } from './components/Mobile/MobileAppHeaderBanner';
 
 export default function App() {
   // Primary States
@@ -83,6 +94,58 @@ export default function App() {
   const [isBrowsingPausedOpen, setIsBrowsingPausedOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isTravelOpen, setIsTravelOpen] = useState(false);
+  const [scannedPassData, setScannedPassData] = useState<{ event: EventItem; ticket: PurchasedTicket } | null>(null);
+
+  // Mobile App Dedicated States
+  const [showSplash, setShowSplash] = useState<boolean>(true);
+  const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('mobile');
+  const [mobileTab, setMobileTab] = useState<MobileTab>('home');
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const [isCitySelectorOpen, setIsCitySelectorOpen] = useState(false);
+  const [currentCity, setCurrentCity] = useState('Los Angeles, California');
+  const [watchlistArtists, setWatchlistArtists] = useState<string[]>([
+    'Olivia Rodrigo',
+    'Metallica',
+    'Calvin Harris',
+    'Taylor Swift'
+  ]);
+
+  const handleToggleWatchlistArtist = (artistName: string) => {
+    setWatchlistArtists(prev => 
+      prev.includes(artistName) ? prev.filter(a => a !== artistName) : [...prev, artistName]
+    );
+  };
+
+  // Listen for scanned pass QR code link from any device (?pass=...)
+  useEffect(() => {
+    const handleCheckScannedUrl = () => {
+      if (typeof window === 'undefined') return;
+      const params = new URLSearchParams(window.location.search);
+      const rawPass = params.get('pass') || params.get('ticket');
+      if (rawPass) {
+        const decoded = decodeTicketPass(rawPass);
+        if (decoded) {
+          const resolved = resolveScannedPass(decoded, events);
+          setScannedPassData(resolved);
+        }
+      }
+    };
+
+    handleCheckScannedUrl();
+    window.addEventListener('popstate', handleCheckScannedUrl);
+    return () => window.removeEventListener('popstate', handleCheckScannedUrl);
+  }, [events]);
+
+  const handleCloseScannedPass = () => {
+    setScannedPassData(null);
+    if (typeof window !== 'undefined' && window.history) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  };
+
+  const handleOpenScannedPassFromTicket = (ticket: PurchasedTicket) => {
+    setScannedPassData({ event: ticket.event, ticket });
+  };
 
   // User Authentication State
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string } | null>({
@@ -261,47 +324,210 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f6f6f6] text-[#121212] font-averta">
-      
-      {/* 1. TOP UTILITY BAR (#121212) */}
-      <TopUtilityBar 
-        purchasedTickets={purchasedTickets}
-        onOpenMyTickets={() => setIsMyTicketsOpen(true)}
-        onOpenHelp={() => setIsBrowsingPausedOpen(true)}
-        onOpenSell={() => {
-          alert('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.');
-        }}
-        onOpenTravel={() => {
-          setIsTravelOpen(true);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onOpenSignIn={() => setIsSignInModalOpen(true)}
-        onOpenSecurityStatus={() => setIsBrowsingPausedOpen(true)}
-        user={currentUser}
-        onSignOut={() => setCurrentUser(null)}
+    <div className="min-h-screen flex flex-col bg-[#0a0a0a] text-[#121212] font-averta">
+      {/* 0. AUTHENTIC MOBILE APP SPLASH LOADING SCREEN (IMG_6272) */}
+      {showSplash && (
+        <MobileSplashScreen 
+          onComplete={() => setShowSplash(false)}
+          durationMs={1500}
+        />
+      )}
+
+      {/* TOP UTILITY HEADER: TOGGLE MOBILE / DESKTOP VIEW & INSTALL APP */}
+      <MobileAppHeaderBanner 
+        viewMode={viewMode}
+        onToggleViewMode={(mode) => setViewMode(mode)}
+        onOpenInstallModal={() => setIsInstallModalOpen(true)}
+        onRelaunchSplash={() => setShowSplash(true)}
       />
 
-      {/* 2. DUAL-BAR MAIN HEADER (#024ddf) */}
-      <MainNav 
-        activeCategory={activeCategory}
-        onSelectCategory={handleCategorySelect}
-        onOpenMyTickets={() => setIsMyTicketsOpen(true)}
-        onOpenSignIn={() => setIsSignInModalOpen(true)}
-        purchasedCount={purchasedTickets.length}
-        events={events}
-        searchQuery={filters.searchQuery}
-        onSearchChange={(q) => setFilters(prev => ({ ...prev, searchQuery: q }))}
-        selectedCity={filters.city}
-        onCityChange={(c) => setFilters(prev => ({ ...prev, city: c }))}
-        onSelectEvent={handleOpenBooking}
-        onSelectPerformer={handleOpenArtist}
-        onExecuteSearch={() => {
-          const el = document.getElementById('discovery-section');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-        user={currentUser}
-        onSignOut={() => setCurrentUser(null)}
-      />
+      {viewMode === 'mobile' ? (
+        /* ==================== AUTHENTIC MOBILE APPLICATION (iOS & ANDROID) ==================== */
+        <div className="flex-1 w-full bg-[#0a0a0a] flex flex-col items-center">
+          <div className="w-full max-w-md bg-[#121212] min-h-screen text-white flex flex-col relative shadow-2xl border-x border-white/5 pb-20">
+            {/* Native Mobile Status Bar simulation matching IMG_6272, IMG_6273, IMG_6274, IMG_6275 */}
+            <div className="w-full pt-2.5 px-6 pb-1 flex items-center justify-between text-white/90 text-xs font-semibold tracking-tight bg-[#121212] sticky top-0 z-40 select-none border-b border-white/5">
+              <span>10:54</span>
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-end gap-[2px] h-2.5">
+                  <span className="w-[2.5px] h-1 bg-white rounded-[0.5px]"></span>
+                  <span className="w-[2.5px] h-1.5 bg-white rounded-[0.5px]"></span>
+                  <span className="w-[2.5px] h-2 bg-white rounded-[0.5px]"></span>
+                  <span className="w-[2.5px] h-2.5 bg-white rounded-[0.5px]"></span>
+                </div>
+                <span className="text-[10px] font-bold tracking-wider">LTE</span>
+                <div className="flex items-center ml-0.5">
+                  <div className="w-5 h-2.5 border border-white/80 rounded-[3px] p-[1px] flex items-center">
+                    <div className="w-[35%] h-full bg-white rounded-[1px]"></div>
+                  </div>
+                  <div className="w-[1.5px] h-1 bg-white/80 rounded-r-xs"></div>
+                  <span className="text-[9px] ml-1 font-bold">35</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile View Routing */}
+            {bookingEvent ? (
+              <div className="p-4 space-y-4">
+                <button
+                  onClick={handleCloseBooking}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-blue-300"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back to Events</span>
+                </button>
+                <div className="bg-[#1c1e24] p-3.5 rounded-2xl border border-white/10 flex gap-3">
+                  <img 
+                    src={bookingEvent.identity.image_url} 
+                    alt={bookingEvent.identity.event_title}
+                    className="w-16 h-16 rounded-xl object-cover shrink-0" 
+                  />
+                  <div>
+                    <span className="text-[9px] font-bold text-blue-400 uppercase bg-blue-950 px-1.5 py-0.5 rounded">
+                      {bookingEvent.identity.category}
+                    </span>
+                    <h2 className="text-sm font-bold text-white line-clamp-1 mt-1">
+                      {bookingEvent.identity.event_title}
+                    </h2>
+                    <p className="text-xs text-white/60 line-clamp-1">
+                      {bookingEvent.location.venue_name}
+                    </p>
+                  </div>
+                </div>
+                <InteractiveSeatMap 
+                  event={bookingEvent}
+                  selectedZone={selectedZone}
+                  onSelectZone={(zone) => setSelectedZone(zone)}
+                  selectedSeats={selectedSeats}
+                  onToggleSeat={handleToggleSeat}
+                  ticketQuantity={ticketQuantity}
+                />
+                <TicketDrawer 
+                  event={bookingEvent}
+                  selectedZone={selectedZone}
+                  quantity={ticketQuantity}
+                  onQuantityChange={(qty) => setTicketQuantity(qty)}
+                  selectedSeats={selectedSeats}
+                  onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
+                  availableZones={getEventSeatZones(bookingEvent)}
+                  onSelectZone={(zone) => setSelectedZone(zone)}
+                />
+              </div>
+            ) : selectedArtist ? (
+              <div>
+                <button
+                  onClick={() => setSelectedArtist(null)}
+                  className="p-4 inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-blue-300"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back</span>
+                </button>
+                <ArtistExperienceView 
+                  artist={selectedArtist}
+                  onBack={() => setSelectedArtist(null)}
+                  onSelectEvent={handleOpenBooking}
+                />
+              </div>
+            ) : mobileTab === 'home' ? (
+              <MobileHomeView 
+                events={events}
+                currentCity={currentCity}
+                onOpenCitySelector={() => setIsCitySelectorOpen(true)}
+                onSelectEvent={handleOpenBooking}
+                onViewEventDetails={(evt) => setDetailEvent(evt)}
+                onSelectArtist={handleOpenArtist}
+                onToggleWatchlistArtist={handleToggleWatchlistArtist}
+                watchlistArtists={watchlistArtists}
+                onOpenInstallModal={() => setIsInstallModalOpen(true)}
+              />
+            ) : mobileTab === 'watchlist' ? (
+              <MobileWatchlistView 
+                watchlistArtists={watchlistArtists}
+                onRemoveWatchlistArtist={handleToggleWatchlistArtist}
+                onExploreTrending={() => setMobileTab('home')}
+                events={events}
+                onViewEventDetails={(evt) => setDetailEvent(evt)}
+              />
+            ) : mobileTab === 'tickets' ? (
+              <MobileTicketsView 
+                tickets={purchasedTickets}
+                currentUser={currentUser}
+                onOpenSignIn={() => setIsSignInModalOpen(true)}
+                onOpenTicketPass={handleOpenScannedPassFromTicket}
+                onSelectEventForBooking={handleOpenBooking}
+              />
+            ) : (
+              <MobileAccountView 
+                currentUser={currentUser}
+                onOpenSignIn={() => setIsSignInModalOpen(true)}
+                onSignOut={() => setCurrentUser(null)}
+                onOpenInstallModal={() => setIsInstallModalOpen(true)}
+                onRelaunchSplash={() => setShowSplash(true)}
+                onSwitchToDesktop={() => setViewMode('desktop')}
+                favoritesCount={watchlistArtists.length}
+                onNavigateToFavorites={() => setMobileTab('watchlist')}
+                currentCity={currentCity}
+                onOpenCitySelector={() => setIsCitySelectorOpen(true)}
+              />
+            )}
+
+            {/* Persistent Mobile Bottom Navigation Bar matching IMG_6273, IMG_6274, IMG_6275 */}
+            <MobileBottomNav 
+              activeTab={mobileTab}
+              onChangeTab={(tab) => {
+                setMobileTab(tab);
+                if (bookingEvent) setBookingEvent(null);
+                if (selectedArtist) setSelectedArtist(null);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              ticketCount={purchasedTickets.length}
+              watchlistCount={watchlistArtists.length}
+            />
+          </div>
+        </div>
+      ) : (
+        /* ==================== DESKTOP DISCOVERY PORTAL VIEW ==================== */
+        <div className="flex-1 flex flex-col bg-[#f6f6f6]">
+          {/* 1. TOP UTILITY BAR (#121212) */}
+          <TopUtilityBar 
+            purchasedTickets={purchasedTickets}
+            onOpenMyTickets={() => setIsMyTicketsOpen(true)}
+            onOpenHelp={() => setIsBrowsingPausedOpen(true)}
+            onOpenSell={() => {
+              alert('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.');
+            }}
+            onOpenTravel={() => {
+              setIsTravelOpen(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenSignIn={() => setIsSignInModalOpen(true)}
+            onOpenSecurityStatus={() => setIsBrowsingPausedOpen(true)}
+            user={currentUser}
+            onSignOut={() => setCurrentUser(null)}
+          />
+
+          {/* 2. DUAL-BAR MAIN HEADER (#024ddf) */}
+          <MainNav 
+            activeCategory={activeCategory}
+            onSelectCategory={handleCategorySelect}
+            onOpenMyTickets={() => setIsMyTicketsOpen(true)}
+            onOpenSignIn={() => setIsSignInModalOpen(true)}
+            purchasedCount={purchasedTickets.length}
+            events={events}
+            searchQuery={filters.searchQuery}
+            onSearchChange={(q) => setFilters(prev => ({ ...prev, searchQuery: q }))}
+            selectedCity={filters.city}
+            onCityChange={(c) => setFilters(prev => ({ ...prev, city: c }))}
+            onSelectEvent={handleOpenBooking}
+            onSelectPerformer={handleOpenArtist}
+            onExecuteSearch={() => {
+              const el = document.getElementById('discovery-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            user={currentUser}
+            onSignOut={() => setCurrentUser(null)}
+          />
+
 
       {/* VIEW ORCHESTRATION: SEATING/BOOKING VIEW OR HOME DISCOVERY VIEW */}
       {bookingEvent ? (
@@ -625,6 +851,11 @@ export default function App() {
         </main>
       )}
 
+      {/* COMPREHENSIVE DARK FOOTER FOR DESKTOP VIEW */}
+      <Footer />
+    </div>
+  )}
+
       {/* 15. CHECKOUT MODAL */}
       {checkoutData && (
         <CheckoutModal 
@@ -640,6 +871,20 @@ export default function App() {
         <MyTicketsModal 
           tickets={purchasedTickets}
           onClose={() => setIsMyTicketsOpen(false)}
+          onOpenScannedPass={handleOpenScannedPassFromTicket}
+        />
+      )}
+
+      {/* 16.1 SCANNED QR CODE VERIFIED PASS MODAL (Triggered when scanned by any device or via preview) */}
+      {scannedPassData && (
+        <ScannedPassModal 
+          event={scannedPassData.event}
+          ticket={scannedPassData.ticket}
+          onClose={handleCloseScannedPass}
+          onViewEventDetails={(ev) => {
+            setDetailEvent(ev);
+            handleCloseScannedPass();
+          }}
         />
       )}
 
@@ -674,12 +919,27 @@ export default function App() {
         }}
       />
 
-      {/* 20. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
-      <FeedbackWidget />
+      {/* 20. DOWNLOAD PHONE APPLICATION MODAL (iOS & ANDROID) */}
+      <InstallAppModal 
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+      />
 
-      {/* 21. COMPREHENSIVE DARK FOOTER (#121212) */}
-      <Footer />
+      {/* 21. CITY SELECTOR MODAL */}
+      <CitySelectorModal 
+        isOpen={isCitySelectorOpen}
+        currentCity={currentCity}
+        onSelectCity={(city) => {
+          setCurrentCity(city);
+          setFilters(prev => ({ ...prev, city: city.split(',')[0].trim() }));
+        }}
+        onClose={() => setIsCitySelectorOpen(false)}
+      />
+
+      {/* 22. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
+      <FeedbackWidget />
 
     </div>
   );
 }
+

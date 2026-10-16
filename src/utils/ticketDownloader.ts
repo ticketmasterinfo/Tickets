@@ -1,6 +1,8 @@
 import { jsPDF } from 'jspdf';
+import QRCode from 'qrcode';
 import { PurchasedTicket } from '../types';
 import { getTicketmasterLogoDataUrl, TICKETMASTER_SVG_PATH } from '../components/Common/TicketmasterLogo';
+import { generateTicketVerificationUrl } from './ticketUrlHelper';
 
 /**
  * Draw authentic Code 128 / SafeTix style barcode bars using vector rectangles
@@ -36,7 +38,7 @@ function drawBarcode(doc: jsPDF, x: number, y: number, width: number, height: nu
 /**
  * Generate a single page for a purchased ticket in jsPDF document
  */
-function renderTicketPage(doc: jsPDF, ticket: PurchasedTicket, isNewPage = false) {
+function renderTicketPage(doc: jsPDF, ticket: PurchasedTicket, isNewPage = false, qrDataUrl?: string) {
   if (isNewPage) {
     doc.addPage();
   }
@@ -223,43 +225,96 @@ function renderTicketPage(doc: jsPDF, ticket: PurchasedTicket, isNewPage = false
 
   // Barcode Header with Authentic Ticketmaster Brand Logo
   const blueLogoDataUrl = getTicketmasterLogoDataUrl('#024ddf', 8);
-  const cardCenterX = cardX + 12 + (cardW - 24) / 2;
-  if (blueLogoDataUrl) {
+
+  if (qrDataUrl) {
+    // 2D QR Code on left
     try {
-      // Vector logo 24mm wide x 4.26mm high (proportional 135:24)
-      doc.addImage(blueLogoDataUrl, 'PNG', cardCenterX - 45, barcodeY + 4, 24, 4.26);
+      doc.addImage(qrDataUrl, 'PNG', cardX + 16, barcodeY + 8, 33, 33);
+      doc.setTextColor(110, 118, 130);
+      doc.setFontSize(6.5);
+      doc.setFont('helvetica', 'bold');
+      doc.text('2D OPTICAL PASS', cardX + 32.5, barcodeY + 45, { align: 'center' });
+    } catch (e) {
+      console.warn('Could not add QR image to PDF', e);
+    }
+
+    // Right Side: SafeTix header + 1D Barcode
+    const rightStartX = cardX + 54;
+    const rightWidth = cardW - 70;
+
+    if (blueLogoDataUrl) {
+      try {
+        doc.addImage(blueLogoDataUrl, 'PNG', rightStartX, barcodeY + 5, 20, 3.55);
+        doc.setTextColor(2, 77, 223);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text('SAFETIX™ • TURNSTILE PASS', rightStartX + 23, barcodeY + 8);
+      } catch {
+        doc.setTextColor(2, 77, 223);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text('SAFETIX™ • TURNSTILE PASS', rightStartX, barcodeY + 8);
+      }
+    } else {
       doc.setTextColor(2, 77, 223);
       doc.setFontSize(7.5);
       doc.setFont('helvetica', 'bold');
-      doc.text('SAFETIX™ • TURNSTILE SCANNER CODE', cardCenterX - 18, barcodeY + 7.5);
-    } catch {
+      doc.text('SAFETIX™ • TURNSTILE PASS', rightStartX, barcodeY + 8);
+    }
+
+    // Render 1D barcode bars
+    drawBarcode(doc, rightStartX, barcodeY + 12, rightWidth, 16, ticket.barcode);
+
+    // Barcode Digits
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(9);
+    doc.setFont('courier', 'bold');
+    const spacedBarcode = ticket.barcode.replace(/(\d{4})/g, '$1 ').trim();
+    doc.text(spacedBarcode, rightStartX + rightWidth / 2, barcodeY + 34, { align: 'center' });
+
+    // Security line
+    doc.setTextColor(0, 135, 90); // Green
+    doc.setFontSize(6.8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('✔ Verified Authentic SafeTix • Valid for Venue Entry', rightStartX + rightWidth / 2, barcodeY + 41, { align: 'center' });
+  } else {
+    const cardCenterX = cardX + 12 + (cardW - 24) / 2;
+    if (blueLogoDataUrl) {
+      try {
+        doc.addImage(blueLogoDataUrl, 'PNG', cardCenterX - 45, barcodeY + 4, 24, 4.26);
+        doc.setTextColor(2, 77, 223);
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.text('SAFETIX™ • TURNSTILE SCANNER CODE', cardCenterX - 18, barcodeY + 7.5);
+      } catch {
+        doc.setTextColor(2, 77, 223);
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.text('TICKETMASTER SAFETIX™ • TURNSTILE SCANNER CODE', cardCenterX, barcodeY + 8, { align: 'center' });
+      }
+    } else {
       doc.setTextColor(2, 77, 223);
       doc.setFontSize(8);
       doc.setFont('helvetica', 'bold');
       doc.text('TICKETMASTER SAFETIX™ • TURNSTILE SCANNER CODE', cardCenterX, barcodeY + 8, { align: 'center' });
     }
-  } else {
-    doc.setTextColor(2, 77, 223);
-    doc.setFontSize(8);
+
+    // Render authentic barcode bars
+    drawBarcode(doc, cardX + 24, barcodeY + 12, cardW - 48, 22, ticket.barcode);
+
+    // Barcode Digits
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(9.5);
+    doc.setFont('courier', 'bold');
+    const spacedBarcode = ticket.barcode.replace(/(\d{4})/g, '$1 ').trim();
+    doc.text(spacedBarcode, cardX + 12 + (cardW - 24) / 2, barcodeY + 40, { align: 'center' });
+
+    // Security line
+    doc.setTextColor(0, 135, 90); // Green
+    doc.setFontSize(7);
     doc.setFont('helvetica', 'bold');
-    doc.text('TICKETMASTER SAFETIX™ • TURNSTILE SCANNER CODE', cardCenterX, barcodeY + 8, { align: 'center' });
+    doc.text('✔ Verified Authentic SafeTix Barcode • Valid for Venue Entry', cardX + 12 + (cardW - 24) / 2, barcodeY + 46, { align: 'center' });
   }
-
-  // Render authentic barcode bars
-  drawBarcode(doc, cardX + 24, barcodeY + 12, cardW - 48, 22, ticket.barcode);
-
-  // Barcode Digits
-  doc.setTextColor(40, 40, 40);
-  doc.setFontSize(9.5);
-  doc.setFont('courier', 'bold');
-  const spacedBarcode = ticket.barcode.replace(/(\d{4})/g, '$1 ').trim();
-  doc.text(spacedBarcode, cardX + 12 + (cardW - 24) / 2, barcodeY + 40, { align: 'center' });
-
-  // Security line
-  doc.setTextColor(0, 135, 90); // Green
-  doc.setFontSize(7);
-  doc.setFont('helvetica', 'bold');
-  doc.text('✔ Verified Authentic SafeTix Barcode • Valid for Venue Entry', cardX + 12 + (cardW - 24) / 2, barcodeY + 46, { align: 'center' });
 
   // ATTENDEE & PRICING FOOTER (Inside Card)
   const orderFooterY = barcodeY + 58;
@@ -294,7 +349,7 @@ function renderTicketPage(doc: jsPDF, ticket: PurchasedTicket, isNewPage = false
 /**
  * Downloads a single purchased ticket as an authentic Ticketmaster PDF
  */
-export function downloadTicketPDF(ticket: PurchasedTicket): void {
+export async function downloadTicketPDF(ticket: PurchasedTicket): Promise<void> {
   try {
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -303,7 +358,18 @@ export function downloadTicketPDF(ticket: PurchasedTicket): void {
       compress: true
     });
 
-    renderTicketPage(doc, ticket, false);
+    let qrDataUrl = '';
+    try {
+      const verificationUrl = generateTicketVerificationUrl(ticket);
+      qrDataUrl = await QRCode.toDataURL(
+        verificationUrl,
+        { width: 220, margin: 1, errorCorrectionLevel: 'M' }
+      );
+    } catch (e) {
+      console.warn('QR code generation for PDF skipped', e);
+    }
+
+    renderTicketPage(doc, ticket, false, qrDataUrl);
 
     const safeTitle = ticket.event.identity.event_title.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 25);
     const fileName = `Ticketmaster_eTicket_${ticket.orderId}_${safeTitle}_${ticket.ticketId}.pdf`;
@@ -317,7 +383,7 @@ export function downloadTicketPDF(ticket: PurchasedTicket): void {
 /**
  * Downloads all purchased tickets in an order as a combined multi-page PDF
  */
-export function downloadAllTicketsPDF(tickets: PurchasedTicket[]): void {
+export async function downloadAllTicketsPDF(tickets: PurchasedTicket[]): Promise<void> {
   if (!tickets.length) return;
 
   try {
@@ -328,9 +394,20 @@ export function downloadAllTicketsPDF(tickets: PurchasedTicket[]): void {
       compress: true
     });
 
-    tickets.forEach((ticket, index) => {
-      renderTicketPage(doc, ticket, index > 0);
-    });
+    for (let index = 0; index < tickets.length; index++) {
+      const ticket = tickets[index];
+      let qrDataUrl = '';
+      try {
+        const verificationUrl = generateTicketVerificationUrl(ticket);
+        qrDataUrl = await QRCode.toDataURL(
+          verificationUrl,
+          { width: 220, margin: 1, errorCorrectionLevel: 'M' }
+        );
+      } catch (e) {
+        console.warn('QR code generation for multi-ticket PDF skipped', e);
+      }
+      renderTicketPage(doc, ticket, index > 0, qrDataUrl);
+    }
 
     const orderId = tickets[0].orderId;
     const safeTitle = tickets[0].event.identity.event_title.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 25);
@@ -345,11 +422,22 @@ export function downloadAllTicketsPDF(tickets: PurchasedTicket[]): void {
 /**
  * Triggers standard browser print for the ticket with formatted Ticketmaster printable layout
  */
-export function printTicket(ticket: PurchasedTicket): void {
+export async function printTicket(ticket: PurchasedTicket): Promise<void> {
   const printWindow = window.open('', '_blank', 'width=850,height=950');
   if (!printWindow) {
     alert('Please allow popups to open the printable ticket.');
     return;
+  }
+
+  let qrDataUrl = '';
+  try {
+    const verificationUrl = generateTicketVerificationUrl(ticket);
+    qrDataUrl = await QRCode.toDataURL(
+      verificationUrl,
+      { width: 220, margin: 1, errorCorrectionLevel: 'M' }
+    );
+  } catch (e) {
+    console.warn('QR code generation for print ticket skipped', e);
   }
 
   const printContent = `
@@ -378,9 +466,9 @@ export function printTicket(ticket: PurchasedTicket): void {
         .seat-val { font-size: 20px; font-weight: 900; }
         .seat-gold { color: #ffb932; }
         .barcode-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; }
-        .barcode-bars { height: 60px; display: flex; align-items: center; justify-content: center; gap: 2px; margin: 12px 0; }
+        .barcode-bars { height: 50px; display: flex; align-items: center; justify-content: center; gap: 2px; margin: 10px 0; }
         .bar { background: #111827; height: 100%; border-radius: 1px; }
-        .barcode-num { font-family: monospace; font-size: 14px; font-weight: bold; letter-spacing: 3px; }
+        .barcode-num { font-family: monospace; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
         .footer-details { font-size: 12px; color: #6b7280; line-height: 1.6; border-top: 1px dashed #d1d5db; padding-top: 16px; }
         @media print {
           body { padding: 0; }
@@ -436,17 +524,28 @@ export function printTicket(ticket: PurchasedTicket): void {
           </div>
 
           <div class="barcode-card">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px;">
-              <svg viewBox="0 0 135 24" fill="#024ddf" style="height: 15px; width: auto; display: inline-block; vertical-align: middle;">
-                <path d="${TICKETMASTER_SVG_PATH}"></path>
-              </svg>
-              <span style="font-size: 11px; font-weight: 800; color: #024ddf; text-transform: uppercase; letter-spacing: 0.5px;">SAFETIX™ BARCODE</span>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;">
+              ${qrDataUrl ? `
+                <div style="display: flex; flex-direction: column; align-items: center; border-right: 1px solid #e5e7eb; padding-right: 20px;">
+                  <img src="${qrDataUrl}" alt="SafeTix Entry Pass QR Code" style="width: 120px; height: 120px; border-radius: 8px; border: 1px solid #e5e7eb;" />
+                  <span style="font-size: 10px; font-weight: 800; color: #024ddf; margin-top: 6px; text-transform: uppercase;">2D Optical Turnstile Pass</span>
+                </div>
+              ` : ''}
+
+              <div style="flex: 1; min-width: 200px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px;">
+                  <svg viewBox="0 0 135 24" fill="#024ddf" style="height: 15px; width: auto; display: inline-block; vertical-align: middle;">
+                    <path d="${TICKETMASTER_SVG_PATH}"></path>
+                  </svg>
+                  <span style="font-size: 11px; font-weight: 800; color: #024ddf; text-transform: uppercase; letter-spacing: 0.5px;">SAFETIX™ PASS</span>
+                </div>
+                <div class="barcode-bars">
+                  ${[3, 1, 4, 2, 5, 2, 1, 4, 3, 2, 6, 2, 1, 4, 3, 2, 5, 1, 3, 2, 4, 1, 5, 2, 3, 1, 4, 2].map(w => `<div class="bar" style="width: ${w * 2}px;"></div>`).join('')}
+                </div>
+                <div class="barcode-num">${ticket.barcode.replace(/(\d{4})/g, '$1 ').trim()}</div>
+                <div style="font-size: 11px; color: #059669; font-weight: bold; margin-top: 6px;">✔ Valid for Official Venue Turnstile Entry</div>
+              </div>
             </div>
-            <div class="barcode-bars">
-              ${[3, 1, 4, 2, 5, 2, 1, 4, 3, 2, 6, 2, 1, 4, 3, 2, 5, 1, 3, 2, 4, 1, 5, 2, 3, 1, 4, 2, 3, 1, 5, 2, 4].map(w => `<div class="bar" style="width: ${w * 2.5}px;"></div>`).join('')}
-            </div>
-            <div class="barcode-num">${ticket.barcode}</div>
-            <div style="font-size: 11px; color: #059669; font-weight: bold; margin-top: 6px;">✔ Valid for Official Venue Turnstile Entry</div>
           </div>
 
           <div class="footer-details">
