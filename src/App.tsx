@@ -58,7 +58,6 @@ import { MobileAccountView } from './components/Mobile/MobileAccountView';
 import { MobileWatchlistView } from './components/Mobile/MobileWatchlistView';
 import { InstallAppModal } from './components/Mobile/InstallAppModal';
 import { CitySelectorModal } from './components/Mobile/CitySelectorModal';
-import { MobileAppHeaderBanner } from './components/Mobile/MobileAppHeaderBanner';
 
 export default function App() {
   // Primary States
@@ -115,6 +114,35 @@ export default function App() {
       prev.includes(artistName) ? prev.filter(a => a !== artistName) : [...prev, artistName]
     );
   };
+
+  // Splash effect for each time reload or the app is entered / resumed from background
+  useEffect(() => {
+    let wasHidden = false;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        wasHidden = true;
+      } else if (wasHidden) {
+        wasHidden = false;
+        setShowSplash(true);
+      }
+    };
+
+    const handleWindowFocus = () => {
+      if (wasHidden) {
+        wasHidden = false;
+        setShowSplash(true);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleWindowFocus);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleWindowFocus);
+    };
+  }, []);
 
   // Listen for scanned pass QR code link from any device (?pass=...)
   useEffect(() => {
@@ -333,39 +361,10 @@ export default function App() {
         />
       )}
 
-      {/* TOP UTILITY HEADER: TOGGLE MOBILE / DESKTOP VIEW & INSTALL APP */}
-      <MobileAppHeaderBanner 
-        viewMode={viewMode}
-        onToggleViewMode={(mode) => setViewMode(mode)}
-        onOpenInstallModal={() => setIsInstallModalOpen(true)}
-        onRelaunchSplash={() => setShowSplash(true)}
-      />
-
       {viewMode === 'mobile' ? (
         /* ==================== AUTHENTIC MOBILE APPLICATION (iOS & ANDROID) ==================== */
         <div className="flex-1 w-full bg-[#0a0a0a] flex flex-col items-center">
           <div className="w-full max-w-md bg-[#121212] min-h-screen text-white flex flex-col relative shadow-2xl border-x border-white/5 pb-20">
-            {/* Native Mobile Status Bar simulation matching IMG_6272, IMG_6273, IMG_6274, IMG_6275 */}
-            <div className="w-full pt-2.5 px-6 pb-1 flex items-center justify-between text-white/90 text-xs font-semibold tracking-tight bg-[#121212] sticky top-0 z-40 select-none border-b border-white/5">
-              <span>10:54</span>
-              <div className="flex items-center gap-1.5">
-                <div className="flex items-end gap-[2px] h-2.5">
-                  <span className="w-[2.5px] h-1 bg-white rounded-[0.5px]"></span>
-                  <span className="w-[2.5px] h-1.5 bg-white rounded-[0.5px]"></span>
-                  <span className="w-[2.5px] h-2 bg-white rounded-[0.5px]"></span>
-                  <span className="w-[2.5px] h-2.5 bg-white rounded-[0.5px]"></span>
-                </div>
-                <span className="text-[10px] font-bold tracking-wider">LTE</span>
-                <div className="flex items-center ml-0.5">
-                  <div className="w-5 h-2.5 border border-white/80 rounded-[3px] p-[1px] flex items-center">
-                    <div className="w-[35%] h-full bg-white rounded-[1px]"></div>
-                  </div>
-                  <div className="w-[1.5px] h-1 bg-white/80 rounded-r-xs"></div>
-                  <span className="text-[9px] ml-1 font-bold">35</span>
-                </div>
-              </div>
-            </div>
-
             {/* Mobile View Routing */}
             {bookingEvent ? (
               <div className="p-4 space-y-4">
