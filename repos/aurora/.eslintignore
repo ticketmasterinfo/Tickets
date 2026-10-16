@@ -1,6 +1,0 @@
-catalog/build
-dist
-coverage
-node_modules
-package-lock.json
-yarn.lock
