@@ -38,7 +38,7 @@ export const CitySelectorModal: React.FC<CitySelectorModalProps> = ({
   return (
     <div className="fixed inset-0 z-[95] flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4 animate-in fade-in duration-200">
       <div 
-        className="w-full max-w-md bg-[#181a20] border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col text-white max-h-[85vh] overflow-hidden"
+        className="w-full max-w-md bg-[#181a20] border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col text-white max-h-[85vh] max-h-[85dvh] overflow-hidden pb-[max(1rem,env(safe-area-inset-bottom,0px))]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

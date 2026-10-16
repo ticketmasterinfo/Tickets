@@ -352,7 +352,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0a0a] text-[#121212] font-averta">
+    <div className="min-h-screen min-h-dvh flex flex-col bg-[#121212] text-white font-averta">
       {/* 0. AUTHENTIC MOBILE APP SPLASH LOADING SCREEN (IMG_6272) */}
       {showSplash && (
         <MobileSplashScreen 
@@ -363,8 +363,8 @@ export default function App() {
 
       {viewMode === 'mobile' ? (
         /* ==================== AUTHENTIC MOBILE APPLICATION (iOS & ANDROID) ==================== */
-        <div className="flex-1 w-full bg-[#0a0a0a] flex flex-col items-center">
-          <div className="w-full max-w-md bg-[#121212] min-h-screen text-white flex flex-col relative shadow-2xl border-x border-white/5 pb-20">
+        <div className="flex-1 w-full bg-[#121212] flex flex-col items-center min-h-screen min-h-dvh">
+          <div className="w-full md:max-w-md lg:max-w-lg bg-[#121212] min-h-screen min-h-dvh text-white flex flex-col relative md:shadow-2xl md:border-x md:border-white/5 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] pt-safe">
             {/* Mobile View Routing */}
             {bookingEvent ? (
               <div className="p-4 space-y-4">

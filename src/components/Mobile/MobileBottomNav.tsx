@@ -18,10 +18,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 }) => {
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 bg-[#121212] border-t border-[#26282e] px-2 py-1.5 pb-safe select-none shadow-[0_-4px_20px_rgba(0,0,0,0.5)]"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-[#121212]/95 backdrop-blur-md border-t border-[#26282e] px-2 pt-1.5 pb-[max(0.6rem,env(safe-area-inset-bottom,0px))] select-none shadow-[0_-4px_20px_rgba(0,0,0,0.5)]"
       aria-label="Mobile Navigation"
     >
-      <div className="max-w-md mx-auto flex items-center justify-around">
+      <div className="w-full md:max-w-md lg:max-w-lg mx-auto flex items-center justify-around">
         {/* Tab 1: Home */}
         <button
           onClick={() => onChangeTab('home')}

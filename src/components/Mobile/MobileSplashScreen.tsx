@@ -29,7 +29,7 @@ export const MobileSplashScreen: React.FC<MobileSplashScreenProps> = ({
   return (
     <div 
       onClick={() => onComplete()}
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#121212] select-none cursor-pointer transition-opacity duration-400 ease-out ${
+      className={`fixed inset-0 z-[100] w-full h-full min-h-screen min-h-dvh flex flex-col items-center justify-center bg-[#121212] select-none cursor-pointer transition-opacity duration-400 ease-out ${
         isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
       aria-label="Ticketmaster loading screen"

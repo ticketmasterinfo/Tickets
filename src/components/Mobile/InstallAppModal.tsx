@@ -236,7 +236,7 @@ export const InstallAppModal: React.FC<InstallAppModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-[#121212] border-t border-white/10 flex items-center justify-between">
+        <div className="p-4 bg-[#121212] border-t border-white/10 flex items-center justify-between pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
           <span className="text-[11px] text-white/50">Ticketmaster Mobile v2026.10</span>
           <button
             onClick={onClose}
