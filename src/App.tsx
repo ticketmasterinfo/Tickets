@@ -58,10 +58,13 @@ import { MobileAccountView } from './components/Mobile/MobileAccountView';
 import { MobileWatchlistView } from './components/Mobile/MobileWatchlistView';
 import { InstallAppModal } from './components/Mobile/InstallAppModal';
 import { CitySelectorModal } from './components/Mobile/CitySelectorModal';
+import { TicketmasterSyncModal } from './components/Admin/TicketmasterSyncModal';
+import { fetchLiveEvents } from './services/eventSyncService';
 
 export default function App() {
-  // Primary States
-  const [events] = useState<EventItem[]>(EVENTS_DATA);
+  // Primary States (initialized with seed events, updated via official TM sync)
+  const [events, setEvents] = useState<EventItem[]>(EVENTS_DATA);
+  const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
   // Filter & Search State
@@ -114,6 +117,21 @@ export default function App() {
       prev.includes(artistName) ? prev.filter(a => a !== artistName) : [...prev, artistName]
     );
   };
+
+  // Load live synchronized events from Ticketmaster server API
+  useEffect(() => {
+    let isMounted = true;
+    fetchLiveEvents()
+      .then(res => {
+        if (isMounted && res.events && res.events.length > 0) {
+          setEvents(res.events);
+        }
+      })
+      .catch(err => {
+        console.warn('Initial live events fetch fallback:', err);
+      });
+    return () => { isMounted = false; };
+  }, []);
 
   // Splash effect for each time reload or the app is entered / resumed from background
   useEffect(() => {
@@ -467,6 +485,8 @@ export default function App() {
                 onNavigateToFavorites={() => setMobileTab('watchlist')}
                 currentCity={currentCity}
                 onOpenCitySelector={() => setIsCitySelectorOpen(true)}
+                onUpdateUser={setCurrentUser}
+                onOpenSyncModal={() => setIsSyncModalOpen(true)}
               />
             )}
 
@@ -503,6 +523,7 @@ export default function App() {
             onOpenSecurityStatus={() => setIsBrowsingPausedOpen(true)}
             user={currentUser}
             onSignOut={() => setCurrentUser(null)}
+            onOpenSync={() => setIsSyncModalOpen(true)}
           />
 
           {/* 2. DUAL-BAR MAIN HEADER (#024ddf) */}
@@ -935,7 +956,15 @@ export default function App() {
         onClose={() => setIsCitySelectorOpen(false)}
       />
 
-      {/* 22. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
+      {/* 22. TICKETMASTER AUTOMATIC DISCOVERY SYNC MODAL */}
+      <TicketmasterSyncModal 
+        isOpen={isSyncModalOpen}
+        onClose={() => setIsSyncModalOpen(false)}
+        events={events}
+        onEventsUpdated={(updatedEvents) => setEvents(updatedEvents)}
+      />
+
+      {/* 23. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
       <FeedbackWidget />
 
     </div>

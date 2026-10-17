@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "intervalMinutes": 30,
+  "countryCode": "US",
+  "cities": [
+    "Los Angeles",
+    "New York",
+    "Chicago",
+    "Boston",
+    "San Francisco",
+    "Las Vegas",
+    "Miami",
+    "Austin"
+  ],
+  "classifications": [
+    "Music",
+    "Sports",
+    "Arts & Theatre"
+  ],
+  "maxPagesPerSync": 3,
+  "pageSize": 20,
+  "markPastEvents": true
+}

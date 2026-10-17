@@ -11,7 +11,9 @@ import {
   Ticket, 
   Sparkles, 
   Info,
-  ChevronRight
+  ChevronRight,
+  ExternalLink,
+  ShieldCheck
 } from 'lucide-react';
 import { EventItem } from '../../types';
 
@@ -189,33 +191,53 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
         </div>
 
         {/* Modal Footer CTA */}
-        <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div>
-            <span className="text-xs text-gray-500 block font-medium">Verified Ticket Pricing</span>
-            <div className="flex items-baseline space-x-1">
-              <span className="text-xs text-gray-500">From</span>
-              <span className="text-xl font-black text-[#024ddf]">${event.pricing.min_price.toFixed(0)}</span>
-              <span className="text-xs text-gray-400">to ${event.pricing.max_price.toFixed(0)}</span>
+        <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-200 space-y-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <span className="text-xs text-gray-500 block font-medium">Verified Ticket Pricing</span>
+              <div className="flex items-baseline space-x-1">
+                <span className="text-xs text-gray-500">From</span>
+                <span className="text-xl font-black text-[#024ddf]">${event.pricing.min_price.toFixed(0)}</span>
+                <span className="text-xs text-gray-400">to ${event.pricing.max_price.toFixed(0)}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+              <button
+                onClick={onClose}
+                className="px-3.5 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold text-xs hover:bg-gray-100 transition-colors"
+              >
+                Back
+              </button>
+              {event.identity.event_url && (
+                <a
+                  href={event.identity.event_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl border border-[#024ddf]/30 bg-blue-50 hover:bg-blue-100 text-[#024ddf] font-bold text-xs flex items-center gap-1.5 transition active:scale-95"
+                >
+                  <span>Get Tickets on Ticketmaster</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <button
+                onClick={() => {
+                  onClose();
+                  onSelectEventForBooking(event);
+                }}
+                className="bg-[#024ddf] hover:bg-[#0139a7] active:bg-[#012e85] text-white font-bold px-5 py-2.5 rounded-xl shadow-lg transition-transform active:scale-95 flex items-center justify-center space-x-2 text-xs"
+              >
+                <Ticket className="w-4 h-4" />
+                <span>Select Seats on Map</span>
+              </button>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 w-full sm:w-auto">
-            <button
-              onClick={onClose}
-              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-100 transition-colors"
-            >
-              Back
-            </button>
-            <button
-              onClick={() => {
-                onClose();
-                onSelectEventForBooking(event);
-              }}
-              className="flex-1 sm:flex-none bg-[#024ddf] hover:bg-[#0139a7] active:bg-[#012e85] text-white font-bold px-6 py-2.5 rounded-xl shadow-lg transition-transform active:scale-95 flex items-center justify-center space-x-2"
-            >
-              <Ticket className="w-4 h-4" />
-              <span>Select Seats on Interactive Map</span>
-            </button>
+          <div className="flex items-center justify-between pt-1 text-[11px] text-gray-500 border-t border-gray-200/60">
+            <span>Official Event Source: {event.sync_metadata?.source || event.identity.source || 'Ticketmaster Discovery API v2'}</span>
+            <span className="flex items-center gap-1 text-[#024ddf] font-medium">
+              <ShieldCheck className="w-3.5 h-3.5" /> SafeTix™ Encrypted
+            </span>
           </div>
         </div>
 

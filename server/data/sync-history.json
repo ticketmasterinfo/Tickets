@@ -1,0 +1,54 @@
+[
+  {
+    "startedAt": "2026-10-17T00:30:35.833Z",
+    "finishedAt": "2026-10-17T00:30:35.834Z",
+    "durationMs": 1,
+    "status": "failed",
+    "importedCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "failedCount": 0,
+    "totalEventsInDb": 17,
+    "trigger": "cron",
+    "errorMessage": "TICKETMASTER_API_KEY is not configured. Please register for a free API key at https://developer.ticketmaster.com and set TICKETMASTER_API_KEY in server environment settings."
+  },
+  {
+    "startedAt": "2026-10-17T00:30:35.833Z",
+    "finishedAt": "2026-10-17T00:30:35.833Z",
+    "durationMs": 0,
+    "status": "failed",
+    "importedCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "failedCount": 0,
+    "totalEventsInDb": 17,
+    "trigger": "cron",
+    "errorMessage": "TICKETMASTER_API_KEY is not configured. Please register for a free API key at https://developer.ticketmaster.com and set TICKETMASTER_API_KEY in server environment settings."
+  },
+  {
+    "startedAt": "2026-10-17T00:30:29.679Z",
+    "finishedAt": "2026-10-17T00:30:29.680Z",
+    "durationMs": 1,
+    "status": "failed",
+    "importedCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "failedCount": 0,
+    "totalEventsInDb": 17,
+    "trigger": "manual",
+    "errorMessage": "TICKETMASTER_API_KEY is not configured. Please register for a free API key at https://developer.ticketmaster.com and set TICKETMASTER_API_KEY in server environment settings."
+  },
+  {
+    "startedAt": "2026-10-17T00:30:29.679Z",
+    "finishedAt": "2026-10-17T00:30:29.679Z",
+    "durationMs": 0,
+    "status": "failed",
+    "importedCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "failedCount": 0,
+    "totalEventsInDb": 17,
+    "trigger": "manual",
+    "errorMessage": "TICKETMASTER_API_KEY is not configured. Please register for a free API key at https://developer.ticketmaster.com and set TICKETMASTER_API_KEY in server environment settings."
+  }
+]

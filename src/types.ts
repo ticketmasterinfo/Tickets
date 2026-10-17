@@ -14,6 +14,8 @@ export interface EventIdentity {
   is_presale?: boolean;
   is_resale?: boolean;
   is_selling_fast?: boolean;
+  source?: string;
+  status?: 'onsale' | 'rescheduled' | 'cancelled' | 'postponed' | 'offsale' | 'past' | string;
 }
 
 export interface EventDateTime {
@@ -51,12 +53,23 @@ export interface EventDescription {
   entry_requirements: string;
 }
 
+export interface EventSyncMetadata {
+  tm_event_id: string;
+  source: string;
+  first_imported_at: string;
+  last_updated_at: string;
+  last_synced_at: string;
+  event_status: 'onsale' | 'rescheduled' | 'cancelled' | 'postponed' | 'offsale' | 'past' | string;
+  is_manual?: boolean;
+}
+
 export interface EventItem {
   identity: EventIdentity;
   date_time: EventDateTime;
   location: EventLocation;
   pricing: EventPricing;
   description: EventDescription;
+  sync_metadata?: EventSyncMetadata;
 }
 
 export interface SeatZone {

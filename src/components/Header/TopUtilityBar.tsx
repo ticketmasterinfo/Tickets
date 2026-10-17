@@ -16,13 +16,15 @@ interface TopUtilityBarProps {
   onSelectCountry?: (country: string) => void;
   user?: { name: string; email: string } | null;
   onSignOut?: () => void;
+  onOpenSync?: () => void;
 }
 
 export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
   onOpenHelp,
   onOpenSell,
   onOpenTravel,
-  onSelectCountry
+  onSelectCountry,
+  onOpenSync
 }) => {
   const [selectedCountry, setSelectedCountry] = useState('US');
   const [selectedCountryLabel, setSelectedCountryLabel] = useState('United States (USD)');
@@ -162,6 +164,18 @@ export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
                 VIP
               </a>
             </li>
+            {onOpenSync && (
+              <li role="listitem">
+                <button 
+                  type="button"
+                  className="sc-a618d3b1-4 ibHGSp text-blue-400 hover:text-blue-300 font-bold flex items-center gap-1 cursor-pointer"
+                  onClick={onOpenSync}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>TM Sync</span>
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
 
