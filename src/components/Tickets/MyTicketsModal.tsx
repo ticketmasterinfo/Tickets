@@ -20,6 +20,7 @@ import { PurchasedTicket } from '../../types';
 import { downloadTicketPDF, downloadAllTicketsPDF, printTicket } from '../../utils/ticketDownloader';
 import { TicketmasterLogo } from '../Common/TicketmasterLogo';
 import { TicketQRCode } from './TicketQRCode';
+import { showAppNotification } from '../../utils/notification';
 
 interface MyTicketsModalProps {
   tickets: PurchasedTicket[];
@@ -303,7 +304,7 @@ export const MyTicketsModal: React.FC<MyTicketsModalProps> = ({
               </button>
 
               <button
-                onClick={() => alert(`Official Verified Resale opened for Ticket #${currentTicket.ticketId}. You can set your price up to face value.`)}
+                onClick={() => showAppNotification(`Official Verified Resale opened for Ticket #${currentTicket.ticketId}. You can set your price up to face value.`, 'Verified Resale')}
                 className="bg-[#1e1e1e] hover:bg-[#282828] border border-gray-700 text-white py-2 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
               >
                 <DollarSign className="w-3.5 h-3.5 text-green-400" />

@@ -22,6 +22,7 @@ import {
   AlertCircle,
   RefreshCw
 } from 'lucide-react';
+import { showAppNotification } from '../../utils/notification';
 
 interface MobileAccountViewProps {
   currentUser: { name: string; email: string } | null;
@@ -638,8 +639,8 @@ export const MobileAccountView: React.FC<MobileAccountViewProps> = ({
 
               {/* Add payment method */}
               <button 
-                onClick={() => alert('Card tokenization is active for checkout.')}
-                className="w-full py-3 rounded-xl border border-dashed border-white/20 text-sm font-semibold text-white/80 hover:text-white hover:border-white/40 flex items-center justify-center gap-2 transition"
+                onClick={() => showAppNotification('Card tokenization is active for secure checkout.', 'Payment Methods')}
+                className="w-full py-3 rounded-xl border border-dashed border-white/20 text-sm font-semibold text-white/80 hover:text-white hover:border-white/40 flex items-center justify-center gap-2 transition cursor-pointer"
               >
                 <span>+ Add New Payment Method</span>
               </button>

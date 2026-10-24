@@ -146,8 +146,8 @@ export function resolveScannedPass(
         main_performer: payload.performer || payload.title,
         lineup: [payload.performer || payload.title],
         supporting_acts: [],
-        image_url: payload.imageUrl || 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80',
-        banner_url: payload.imageUrl || 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80',
+        image_url: payload.imageUrl || 'https://s1.ticketm.net/dam/a/007/c8a22313-f355-4dbd-8a5e-994183aa3007_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+        banner_url: payload.imageUrl || 'https://s1.ticketm.net/dam/a/007/c8a22313-f355-4dbd-8a5e-994183aa3007_TABLET_LANDSCAPE_LARGE_16_9.jpg',
         is_featured: true,
         is_selling_fast: true
       },

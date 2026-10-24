@@ -13,51 +13,51 @@ export interface DiscoverArticle {
 export const DISCOVER_ARTICLES: DiscoverArticle[] = [
   {
     id: 'art-1',
-    tagline: 'Sports',
-    title: 'A Look at the 2026 MLB Schedule and New Rules',
-    text: 'MLB’s 2026 season is bringing big schedule changes and new rules. Here’s what fans need to know before first pitch.',
-    imageUrl: 'https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=800&q=80',
-    link: '#sports'
+    tagline: 'General Info',
+    title: 'All In Prices Explained',
+    text: "Here's what you need to know about All In Prices, and why there are fees on top of the ticket price.",
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/1VPuYshAp4r8uNX2_IMG_5253.png?auto=format,compress&rect=0,0,2000,1123&w=616&h=346',
+    link: 'https://www.ticketmaster.com/welcome/all-in?ac_link=hpguide'
   },
   {
     id: 'art-2',
     tagline: 'Ticket Tips',
-    title: 'What to Bring to a Concert: Complete Guide',
-    text: 'Read our ultimate packing checklist, clear bag policies, and venue tips before you go to your next arena show.',
-    imageUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
-    link: '#concerts'
+    title: 'What to Bring to a Concert',
+    text: 'Read our ultimate packing checklist before you go to your next show.',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/Wvuuscx5AScCzapq_what-to-bring-to-a-concert-1024x614-2-.jpg?auto=format,compress&rect=0,19,1024,575&w=308&h=173',
+    link: 'https://blog.ticketmaster.com/what-to-bring-to-a-concert/?ac_link=hpguide'
   },
   {
     id: 'art-3',
     tagline: 'Sports',
-    title: 'MLS 2026 Season & Tournament FAQs',
-    text: 'For the 2026 MLS season, make sure you have all the matchday info you need including verified safe ticketing.',
-    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
-    link: '#sports'
+    title: 'MLS 2026 Season FAQs',
+    text: 'Get ready for your next match with our 2026 MLS guide.',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aYuB5t0YXLCxVqgZ_2026soccerworldcup.jpg?auto=format,compress&rect=19,0,1243,698&w=308&h=173',
+    link: 'https://blog.ticketmaster.com/mls-faqs/?ac_link=hpguide'
   },
   {
     id: 'art-4',
     tagline: 'General Info',
     title: 'Get the Most Out of Your Ticketmaster Account',
-    text: 'Learn what’s possible with SafeTix dynamic passes, instant ticket transfer, and verified fan presales.',
-    imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
-    link: '#safetix'
+    text: "Learn what's possible with this guide of ticket tips and info.",
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/nq67UbwPJf_VjV25_Account-Manager-Featured-Image-1024x536.jpg?auto=format,compress&rect=35,0,954,536&w=308&h=173',
+    link: 'https://blog.ticketmaster.com/ticketmaster-account-manual/?ac_link=hpguide'
   },
   {
     id: 'art-5',
-    tagline: 'Championships',
-    title: 'US Open Tennis Championship Buying Guide',
-    text: 'Here’s what you need to know about US Open tickets, Arthur Ashe Stadium seats, grounds passes, and session pricing.',
-    imageUrl: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&w=800&q=80',
-    link: '#sports'
+    tagline: 'Sports',
+    title: 'A Look at the 2026 MLB Schedule and New Rules',
+    text: 'MLB’s 2026 season is bringing big schedule changes and new rules. Here’s what fans need to know before first pitch.',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/Z7a8IJ7c43Q3f_lc_mlb-faqs-2025.png?auto=format,compress&rect=0,0,1024,575&w=616&h=346',
+    link: 'https://blog.ticketmaster.com/mlb-schedule-explained/?ac_link=hpguide'
   },
   {
     id: 'art-6',
-    tagline: 'Broadway NYC',
-    title: '6 Broadway Shows & Musicals to See This Season',
-    text: 'Need ideas for family activities and date nights in NYC? Here are the best Broadway shows and musicals in 2026.',
-    imageUrl: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80',
-    link: '#theater'
+    tagline: 'Local Guide',
+    title: '6 Broadway Shows to See This Fall in NYC',
+    text: 'Need ideas for family activities in NYC this fall? Here are the best Broadway shows and musicals to see in 2026.',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/BYlo9-FVTsHNUDOO_fall-broadway-shows.png?auto=format,compress&rect=0,0,1024,575&w=616&h=346',
+    link: 'https://blog.ticketmaster.com/broadway-shows-2026-nyc/?ac_link=hpguide'
   }
 ];
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import { TicketmasterLogo } from '../Common/TicketmasterLogo';
+import { showAppNotification } from '../../utils/notification';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -146,7 +147,7 @@ export const Footer: React.FC = () => {
             <li><a href="#cookies" className="hover:text-gray-300">Cookie Policy</a></li>
             <li>
               <button 
-                onClick={() => alert('OneTrust Cookie & Privacy Center: All functional, performance and advertising preferences up to date.')}
+                onClick={() => showAppNotification('OneTrust Cookie & Privacy Center: All functional, performance and advertising preferences up to date.', 'Privacy & Cookies')}
                 className="hover:text-gray-300 underline cursor-pointer"
               >
                 Manage my cookies and ad choices

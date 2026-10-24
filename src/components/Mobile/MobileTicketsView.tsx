@@ -12,6 +12,7 @@ import {
   Plus
 } from 'lucide-react';
 import { PurchasedTicket, EventItem } from '../../types';
+import { showAppNotification } from '../../utils/notification';
 
 interface MobileTicketsViewProps {
   tickets: PurchasedTicket[];
@@ -40,8 +41,8 @@ export const MobileTicketsView: React.FC<MobileTicketsViewProps> = ({
           <span className="text-base" role="img" aria-label="United States">🇺🇸</span>
         </div>
         <button 
-          onClick={() => alert('SafeTix Help: Present your moving barcode at any gate turnstile. Screenshots cannot be scanned.')}
-          className="text-xs font-semibold text-white/80 hover:text-white"
+          onClick={() => showAppNotification('SafeTix Help: Present your verified barcode or QR pass at any gate turnstile. Screenshots cannot be scanned.', 'SafeTix Turnstile Entry')}
+          className="text-xs font-semibold text-white/80 hover:text-white cursor-pointer"
         >
           Help
         </button>

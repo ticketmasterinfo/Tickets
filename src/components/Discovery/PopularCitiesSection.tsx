@@ -14,56 +14,56 @@ export const POPULAR_CITIES: CityItem[] = [
     id: 'nyc',
     name: 'New York City',
     state: 'NY',
-    imageUrl: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aExodLNJEFaPX9H4_new-york-city-city-page.jpg?auto=format%2Ccompress&rect=950%2C0%2C4379%2C3620&w=750&h=620',
     eventCount: 420
   },
   {
     id: 'la',
     name: 'Los Angeles',
     state: 'CA',
-    imageUrl: 'https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aExg-7NJEFaPX9Ff_los-angeles-city-page.jpg?auto=format%2Ccompress&rect=672%2C0%2C2863%2C2367&w=750&h=620',
     eventCount: 385
   },
   {
     id: 'vegas',
     name: 'Las Vegas',
     state: 'NV',
-    imageUrl: 'https://images.unsplash.com/photo-1605833559746-6d16fed446be?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aHf3QUMqNJQqH-wl_lasvegas.jpg?auto=format%2Ccompress&rect=99%2C0%2C826%2C683&w=750&h=620',
     eventCount: 290
   },
   {
     id: 'chicago',
     name: 'Chicago',
     state: 'IL',
-    imageUrl: 'https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aHqxSEMqNJQqIHRT_chicagoheader.jpg?auto=format%2Ccompress&rect=375%2C0%2C3115%2C2575&w=750&h=620',
     eventCount: 310
   },
   {
     id: 'atlanta',
     name: 'Atlanta',
     state: 'GA',
-    imageUrl: 'https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aH-wIFGsbswqTJCP_atlantaheader.jpg?auto=format,compress&rect=374,0,3116,2576&w=750&h=620',
     eventCount: 215
   },
   {
     id: 'nashville',
     name: 'Nashville',
     state: 'TN',
-    imageUrl: 'https://images.unsplash.com/photo-1548685913-fe6678babe8d?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aMMnhmGNHVfTPERY_nashvilleheader.jpg?auto=format%2Ccompress&rect=434%2C0%2C3633%2C3003&w=750&h=620',
     eventCount: 260
   },
   {
     id: 'denver',
     name: 'Denver',
     state: 'CO',
-    imageUrl: 'https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aLscKmGNHVfTOuJy_denver.jpg?auto=format%2Ccompress&rect=634%2C0%2C2894%2C2392&w=750&h=620',
     eventCount: 180
   },
   {
     id: 'miami',
     name: 'Miami',
     state: 'FL',
-    imageUrl: 'https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aK4vB2GNHVfTOV6j_Miami.jpg?auto=format,compress&rect=838,0,2731,2258&w=750&h=620',
     eventCount: 275
   }
 ];

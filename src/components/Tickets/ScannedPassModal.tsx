@@ -33,14 +33,6 @@ export const ScannedPassModal: React.FC<ScannedPassModalProps> = ({
 }) => {
   const [copiedLink, setCopiedLink] = useState(false);
   const [walletAdded, setWalletAdded] = useState(false);
-  const [scanSecondsAgo, setScanSecondsAgo] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setScanSecondsAgo(prev => prev + 1);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleShare = () => {
     if (navigator?.clipboard) {
@@ -89,7 +81,7 @@ export const ScannedPassModal: React.FC<ScannedPassModalProps> = ({
                   <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                 </div>
                 <p className="text-[11px] text-emerald-200/80 font-medium">
-                  Official ticket valid for admission &bull; Scanned {scanSecondsAgo < 5 ? 'just now' : `${scanSecondsAgo}s ago`}
+                  Official ticket valid for admission &bull; SafeTix™ Encrypted
                 </p>
               </div>
             </div>

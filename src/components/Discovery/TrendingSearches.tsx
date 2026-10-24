@@ -1,95 +1,73 @@
 import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, Ticket, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface TrendingSearchItem {
   name: string;
   genre: string;
   imageUrl: string;
   fallbackImage: string;
-  datesCount?: number;
-  badge?: string;
 }
 
 export const TRENDING_SEARCHES_DATA: TrendingSearchItem[] = [
   {
-    name: 'Harry Styles',
-    genre: 'Pop / Rock',
-    imageUrl: 'https://s1.ticketm.net/dam/a/2c8/8b6d9420-66c7-4bcb-877b-0ff0238da2c8_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=640&q=80',
-    datesCount: 5,
-    badge: 'WORLD TOUR'
+    name: 'Calvin Harris',
+    genre: 'Pop',
+    imageUrl: 'https://s1.ticketm.net/dam/a/259/9afb1a6e-3bf4-4fa7-a4f1-0c2602b90259_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=640&q=80'
+  },
+  {
+    name: 'Olivia Rodrigo',
+    genre: 'Pop',
+    imageUrl: 'https://s1.ticketm.net/dam/a/4e1/ca96dd03-8def-46ae-b6d3-9441e992c4e1_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?auto=format&fit=crop&w=640&q=80'
+  },
+  {
+    name: 'Metallica',
+    genre: 'Metal',
+    imageUrl: 'https://s1.ticketm.net/dam/a/6bf/4d98a9bf-2443-4152-8137-143cfa25a6bf_1853051_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=640&q=80'
+  },
+  {
+    name: 'Cleo Sol',
+    genre: 'R&B',
+    imageUrl: 'https://s1.ticketm.net/dam/a/82f/b6f0776e-6170-49be-9bc5-b7a35101582f_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=640&q=80'
+  },
+  {
+    name: 'Don Omar',
+    genre: 'Hip-Hop/Rap',
+    imageUrl: 'https://s1.ticketm.net/dam/a/176/29d3d08d-14df-40be-a440-7cbb72a81176_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=640&q=80'
+  },
+  {
+    name: 'Zach Bryan',
+    genre: 'Rock',
+    imageUrl: 'https://s1.ticketm.net/dam/a/850/f400c343-3cd9-4de6-9963-041005084850_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1485579149621-3123dd979885?auto=format&fit=crop&w=640&q=80'
   },
   {
     name: 'Rod Wave',
     genre: 'Hip-Hop/Rap',
     imageUrl: 'https://s1.ticketm.net/dam/a/f72/4c583e8a-6739-4fb2-9861-e73978841f72_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=640&q=80',
-    datesCount: 6,
-    badge: 'ARENA TOUR'
+    fallbackImage: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=640&q=80'
   },
   {
-    name: 'Dave Chappelle',
-    genre: 'Comedy',
-    imageUrl: 'https://s1.ticketm.net/dam/a/e69/931eff58-62a7-4240-adb3-cf67a084ee69_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=640&q=80',
-    datesCount: 4,
-    badge: 'LIVE STAND-UP'
+    name: 'The Wizard of Oz at Sphere',
+    genre: 'Spectacular',
+    imageUrl: 'https://s1.ticketm.net/dam/a/411/3f944dde-1402-4026-9e41-80c1b5d25411_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=640&q=80'
   },
   {
-    name: 'RUSH',
-    genre: 'Classic Rock',
-    imageUrl: 'https://s1.ticketm.net/dam/a/6bd/c02199ad-8d22-4668-8973-f400d85826bd_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?auto=format&fit=crop&w=640&q=80',
-    datesCount: 6,
-    badge: '50TH ANNIVERSARY'
+    name: 'Saba',
+    genre: 'Hip-Hop/Rap',
+    imageUrl: 'https://s1.ticketm.net/dam/a/406/a6ea184d-c130-4667-bf93-78fb9ca06406_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=640&q=80'
   },
   {
-    name: 'Monster Jam',
-    genre: 'Motorsports',
-    imageUrl: 'https://s1.ticketm.net/dam/a/648/bee96ceb-7d32-4b5d-bb15-6a8615501648_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=640&q=80',
-    datesCount: 8,
-    badge: 'STADIUM SPECTACLE'
-  },
-  {
-    name: 'Trans-Siberian Orchestra',
-    genre: 'Holiday Rock',
-    imageUrl: 'https://s1.ticketm.net/dam/a/e8b/b5409ed1-4af0-44a7-bccd-83fef3b0ae8b_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=640&q=80',
-    datesCount: 12,
-    badge: 'WINTER TOUR'
-  },
-  {
-    name: 'Andrea Bocelli',
-    genre: 'Classical Vocal',
-    imageUrl: 'https://s1.ticketm.net/dam/a/ccc/9450d9ad-b5a8-45a0-9359-7ee4993f0ccc_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=640&q=80',
-    datesCount: 6,
-    badge: 'EXCLUSIVE CONCERTS'
-  },
-  {
-    name: 'Malcolm Todd',
-    genre: 'Alternative / Indie',
-    imageUrl: 'https://s1.ticketm.net/dam/a/237/2144a2e6-e59d-4ed1-8ae7-ea630b1f4237_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=640&q=80',
-    datesCount: 5,
-    badge: 'THE SWEET BOY TOUR'
-  },
-  {
-    name: 'Gorillaz',
-    genre: 'Alternative Rock',
-    imageUrl: 'https://s1.ticketm.net/dam/a/88b/ce224ebd-7acf-4b04-8f04-0038dddc988b_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=640&q=80',
-    datesCount: 6,
-    badge: 'LIVE SPECTACLE'
-  },
-  {
-    name: 'Phoebe Bridgers',
-    genre: 'Indie Rock',
-    imageUrl: 'https://s1.ticketm.net/dam/a/8bf/03985c53-fb10-4d38-ab4f-662df14e78bf_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=640&q=80',
-    datesCount: 6,
-    badge: 'SPECIAL DATES'
+    name: 'SIENNA SPIRO',
+    genre: 'Pop',
+    imageUrl: 'https://s1.ticketm.net/dam/a/b07/09e0979d-7b3d-4cd4-badf-67d6ced79b07_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+    fallbackImage: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=640&q=80'
   }
 ];
 
@@ -102,103 +80,72 @@ export const TrendingSearches: React.FC<TrendingSearchesProps> = ({ onSelectPerf
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 360;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
+      const offset = direction === 'left' ? -380 : 380;
+      scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
     }
   };
 
   return (
-    <section 
-      data-testid="trending-search-carousel" 
-      className="my-8 w-full"
-    >
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-3">
-        <div>
-          <div className="flex items-center space-x-2 mb-1.5">
-            <span className="bg-[#024ddf]/10 text-[#024ddf] border border-[#024ddf]/20 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded">
-              Verified Performer Hub
-            </span>
-            <span className="text-[11px] font-semibold text-[#00875a] flex items-center">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00875a] mr-1.5 animate-pulse"></span>
-              All Tour Dates Live
-            </span>
-          </div>
-          <h2 className="type-everest text-[#121212] font-black tracking-tight">
-            Trending Searches
-          </h2>
-          <p className="type-etna text-gray-600 mt-1 max-w-2xl leading-relaxed">
-            Most in-demand artists and upcoming attractions this week. Click any artist to explore their full tour page, complete date schedule, and verified tickets.
-          </p>
-        </div>
+    <section data-testid="trending-search-carousel" aria-label="Trending Searches" className="w-full">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
+          Trending Searches
+        </h2>
 
-        {/* Carousel buttons */}
-        <div className="flex items-center space-x-2 self-end sm:self-auto">
+        {/* Carousel controls */}
+        <div className="flex items-center space-x-2">
           <button
-            type="button"
             onClick={() => scroll('left')}
+            className="w-8 h-8 rounded-full border border-gray-300 bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-xs transition-colors cursor-pointer"
             aria-label="Previous Items"
-            className="w-8 h-8 rounded border border-gray-300 bg-white hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center text-gray-700 transition-colors shadow-xs cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
-            type="button"
             onClick={() => scroll('right')}
+            className="w-8 h-8 rounded-full border border-gray-300 bg-white hover:bg-gray-100 flex items-center justify-center text-gray-700 shadow-xs transition-colors cursor-pointer"
             aria-label="Next items"
-            className="w-8 h-8 rounded border border-gray-300 bg-white hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center text-gray-700 transition-colors shadow-xs cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* Snap Scroll Container */}
-      <div 
+      <div
         ref={scrollRef}
-        className="flex space-x-4 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-4 overflow-x-auto no-scrollbar pb-2 scroll-smooth"
+        role="region"
+        aria-label="Trending attractions"
       >
-        {TRENDING_SEARCHES_DATA.map((item) => (
-          <div 
+        {TRENDING_SEARCHES_DATA.map((item, index) => (
+          <div
             key={item.name}
             onClick={() => onSelectPerformer(item.name)}
-            className="shrink-0 w-[170px] sm:w-[210px] md:w-[230px] snap-start group cursor-pointer bg-white rounded-xl p-2 border border-gray-200 hover:border-[#024ddf] hover:shadow-md transition-all flex flex-col justify-between"
+            className="min-w-[170px] sm:min-w-[210px] md:min-w-[230px] shrink-0 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer group"
           >
-            <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-gray-200 shadow-xs border border-gray-100">
-              <img 
-                src={item.imageUrl} 
-                alt={item.name} 
+            {/* 16:9 Image Container */}
+            <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = item.fallbackImage;
                 }}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                referrerPolicy="no-referrer"
               />
-              {item.badge && (
-                <span className="absolute top-2 left-2 bg-[#121212]/85 backdrop-blur-xs text-[#ffb932] text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow">
-                  {item.badge}
-                </span>
-              )}
-              <span className="absolute bottom-2 left-2 bg-[#024ddf]/90 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow flex items-center space-x-1">
-                <Calendar className="w-3 h-3 mr-1" />
-                <span>{item.datesCount || 6} Tour Dates</span>
+              <span className="absolute top-2 left-2 w-6 h-6 rounded-full bg-black/70 backdrop-blur-md text-white text-[11px] font-bold flex items-center justify-center">
+                {index + 1}
               </span>
             </div>
 
-            <div className="pt-2 px-1 space-y-1">
-              <span className="type-snowdon text-gray-500 block truncate">
+            {/* Meta */}
+            <div className="p-3">
+              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                 {item.genre}
               </span>
-              <h3 className="type-blanc font-bold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate">
+              <h3 className="text-sm font-extrabold text-gray-900 group-hover:text-[#024ddf] transition-colors truncate mt-0.5">
                 {item.name}
               </h3>
-              <div className="pt-1 flex items-center justify-between text-[11px] font-bold text-[#024ddf]">
-                <span>View Tour & Tickets</span>
-                <span className="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-              </div>
             </div>
           </div>
         ))}

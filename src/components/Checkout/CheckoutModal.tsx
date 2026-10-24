@@ -28,7 +28,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   onClose,
   onOrderComplete
 }) => {
-  const [timeLeft, setTimeLeft] = useState(480); // 8 minutes reservation
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'applepay' | 'paypal'>('card');
   const [cardName, setCardName] = useState('Alex Morgan');
   const [cardNumber, setCardNumber] = useState('•••• •••• •••• 4829');
@@ -39,18 +38,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [completedTickets, setCompletedTickets] = useState<PurchasedTicket[]>([]);
-
-  // Reservation countdown timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
   const subtotal = ticketGroup.unitPrice * ticketGroup.quantity;
   const grandTotal = subtotal + ticketGroup.serviceFee + ticketGroup.facilityFee + ticketGroup.processingFee + (subtotal * 0.065);
@@ -104,6 +91,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     }
   };
 
+  const handleDismiss = () => {
+    if (isSuccess && completedTickets.length > 0) {
+      onOrderComplete(completedTickets);
+    }
+    onClose();
+  };
+
   return (
     <div 
       id="checkout-modal-backdrop" 
@@ -113,10 +107,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     >
       <div 
         id="checkout-modal-card"
-        className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-gray-200 my-auto animate-in zoom-in-95 duration-200"
+        className="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-gray-200 my-auto animate-in zoom-in-95 duration-200"
       >
-        {/* Top Header with Timer */}
-        <div className="bg-[#121212] text-white p-4 sm:p-5 flex items-center justify-between">
+        {/* Top Header */}
+        <div className="bg-[#121212] text-white p-4 sm:p-5 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <TicketmasterLogo className="h-6 w-auto" color="#ffffff" />
             <span className="text-xs text-gray-400 font-semibold border-l border-gray-700 pl-3">
@@ -125,15 +119,15 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </div>
 
           <div className="flex items-center space-x-3">
-            {/* Timer Badge */}
-            <div className="flex items-center space-x-1.5 bg-[#1f1f1f] text-[#ffb932] border border-amber-500/30 px-3 py-1 rounded-full text-xs font-bold">
-              <Clock className="w-3.5 h-3.5" />
-              <span>{formattedTime} remaining</span>
+            {/* SafeTix Guaranteed Badge */}
+            <div className="flex items-center space-x-1.5 bg-[#1f1f1f] text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>100% Buyer Guarantee</span>
             </div>
 
             <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-white p-1 rounded-lg"
+              onClick={handleDismiss}
+              className="text-gray-400 hover:text-white p-1 rounded-lg cursor-pointer"
               aria-label="Close Checkout"
             >
               <X className="w-5 h-5" />
@@ -144,14 +138,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         {isSuccess ? (
           /* SUCCESS STATE */
           <div className="p-6 sm:p-8 text-center space-y-4">
-            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
+            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-10 h-10" />
             </div>
-            <h2 className="type-kilimanjaro font-black text-gray-900">
+            <h2 className="type-kilimanjaro font-black text-gray-900 text-xl sm:text-2xl">
               You&apos;re Going to the Show!
             </h2>
-            <p className="type-rainier text-gray-600 max-w-md mx-auto">
-              Your order for <strong>{event.identity.event_title}</strong> has been confirmed. Mobile tickets with dynamic SafeTix barcodes have been sent to <strong>{attendeeEmail}</strong>.
+            <p className="type-rainier text-gray-600 max-w-md mx-auto text-sm">
+              Your order for <strong>{event.identity.event_title}</strong> has been confirmed. Verified mobile tickets have been issued to <strong>{attendeeEmail}</strong>.
             </p>
 
             {completedTickets.length > 0 && (
@@ -168,7 +162,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 id="checkout-success-download-btn"
                 onClick={handleDownloadFromCheckout}
-                className="w-full bg-[#024ddf] hover:bg-[#0139a7] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md cursor-pointer transition-colors"
+                className="w-full bg-[#024ddf] hover:bg-[#0139a7] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md cursor-pointer transition-colors text-sm"
               >
                 <Download className="w-4 h-4" />
                 <span>Download {completedTickets.length > 1 ? `All ${completedTickets.length} Tickets (PDF)` : 'e-Ticket (PDF)'}</span>
@@ -177,10 +171,19 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 id="checkout-success-view-btn"
                 onClick={() => onOrderComplete(completedTickets)}
-                className="w-full bg-gray-900 hover:bg-black text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 cursor-pointer transition-colors text-xs"
+                className="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 cursor-pointer transition-colors text-sm"
               >
                 <Smartphone className="w-4 h-4" />
                 <span>View in My Tickets</span>
+              </button>
+
+              <button
+                id="checkout-success-close-btn"
+                onClick={handleDismiss}
+                className="w-full bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2.5 px-4 rounded-xl border border-gray-300 flex items-center justify-center space-x-2 cursor-pointer transition-colors text-xs"
+              >
+                <X className="w-3.5 h-3.5" />
+                <span>Close</span>
               </button>
             </div>
           </div>

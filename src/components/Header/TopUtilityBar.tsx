@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 import { PurchasedTicket } from '../../types';
 import paypalLogo from '../../assets/paypal_small.svg';
+import { showAppNotification } from '../../utils/notification';
 
 interface TopUtilityBarProps {
   purchasedTickets?: PurchasedTicket[];
@@ -159,7 +160,10 @@ export const TopUtilityBar: React.FC<TopUtilityBarProps> = ({
               <a 
                 href="https://www.ticketmaster.com/vip?landing=c&awtrc=true&ac_link=ntm_vipguide_header_launch" 
                 className="sc-a618d3b1-4 ibHGSp"
-                onClick={(e) => { e.preventDefault(); alert('Ticketmaster VIP: Browse VIP packages, soundchecks, and meet & greets.'); }}
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  showAppNotification('Ticketmaster VIP: Browse VIP soundchecks, front-row packages, and meet & greets.', 'Ticketmaster VIP'); 
+                }}
               >
                 VIP
               </a>

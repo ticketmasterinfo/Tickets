@@ -15,7 +15,7 @@ export const ENTERTAINMENT_GUIDES: GuideItem[] = [
     id: 'nba-guide',
     title: 'NBA Basketball Tickets',
     description: 'See your favorite team hit the court and get tickets at the Official Ticket Marketplace of the NBA.',
-    imageUrl: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/bb2a1549-dcf2-406f-ac0b-b504d176bf49_nba.jpeg?auto=format,compress&rect=0,12,810,432&w=300&h=160',
     category: 'NBA',
     link: '#sports'
   },
@@ -23,7 +23,7 @@ export const ENTERTAINMENT_GUIDES: GuideItem[] = [
     id: 'nhl-guide',
     title: 'NHL Hockey Tickets',
     description: 'Be there live when your favorite team hits the ice and get tickets at the Official Ticket Marketplace of the NHL.',
-    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/0acea291-c558-4d31-8a72-b9a53501bff8_discover-nhl.jfif?auto=format,compress&rect=0,11,812,433&w=300&h=160',
     category: 'NHL',
     link: '#sports'
   },
@@ -31,7 +31,7 @@ export const ENTERTAINMENT_GUIDES: GuideItem[] = [
     id: 'mls-guide',
     title: 'MLS Soccer Tickets',
     description: 'Catch every action-packed game this season and get tickets at the Official Ticket Marketplace of the MLS.',
-    imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/c75f5bc9-4709-45d9-8144-e708d8663543_DiscoverySports_MLS.jpg?auto=format,compress&rect=0,30,2048,1092&w=300&h=160',
     category: 'MLS',
     link: '#sports'
   },
@@ -39,15 +39,15 @@ export const ENTERTAINMENT_GUIDES: GuideItem[] = [
     id: 'mlb-guide',
     title: 'MLB Baseball Tickets',
     description: 'We answer all of your questions about the 2026 MLB season, including how to get tickets to see your favorite team.',
-    imageUrl: 'https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/aJJASaTt2nPbZ3R__MLB-1024x576.jpg?auto=format,compress&rect=0,15,1024,546&w=300&h=160',
     category: 'MLB',
     link: '#sports'
   },
   {
     id: 'broadway-guide',
-    title: 'Broadway Tickets & Musicals',
-    description: 'Browse Broadway tickets, find show schedules, and discover award-winning upcoming plays.',
-    imageUrl: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=800&q=80',
+    title: 'Broadway Tickets',
+    description: 'Browse Broadway tickets and discover upcoming shows.',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/f9df8212-227b-47ff-a132-47419af51c64_iStock_000011675169_broadway-1024x583.jpg?auto=format,compress&rect=0,18,1024,546&w=300&h=160',
     category: 'Broadway',
     link: '#theater'
   }

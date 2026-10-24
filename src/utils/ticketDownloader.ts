@@ -3,6 +3,7 @@ import QRCode from 'qrcode';
 import { PurchasedTicket } from '../types';
 import { getTicketmasterLogoDataUrl, TICKETMASTER_SVG_PATH } from '../components/Common/TicketmasterLogo';
 import { generateTicketVerificationUrl } from './ticketUrlHelper';
+import { showAppNotification } from './notification';
 
 /**
  * Draw authentic Code 128 / SafeTix style barcode bars using vector rectangles
@@ -374,9 +375,10 @@ export async function downloadTicketPDF(ticket: PurchasedTicket): Promise<void> 
     const safeTitle = ticket.event.identity.event_title.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 25);
     const fileName = `Ticketmaster_eTicket_${ticket.orderId}_${safeTitle}_${ticket.ticketId}.pdf`;
     doc.save(fileName);
+    showAppNotification(`Ticket #${ticket.ticketId} PDF downloaded successfully!`, 'Ticket Downloaded');
   } catch (error) {
     console.error('Failed to generate ticket PDF:', error);
-    alert('Unable to download PDF. Please try opening the printable version.');
+    showAppNotification('Unable to download PDF. Please try opening the printable version.', 'Download Notice');
   }
 }
 
@@ -413,9 +415,10 @@ export async function downloadAllTicketsPDF(tickets: PurchasedTicket[]): Promise
     const safeTitle = tickets[0].event.identity.event_title.replace(/[^a-zA-Z0-9]/g, '_').slice(0, 25);
     const fileName = `Ticketmaster_All_Tickets_${orderId}_${safeTitle}.pdf`;
     doc.save(fileName);
+    showAppNotification(`All ${tickets.length} tickets downloaded in a single PDF!`, 'Tickets Downloaded');
   } catch (error) {
     console.error('Failed to generate multi-ticket PDF:', error);
-    alert('Unable to download all tickets PDF. Please try downloading tickets individually.');
+    showAppNotification('Unable to download all tickets PDF. Please try downloading tickets individually.', 'Download Notice');
   }
 }
 
@@ -423,11 +426,14 @@ export async function downloadAllTicketsPDF(tickets: PurchasedTicket[]): Promise
  * Triggers standard browser print for the ticket with formatted Ticketmaster printable layout
  */
 export async function printTicket(ticket: PurchasedTicket): Promise<void> {
-  const printWindow = window.open('', '_blank', 'width=850,height=950');
-  if (!printWindow) {
-    alert('Please allow popups to open the printable ticket.');
-    return;
-  }
+  try {
+    const printWindow = window.open('', '_blank', 'width=850,height=950');
+    if (!printWindow) {
+      // If popup blocked or inside iframe, download the PDF directly as fallback!
+      await downloadTicketPDF(ticket);
+      showAppNotification('Print window blocked by browser. Downloaded e-Ticket PDF instead!', 'Print Notice');
+      return;
+    }
 
   let qrDataUrl = '';
   try {
@@ -567,6 +573,10 @@ export async function printTicket(ticket: PurchasedTicket): Promise<void> {
     </html>
   `;
 
-  printWindow.document.write(printContent);
-  printWindow.document.close();
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+  } catch (err) {
+    console.warn('Print ticket error, falling back to PDF download:', err);
+    await downloadTicketPDF(ticket);
+  }
 }

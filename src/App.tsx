@@ -30,13 +30,14 @@ import { HeroHighlights } from './components/Hero/HeroHighlights';
 import { TrendingSearches } from './components/Discovery/TrendingSearches';
 import { HappeningThisWeekend } from './components/Discovery/HappeningThisWeekend';
 import { SponsoredPresales } from './components/Discovery/SponsoredPresales';
+import { RecentlyViewedSection } from './components/Discovery/RecentlyViewedSection';
 import { PopularNearYou } from './components/Discovery/PopularNearYou';
+import { resolveEventForBooking } from './utils/eventResolver';
 import { FeaturedSidebar } from './components/Discovery/FeaturedSidebar';
 import { EventCarousel } from './components/Events/EventCarousel';
 import { FilterSidebar } from './components/Discovery/FilterSidebar';
 import { EventGrid } from './components/Discovery/EventGrid';
-import { InteractiveSeatMap } from './components/SeatMap/InteractiveSeatMap';
-import { TicketDrawer } from './components/SeatMap/TicketDrawer';
+import { TicketmasterEventExperience } from './components/SeatMap/TicketmasterEventExperience';
 import { CheckoutModal } from './components/Checkout/CheckoutModal';
 import { MyTicketsModal } from './components/Tickets/MyTicketsModal';
 import { ScannedPassModal } from './components/Tickets/ScannedPassModal';
@@ -60,6 +61,8 @@ import { InstallAppModal } from './components/Mobile/InstallAppModal';
 import { CitySelectorModal } from './components/Mobile/CitySelectorModal';
 import { TicketmasterSyncModal } from './components/Admin/TicketmasterSyncModal';
 import { fetchLiveEvents } from './services/eventSyncService';
+import { NotificationToast } from './components/Common/NotificationToast';
+import { showAppNotification } from './utils/notification';
 
 export default function App() {
   // Primary States (initialized with seed events, updated via official TM sync)
@@ -99,8 +102,8 @@ export default function App() {
   const [scannedPassData, setScannedPassData] = useState<{ event: EventItem; ticket: PurchasedTicket } | null>(null);
 
   // Mobile App Dedicated States
-  const [showSplash, setShowSplash] = useState<boolean>(true);
-  const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('mobile');
+  const [showSplash, setShowSplash] = useState<boolean>(false);
+  const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('desktop');
   const [mobileTab, setMobileTab] = useState<MobileTab>('home');
   const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
   const [isCitySelectorOpen, setIsCitySelectorOpen] = useState(false);
@@ -340,7 +343,8 @@ export default function App() {
   };
 
   const handleSearchPerformer = (performerName: string) => {
-    handleOpenArtist(performerName);
+    const resolved = resolveEventForBooking(performerName, events);
+    handleOpenBooking(resolved);
   };
 
   if (isTravelOpen) {
@@ -385,51 +389,12 @@ export default function App() {
           <div className="w-full md:max-w-md lg:max-w-lg bg-[#121212] min-h-screen min-h-dvh text-white flex flex-col relative md:shadow-2xl md:border-x md:border-white/5 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] pt-safe">
             {/* Mobile View Routing */}
             {bookingEvent ? (
-              <div className="p-4 space-y-4">
-                <button
-                  onClick={handleCloseBooking}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-blue-300"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Back to Events</span>
-                </button>
-                <div className="bg-[#1c1e24] p-3.5 rounded-2xl border border-white/10 flex gap-3">
-                  <img 
-                    src={bookingEvent.identity.image_url} 
-                    alt={bookingEvent.identity.event_title}
-                    className="w-16 h-16 rounded-xl object-cover shrink-0" 
-                  />
-                  <div>
-                    <span className="text-[9px] font-bold text-blue-400 uppercase bg-blue-950 px-1.5 py-0.5 rounded">
-                      {bookingEvent.identity.category}
-                    </span>
-                    <h2 className="text-sm font-bold text-white line-clamp-1 mt-1">
-                      {bookingEvent.identity.event_title}
-                    </h2>
-                    <p className="text-xs text-white/60 line-clamp-1">
-                      {bookingEvent.location.venue_name}
-                    </p>
-                  </div>
-                </div>
-                <InteractiveSeatMap 
-                  event={bookingEvent}
-                  selectedZone={selectedZone}
-                  onSelectZone={(zone) => setSelectedZone(zone)}
-                  selectedSeats={selectedSeats}
-                  onToggleSeat={handleToggleSeat}
-                  ticketQuantity={ticketQuantity}
-                />
-                <TicketDrawer 
-                  event={bookingEvent}
-                  selectedZone={selectedZone}
-                  quantity={ticketQuantity}
-                  onQuantityChange={(qty) => setTicketQuantity(qty)}
-                  selectedSeats={selectedSeats}
-                  onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
-                  availableZones={getEventSeatZones(bookingEvent)}
-                  onSelectZone={(zone) => setSelectedZone(zone)}
-                />
-              </div>
+              <TicketmasterEventExperience 
+                event={bookingEvent}
+                onBack={handleCloseBooking}
+                onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
+                currentUser={currentUser}
+              />
             ) : selectedArtist ? (
               <div>
                 <button
@@ -513,7 +478,7 @@ export default function App() {
             onOpenMyTickets={() => setIsMyTicketsOpen(true)}
             onOpenHelp={() => setIsBrowsingPausedOpen(true)}
             onOpenSell={() => {
-              alert('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.');
+              showAppNotification('Ticketmaster Resale Marketplace: Select tickets in "My Tickets" to list at verified fan face-value.', 'Ticketmaster Resale');
             }}
             onOpenTravel={() => {
               setIsTravelOpen(true);
@@ -551,108 +516,12 @@ export default function App() {
 
       {/* VIEW ORCHESTRATION: SEATING/BOOKING VIEW OR HOME DISCOVERY VIEW */}
       {bookingEvent ? (
-        /* ==================== INTERACTIVE SEAT MAP VIEW ==================== */
-        <main id="booking-experience-view" className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-6 space-y-6">
-          
-          {/* Back Navigation Bar */}
-          <div className="flex items-center justify-between pb-4 border-b border-gray-200">
-            <button
-              id="back-to-events-btn"
-              onClick={handleCloseBooking}
-              className="inline-flex items-center space-x-2 text-sm font-bold text-[#024ddf] hover:text-[#0139a7] transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to All Events</span>
-            </button>
-
-            <div className="flex items-center space-x-3">
-              <span className="text-xs text-gray-500 font-semibold flex items-center">
-                <ShieldCheck className="w-4 h-4 text-[#00875a] mr-1" />
-                Ticketmaster Verified Authentic
-              </span>
-              <button
-                onClick={() => setIsBrowsingPausedOpen(true)}
-                className="text-xs text-gray-400 hover:text-gray-600 underline"
-              >
-                Need Help?
-              </button>
-            </div>
-          </div>
-
-          {/* Event Header Banner in Booking Mode */}
-          <div className="bg-[#121212] rounded-2xl p-4 sm:p-6 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <img 
-                src={bookingEvent.identity.image_url} 
-                alt={bookingEvent.identity.event_title}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border border-white/10 shadow-md shrink-0"
-                referrerPolicy="no-referrer"
-              />
-              <div className="space-y-1">
-                <div className="flex items-center space-x-2">
-                  <span className="bg-[#024ddf] text-white text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    {bookingEvent.identity.category}
-                  </span>
-                  <span className="text-xs text-gray-300 font-semibold">
-                    {bookingEvent.identity.subcategory}
-                  </span>
-                </div>
-                <h1 className="type-everest text-white font-black leading-tight">
-                  {bookingEvent.identity.event_title}
-                </h1>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-300 mt-1">
-                  <span className="flex items-center">
-                    <Calendar className="w-3.5 h-3.5 text-[#ffb932] mr-1" />
-                    {bookingEvent.date_time.full_date_display}
-                  </span>
-                  <span className="flex items-center">
-                    <MapPin className="w-3.5 h-3.5 text-blue-400 mr-1" />
-                    {bookingEvent.location.venue_name} &bull; {bookingEvent.location.full_address}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setDetailEvent(bookingEvent)}
-              className="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-4 py-2 rounded-xl border border-white/20 transition-colors shrink-0 cursor-pointer"
-            >
-              Tour & Venue Info
-            </button>
-          </div>
-
-          {/* Interactive Seating Map & Ticket Selection Drawer Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
-            {/* Left: Vector SVG Interactive Seating Chart (7 cols) */}
-            <div className="lg:col-span-7">
-              <InteractiveSeatMap 
-                event={bookingEvent}
-                selectedZone={selectedZone}
-                onSelectZone={(zone) => setSelectedZone(zone)}
-                selectedSeats={selectedSeats}
-                onToggleSeat={handleToggleSeat}
-                ticketQuantity={ticketQuantity}
-              />
-            </div>
-
-            {/* Right: Itemized Ticket Selection & Fee Drawer (5 cols) */}
-            <div className="lg:col-span-5 sticky top-20">
-              <TicketDrawer 
-                event={bookingEvent}
-                selectedZone={selectedZone}
-                quantity={ticketQuantity}
-                onQuantityChange={(qty) => setTicketQuantity(qty)}
-                selectedSeats={selectedSeats}
-                onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
-                availableZones={getEventSeatZones(bookingEvent)}
-                onSelectZone={(zone) => setSelectedZone(zone)}
-              />
-            </div>
-
-          </div>
-
-        </main>
+        <TicketmasterEventExperience 
+          event={bookingEvent}
+          onBack={handleCloseBooking}
+          onProceedToCheckout={(group) => setCheckoutData({ event: bookingEvent, group })}
+          currentUser={currentUser}
+        />
       ) : selectedArtist ? (
         /* ==================== DEDICATED ARTIST TOUR & TICKET PAGE ==================== */
         <main id="artist-experience-view" className="flex-1 w-full">
@@ -671,16 +540,9 @@ export default function App() {
         /* ==================== HOME / DISCOVERY EXPERIENCE ==================== */
         <main id="discovery-experience-view" className="flex-1 w-full pb-16">
           
-          {/* 3. HERO SPOTLIGHT BILLBOARD (16:9 / 21:9 ratio) */}
-          <HeroBillboard 
-            featuredEvents={featuredEvents}
-            onSelectEvent={handleOpenBooking}
-            onViewDetails={(evt) => setDetailEvent(evt)}
-          />
-
-          {/* 4. HERO HIGHLIGHTS BANNER & SPOTLIGHTS */}
+          {/* 3. HERO HIGHLIGHTS BANNER & SPOTLIGHTS (Matching exact template) */}
           <HeroHighlights 
-            onSelectEvent={() => handleOpenBooking()}
+            onSelectEvent={(name?: string) => handleSearchPerformer(name || 'Pentatonix')}
             onExploreCategory={handleCategorySelect}
           />
 
@@ -710,6 +572,9 @@ export default function App() {
 
             {/* 7. HAPPENING THIS WEEKEND CAROUSEL */}
             <HappeningThisWeekend onSelectEvent={handleSearchPerformer} />
+
+            {/* 7.1 RECENTLY VIEWED (Template Section) */}
+            <RecentlyViewedSection onSelectEvent={handleSearchPerformer} />
 
             {/* 8. SPONSORED PRESALES AND OFFERS */}
             <SponsoredPresales 
@@ -810,7 +675,7 @@ export default function App() {
                         if (actionId === 'featured-vip') {
                           handleCategorySelect('VIP');
                         } else if (actionId === 'featured-sell') {
-                          alert('Ticketmaster Verified Resale: Enter your event code or select tickets in "My Tickets" to list safely.');
+                          showAppNotification('Ticketmaster Verified Resale: Enter your event code or select tickets in "My Tickets" to list safely.', 'Ticketmaster Resale');
                         } else if (actionId === 'featured-hotels') {
                           setIsTravelOpen(true);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -966,6 +831,9 @@ export default function App() {
 
       {/* 23. FLOATING BOTTOM-RIGHT FEEDBACK WIDGET */}
       <FeedbackWidget />
+
+      {/* 24. IN-APP TOAST NOTIFICATION SYSTEM */}
+      <NotificationToast />
 
     </div>
   );

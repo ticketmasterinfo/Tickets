@@ -18,7 +18,7 @@ export const FEATURED_SIDEBAR_DATA: FeaturedItem[] = [
     title: 'Hotels',
     subtitle: 'Combine your ticket with a hotel booking nearby',
     badge: 'Travel Deals',
-    imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+    imageUrl: 'https://prismic-images.tmol.io/ticketmaster-tm-global/adfwkp1ZCF7ETDNs_TMTravel_AdUnit_300x168.75_EN_9Apr2026%402x.png?auto=format,compress&rect=0,0,600,338&w=300&h=169',
     fallbackImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
     link: '#hotels',
     icon: <Hotel className="w-4 h-4 text-blue-400" />

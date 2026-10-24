@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
+import http from 'http';
 import path from 'path';
 import dotenv from 'dotenv';
 import { 
@@ -311,11 +312,16 @@ restartBackgroundScheduler(initialConfig.intervalMinutes || 30);
 // =========================================================================
 
 async function startServer() {
+  const httpServer = http.createServer(app);
+
   if (!isProd) {
-    // Development mode: mount Vite middlewares
+    // Development mode: mount Vite middlewares with attached HTTP server
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { 
+        middlewareMode: true,
+        hmr: { server: httpServer }
+      },
       appType: 'spa'
     });
     app.use(vite.middlewares);
@@ -328,7 +334,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`[SERVER] Fullstack Ticketmaster application running on http://0.0.0.0:${PORT}`);
   });
 }

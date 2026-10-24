@@ -12,8 +12,8 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Eagles",
       lineup: ["Eagles", "Steely Dan"],
       supporting_acts: ["Steely Dan"],
-      image_url: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
-      banner_url: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/531/e32ef1da-b869-442c-9357-428baa6f0531_RETINA_PORTRAIT_16_9.jpg",
+      banner_url: "https://s1.ticketm.net/dam/a/531/e32ef1da-b869-442c-9357-428baa6f0531_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       is_featured: true,
       is_selling_fast: true
     },
@@ -39,8 +39,8 @@ export const EVENTS_DATA: EventItem[] = [
     },
     pricing: {
       currency: "USD",
-      min_price: 150.0,
-      max_price: 750.0
+      min_price: 79.50,
+      max_price: 495.0
     },
     description: {
       "full_description": "Experience Eagles: The Long Farewell Tour live at TD Garden in Boston, MA. Features world-class production, state-of-the-art audio, and an unforgettable live experience spanning five decades of iconic hits.",
@@ -60,8 +60,8 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Metallica",
       lineup: ["Metallica", "Pantera", "Mammoth WVH"],
       supporting_acts: ["Pantera", "Mammoth WVH"],
-      image_url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1200&q=80",
-      banner_url: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1920&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/6bf/4d98a9bf-2443-4152-8137-143cfa25a6bf_1853051_RETINA_PORTRAIT_16_9.jpg",
+      banner_url: "https://s1.ticketm.net/dam/a/6bf/4d98a9bf-2443-4152-8137-143cfa25a6bf_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       is_featured: true,
       is_presale: true
     },
@@ -108,8 +108,8 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Taylor Swift",
       lineup: ["Taylor Swift", "Gracie Abrams"],
       supporting_acts: ["Gracie Abrams"],
-      image_url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-      banner_url: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1920&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/4e1/ca96dd03-8def-46ae-b6d3-9441e992c4e1_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      banner_url: "https://s1.ticketm.net/dam/a/4e1/ca96dd03-8def-46ae-b6d3-9441e992c4e1_TABLET_LANDSCAPE_LARGE_16_9.jpg",
       is_featured: true,
       is_selling_fast: true
     },
@@ -135,8 +135,8 @@ export const EVENTS_DATA: EventItem[] = [
     },
     pricing: {
       currency: "USD",
-      min_price: 199.0,
-      max_price: 899.0
+      min_price: 89.50,
+      max_price: 495.0
     },
     description: {
       "full_description": "Experience Taylor Swift: The Eras Tour live at Crypto.com Arena in Los Angeles, CA. Journey through all musical eras in this record-breaking 3.5 hour stadium spectacle.",
@@ -156,8 +156,8 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Coldplay",
       lineup: ["Coldplay", "H.E.R."],
       supporting_acts: ["H.E.R."],
-      image_url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
-      banner_url: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1920&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/f3b/4e5c700e-50bb-4b8c-9673-9e4f9f2bef3b_RETINA_PORTRAIT_16_9.jpg",
+      banner_url: "https://s1.ticketm.net/dam/a/f3b/4e5c700e-50bb-4b8c-9673-9e4f9f2bef3b_RETINA_PORTRAIT_16_9.jpg",
       is_featured: true,
       is_resale: true
     },
@@ -204,7 +204,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Drake",
       lineup: ["Drake", "PartyNextDoor"],
       supporting_acts: ["PartyNextDoor"],
-      image_url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/4ec/1e6d3beb-bfd6-4d63-a460-63cb6125f4ec_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_selling_fast: true
     },
@@ -251,7 +251,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Billie Eilish",
       lineup: ["Billie Eilish"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/8e0/15e0d087-63ae-4e60-af6e-8f5bce1df8e0_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_presale: true
     },
@@ -298,7 +298,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "New York Knicks",
       lineup: ["New York Knicks", "Boston Celtics"],
       supporting_acts: ["Boston Celtics"],
-      image_url: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/593/de5707a0-fc3b-4ad8-bdfc-4f880b488593_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_selling_fast: true
     },
@@ -345,7 +345,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Los Angeles Lakers",
       lineup: ["Los Angeles Lakers", "Golden State Warriors"],
       supporting_acts: ["Golden State Warriors"],
-      image_url: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/c26/f3bc3686-a6c2-4324-a6cb-18ab2441ac26_1339991_RETINA_PORTRAIT_16_9.jpg",
       is_featured: true,
       is_selling_fast: true
     },
@@ -392,7 +392,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "New York Rangers",
       lineup: ["New York Rangers", "New Jersey Devils"],
       supporting_acts: ["New Jersey Devils"],
-      image_url: "https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/608/ad100b89-b729-4822-8165-5b626c21a608_1325251_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_resale: true
     },
@@ -439,7 +439,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "WWE Superstars",
       lineup: ["WWE Superstars", "Cody Rhodes", "Rhea Ripley"],
       supporting_acts: ["Cody Rhodes", "Rhea Ripley"],
-      image_url: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/380/bf11c4a6-7591-40d0-babc-f357525e0380_SOURCE",
       is_featured: false,
       is_presale: true
     },
@@ -486,7 +486,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Broadway Original Cast Ensemble",
       lineup: ["Broadway Original Cast Ensemble"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/d7a/6ffed4d3-61d3-44c3-8e63-cc776582fd7a_RETINA_PORTRAIT_16_9.jpg",
       is_featured: true,
       is_selling_fast: true
     },
@@ -533,7 +533,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Gershwin Theatre Cast",
       lineup: ["Gershwin Theatre Cast"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/411/3f944dde-1402-4026-9e41-80c1b5d25411_SOURCE",
       is_featured: false,
       is_presale: false
     },
@@ -580,7 +580,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Bill Burr",
       lineup: ["Bill Burr"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/faa/8f1da435-0ffe-48c7-96b4-6c935dfb4faa_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_resale: true
     },
@@ -627,7 +627,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Minskoff Theatre Cast",
       lineup: ["Minskoff Theatre Cast"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/8e0/15e0d087-63ae-4e60-af6e-8f5bce1df8e0_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_selling_fast: true
     },
@@ -674,7 +674,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Disney On Ice Performers",
       lineup: ["Disney On Ice Performers"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/d43/8a728326-0f79-42d0-bd75-8af0a7dd6d43_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_presale: true
     },
@@ -721,7 +721,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "Grave Digger",
       lineup: ["Grave Digger", "Max-D", "El Toro Loco"],
       supporting_acts: ["Max-D", "El Toro Loco"],
-      image_url: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/43c/15949d21-f076-47b7-abdf-269bfcfdb43c_SOURCE",
       is_featured: false,
       is_resale: false
     },
@@ -768,7 +768,7 @@ export const EVENTS_DATA: EventItem[] = [
       main_performer: "PAW Patrol Live Performers",
       lineup: ["PAW Patrol Live Performers"],
       supporting_acts: [],
-      image_url: "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=1200&q=80",
+      image_url: "https://s1.ticketm.net/dam/a/de7/abc62c6e-d466-44bf-a399-ec30e3875de7_RETINA_PORTRAIT_16_9.jpg",
       is_featured: false,
       is_selling_fast: true
     },

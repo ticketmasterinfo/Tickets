@@ -60,7 +60,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Olivia Rodrigo',
       genre: 'Pop',
       genreIcon: '🎤',
-      imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80',
+      imageUrl: 'https://s1.ticketm.net/dam/a/4e1/ca96dd03-8def-46ae-b6d3-9441e992c4e1_TABLET_LANDSCAPE_LARGE_16_9.jpg',
       eventId: 'VV1aZ9v1002TM'
     },
     {
@@ -69,7 +69,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Metallica',
       genre: 'Metal',
       genreIcon: '🎸',
-      imageUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80',
+      imageUrl: 'https://s1.ticketm.net/dam/a/6bf/4d98a9bf-2443-4152-8137-143cfa25a6bf_1853051_RETINA_PORTRAIT_16_9.jpg',
       eventId: 'VV1aZ9v1003TM'
     },
     {
@@ -78,7 +78,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Calvin Harris',
       genre: 'Pop / Dance',
       genreIcon: '🎧',
-      imageUrl: 'https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=400&q=80',
+      imageUrl: 'https://s1.ticketm.net/dam/a/259/9afb1a6e-3bf4-4fa7-a4f1-0c2602b90259_TABLET_LANDSCAPE_LARGE_16_9.jpg',
       eventId: 'VV1aZ9v1005TM'
     },
     {
@@ -87,7 +87,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Eagles',
       genre: 'Classic Rock',
       genreIcon: '🎸',
-      imageUrl: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80',
+      imageUrl: 'https://s1.ticketm.net/dam/a/531/e32ef1da-b869-442c-9357-428baa6f0531_RETINA_PORTRAIT_16_9.jpg',
       eventId: 'VV1aZ9v1001TM'
     },
     {
@@ -96,7 +96,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Taylor Swift',
       genre: 'Pop',
       genreIcon: '🎤',
-      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80',
+      imageUrl: 'https://s1.ticketm.net/dam/a/4e1/ca96dd03-8def-46ae-b6d3-9441e992c4e1_RETINA_PORTRAIT_3_2.jpg',
       eventId: 'VV1aZ9v1006TM'
     }
   ];

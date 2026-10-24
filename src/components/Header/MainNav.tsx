@@ -23,6 +23,7 @@ import {
 import { EventItem } from '../../types';
 import { CITIES_LIST } from '../../data/eventsData';
 import { TicketmasterLogo } from '../Common/TicketmasterLogo';
+import { showAppNotification } from '../../utils/notification';
 
 interface MainNavProps {
   activeCategory: string;
@@ -461,9 +462,9 @@ export const MainNav: React.FC<MainNavProps> = ({
                         <button
                           onClick={() => {
                             setIsAccountMenuOpen(false);
-                            alert('Ticketmaster Resale: Manage your ticket listings and payouts.');
+                            showAppNotification('Ticketmaster Resale: Manage your verified fan ticket listings and payouts.', 'Ticketmaster Resale');
                           }}
-                          className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-blue-50 hover:text-[#024ddf] flex items-center space-x-2"
+                          className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-blue-50 hover:text-[#024ddf] flex items-center space-x-2 cursor-pointer"
                         >
                           <Tag className="w-3.5 h-3.5 text-yellow-600" />
                           <span>Sell on Ticketmaster</span>
@@ -471,9 +472,9 @@ export const MainNav: React.FC<MainNavProps> = ({
                         <button
                           onClick={() => {
                             setIsAccountMenuOpen(false);
-                            alert('Ticketmaster Help Center: Find FAQs, event guidelines, and contact support.');
+                            showAppNotification('Ticketmaster Help Center: 24/7 Fan Support, venue accessibility, and order assistance.', 'Help Center');
                           }}
-                          className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-blue-50 hover:text-[#024ddf] flex items-center space-x-2"
+                          className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-blue-50 hover:text-[#024ddf] flex items-center space-x-2 cursor-pointer"
                         >
                           <HelpCircle className="w-3.5 h-3.5 text-emerald-600" />
                           <span>Help Center</span>
@@ -646,9 +647,9 @@ export const MainNav: React.FC<MainNavProps> = ({
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                alert('Ticketmaster Resale Marketplace: List your tickets with verified fan security.');
+                showAppNotification('Ticketmaster Resale Marketplace: List your tickets with verified fan security.', 'Ticketmaster Resale');
               }}
-              className="w-full flex items-center space-x-2 py-2 px-2 rounded hover:bg-white/10 text-left font-semibold text-white"
+              className="w-full flex items-center space-x-2 py-2 px-2 rounded hover:bg-white/10 text-left font-semibold text-white cursor-pointer"
             >
               <Tag className="w-4 h-4 text-yellow-400" />
               <span>Sell Tickets</span>
@@ -657,9 +658,9 @@ export const MainNav: React.FC<MainNavProps> = ({
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                alert('Ticketmaster Travel: Book verified hotels next to your concert and game venues.');
+                showAppNotification('Ticketmaster Travel: Book verified hotels next to your concert and game venues.', 'Ticketmaster Travel');
               }}
-              className="w-full flex items-center space-x-2 py-2 px-2 rounded hover:bg-white/10 text-left font-semibold text-white"
+              className="w-full flex items-center space-x-2 py-2 px-2 rounded hover:bg-white/10 text-left font-semibold text-white cursor-pointer"
             >
               <ExternalLink className="w-4 h-4 text-blue-300" />
               <span>Hotels & Travel</span>

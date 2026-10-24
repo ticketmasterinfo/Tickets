@@ -1,143 +1,116 @@
 import React from 'react';
-import { Ticket, Sparkles, ChevronRight, Star } from 'lucide-react';
 import { EventItem } from '../../types';
 
 interface HeroHighlightsProps {
-  onSelectEvent: (event?: EventItem) => void;
-  onExploreCategory: (category: string) => void;
+  onSelectEvent: (eventOrName?: EventItem | string) => void;
+  onExploreCategory?: (category: string) => void;
 }
 
 export const HeroHighlights: React.FC<HeroHighlightsProps> = ({
-  onSelectEvent,
-  onExploreCategory
+  onSelectEvent
 }) => {
   const spotlights = [
     {
-      id: 'wicked-musical',
-      title: 'WICKED The Musical',
-      subtitle: 'See the full story live on stage',
-      category: 'Broadway',
-      imageUrl: 'https://s3.us-east-1.amazonaws.com/prd3318.tmp-digital-assets.prod.us-east-1.tmaws/assets/Wicked-720x405.jpg?fit=cover&optimize=high&auto=webp',
-      fallbackImage: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=720&q=80',
-      badge: 'Broadway Phenomenon'
-    },
-    {
-      id: 'vip-guide',
-      title: 'Browse Available VIP Packages',
+      id: 'spotlight-vip',
+      name: 'Browse Available VIP Packages',
       subtitle: 'Meet & Greets, Special Access and more',
-      category: 'VIP Experiences',
-      imageUrl: 'https://s3.us-east-1.amazonaws.com/prd3318.tmp-digital-assets.prod.us-east-1.tmaws/assets/VIP-Guide-720x405.jpg?fit=cover&optimize=high&auto=webp',
-      fallbackImage: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=720&q=80',
-      badge: 'VIP Access'
+      category: 'VIP Packages',
+      imageUrl: 'https://s3.us-east-1.amazonaws.com/prd3318.tmp-digital-assets.prod.us-east-1.tmaws/assets/VIP_Guide_720x405.jpg?fit=cover&optimize=high&auto=webp',
+      performer: 'VIP Packages'
     },
     {
-      id: 'blueys-big-play',
-      title: "Bluey's Big Play",
-      subtitle: "Children's Theatre Live on Stage",
-      category: 'Family',
-      imageUrl: 'https://s1.ticketm.net/dam/a/4d4/d963b745-c842-4a74-8678-58e1508774d4_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp',
-      fallbackImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=720&q=80',
-      badge: 'All Ages'
+      id: 'spotlight-red-clay-strays',
+      name: 'The Red Clay Strays',
+      subtitle: 'Country',
+      category: 'Country',
+      imageUrl: 'https://s1.ticketm.net/dam/a/ab5/9914ca2d-3115-427b-9cde-424a66230ab5_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp',
+      performer: 'The Red Clay Strays'
     },
     {
-      id: 'disney-worlds-collide',
-      title: 'Disney Worlds Collide Concert Tour',
-      subtitle: 'The ultimate orchestral Disney journey',
-      category: 'Concerts',
-      imageUrl: 'https://s1.ticketm.net/dam/a/d49/63d21920-3adb-4160-a213-72eb06965d49_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp',
-      fallbackImage: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=720&q=80',
-      badge: 'Touring Live'
+      id: 'spotlight-tso',
+      name: 'Trans-Siberian Orchestra',
+      subtitle: 'Rock',
+      category: 'Rock',
+      imageUrl: 'https://s1.ticketm.net/dam/a/e8b/b5409ed1-4af0-44a7-bccd-83fef3b0ae8b_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp',
+      performer: 'Trans-Siberian Orchestra'
+    },
+    {
+      id: 'spotlight-luke-combs',
+      name: 'Luke Combs',
+      subtitle: 'Country',
+      category: 'Country',
+      imageUrl: 'https://s1.ticketm.net/dam/a/c7d/d69a71d2-0361-44a4-90a0-4aa7536dbc7d_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp',
+      performer: 'Luke Combs'
     }
   ];
 
   return (
-    <section aria-label="Highlights" className="w-full bg-[#121212] pt-4 pb-6 px-4 md:px-8 border-b border-gray-800">
+    <section aria-label="Highlights" className="w-full bg-[#121212] pt-3 pb-6 px-4 md:px-8 border-b border-gray-800">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Promoted Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-r from-blue-900 via-indigo-950 to-black border border-white/10 group mb-4">
+        <h2 className="sr-only">Highlights</h2>
+
+        {/* Main Promoted Grid Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4">
+          
+          {/* Main Promoted Hero: Pentatonix (8 cols on large screens) */}
           <div 
             data-testid="tmPromotedHero"
-            onClick={() => onSelectEvent()}
-            className="block cursor-pointer relative min-h-[220px] sm:min-h-[260px] md:min-h-[300px] flex flex-col justify-end p-6 sm:p-8"
+            onClick={() => onSelectEvent('Pentatonix')}
+            className="lg:col-span-8 relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-white/10 group cursor-pointer min-h-[260px] sm:min-h-[340px] md:min-h-[420px] flex flex-col justify-end p-6 sm:p-8 transition-transform active:scale-[0.99]"
           >
-            {/* Background artwork */}
+            {/* Background image */}
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
               style={{
-                backgroundImage: `url("https://s3.us-east-1.amazonaws.com/prd3318.tmp-digital-assets.prod.us-east-1.tmaws/assets/Lawn26_TM_v2.jpg?fit=cover&optimize=high&auto=webp"), url("https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80")`
+                backgroundImage: `url("https://s1.ticketm.net/dam/a/007/c8a22313-f355-4dbd-8a5e-994183aa3007_TABLET_LANDSCAPE_LARGE_16_9.jpg?fit=cover&optimize=high&auto=webp")`
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 max-w-2xl space-y-2">
-              <div className="inline-flex items-center space-x-2 bg-[#ffb932] text-black type-snowdon px-3 py-1 rounded tracking-wider shadow">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>On Sale Now</span>
-              </div>
-              <h1 className="type-mauna font-black text-white leading-tight drop-shadow-md">
-                2 Concert Tickets for $55
+            {/* Hero Content */}
+            <div className="relative z-10 max-w-xl space-y-1.5">
+              <span className="inline-block text-[11px] font-black uppercase tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded border border-white/20">
+                Rock
+              </span>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight group-hover:text-blue-400 transition-colors">
+                Pentatonix
               </h1>
-              <p className="type-rainier text-gray-200 max-w-xl font-medium">
-                Live Nation Summer of Live presents lawn passes and reserved 2-packs for over 1,000 summer amphitheater shows.
+              <p className="text-xs sm:text-sm text-gray-200 font-semibold drop-shadow">
+                Official Live Concert Tour &bull; Verified Tickets Available
               </p>
-              <div className="pt-2 flex items-center space-x-3">
-                <span className="bg-[#024ddf] hover:bg-[#0139a7] text-white type-fiji px-5 py-2.5 rounded-lg inline-flex items-center space-x-2 transition-all shadow-md group-hover:bg-[#0139a7]">
-                  <Ticket className="w-4 h-4" />
-                  <span>Get Offer Tickets</span>
-                </span>
-                <span className="type-etna text-gray-300 font-semibold underline underline-offset-4">
-                  Terms & participating venues apply
-                </span>
-              </div>
             </div>
           </div>
-        </div>
 
-        {/* Promoted Spotlights (4 cards below hero) */}
-        <div data-testid="tmPromotedSpotlights" className="w-full">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 list-none p-0 m-0">
-            {spotlights.map((spot) => (
-              <li key={spot.id} className="w-full">
+          {/* Promoted Spotlights Grid (4 cols on large screens: 2x2 cards) */}
+          <div data-testid="tmPromotedSpotlights" className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-3">
+            {spotlights.map((spotlight) => (
+              <div
+                key={spotlight.id}
+                onClick={() => onSelectEvent(spotlight.performer)}
+                className="relative rounded-xl overflow-hidden bg-[#1a1a1a] border border-white/10 group cursor-pointer min-h-[120px] sm:min-h-[150px] lg:min-h-[96px] flex flex-col justify-end p-3 sm:p-4 transition-all hover:border-white/30"
+              >
+                {/* Background image */}
                 <div 
-                  onClick={() => onExploreCategory(spot.category)}
-                  className="group bg-[#1a1a1a] hover:bg-[#242424] rounded-xl overflow-hidden border border-gray-800/80 transition-all duration-200 cursor-pointer shadow hover:shadow-lg flex flex-col h-full"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url("${spotlight.imageUrl}")` }}
                 >
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-900">
-                    <img 
-                      src={spot.imageUrl} 
-                      alt={spot.title}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = spot.fallbackImage;
-                      }}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute top-2 left-2 bg-black/75 backdrop-blur-xs text-white type-snowdon px-2 py-0.5 rounded border border-white/10">
-                      {spot.badge}
-                    </div>
-                  </div>
-                  <div className="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="type-snowdon text-blue-400 block truncate">
-                        {spot.subtitle}
-                      </span>
-                      <h2 className="type-blanc font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-1 mt-0.5">
-                        {spot.title}
-                      </h2>
-                    </div>
-                    <div className="mt-2.5 pt-2 border-t border-gray-800/60 flex items-center justify-between type-etna text-gray-400 group-hover:text-white transition-colors">
-                      <span className="font-semibold text-[11px]">View Experience</span>
-                      <ChevronRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
                 </div>
-              </li>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <span className="text-[10px] font-bold text-gray-300 uppercase tracking-wider block truncate">
+                    {spotlight.subtitle}
+                  </span>
+                  <h3 className="text-xs sm:text-sm font-extrabold text-white leading-snug line-clamp-2 group-hover:text-blue-400 transition-colors">
+                    {spotlight.name}
+                  </h3>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
+
         </div>
 
       </div>

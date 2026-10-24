@@ -18,6 +18,7 @@ import {
   X
 } from 'lucide-react';
 import { EventItem } from '../../types';
+import { showAppNotification } from '../../utils/notification';
 
 interface TicketmasterTravelViewProps {
   onBackToHome: () => void;
@@ -743,8 +744,8 @@ export const TicketmasterTravelView: React.FC<TicketmasterTravelViewProps> = ({
             <a href="https://privacy.ticketmaster.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="https://privacy.ticketmaster.com/cookie-policy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Cookie Policy</a>
             <button 
-              onClick={() => alert('OneTrust: Your cookie preferences are stored and active.')}
-              className="hover:text-white transition-colors"
+              onClick={() => showAppNotification('OneTrust: Your cookie preferences are stored and active.', 'Cookie Preferences')}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Manage my cookies
             </button>
@@ -813,7 +814,7 @@ export const TicketmasterTravelView: React.FC<TicketmasterTravelViewProps> = ({
                       onBackToHome();
                       onSelectEvent(matchedEvent);
                     } else {
-                      alert(`Booking confirmed for ${selectedDeal.title}. Redirecting to secure checkout...`);
+                      showAppNotification(`Booking confirmed for ${selectedDeal.title}. Official confirmation sent to your email.`, 'Hotel & Event Package');
                     }
                   }}
                   className="flex-1 bg-[#024ddf] hover:bg-[#0139a7] text-white font-bold py-2.5 rounded-xl text-sm transition-colors shadow-lg"

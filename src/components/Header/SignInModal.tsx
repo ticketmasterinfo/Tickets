@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Lock, Eye, EyeOff, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { showAppNotification } from '../../utils/notification';
 
 interface SignInModalProps {
   isOpen: boolean;
@@ -147,8 +148,8 @@ export const SignInModal: React.FC<SignInModalProps> = ({
               {mode === 'signin' && (
                 <button
                   type="button"
-                  onClick={() => alert('A password reset link has been dispatched to ' + email)}
-                  className="text-xs font-semibold text-[#024ddf] hover:underline"
+                  onClick={() => showAppNotification('A password reset link has been dispatched to ' + email, 'Password Reset')}
+                  className="text-xs font-semibold text-[#024ddf] hover:underline cursor-pointer"
                 >
                   Forgot Password?
                 </button>

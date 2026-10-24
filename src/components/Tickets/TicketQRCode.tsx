@@ -31,15 +31,13 @@ export const TicketQRCode: React.FC<TicketQRCodeProps> = ({
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [displayMode, setDisplayMode] = useState<'qr' | 'barcode'>('qr');
-  const [secondsRemaining, setSecondsRemaining] = useState<number>(15);
-  const [tokenCounter, setTokenCounter] = useState<number>(1);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isCopiedUrl, setIsCopiedUrl] = useState<boolean>(false);
 
   // Generate the full verifiable URL for this exact event & ticket
   const verificationUrl = generateTicketVerificationUrl(ticket);
 
-  // Generate QR Code data URL whenever ticket or token counter changes
+  // Generate QR Code data URL
   useEffect(() => {
     let isMounted = true;
     QRCode.toDataURL(verificationUrl, {
@@ -61,22 +59,7 @@ export const TicketQRCode: React.FC<TicketQRCodeProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [ticket.ticketId, ticket.barcode, tokenCounter, verificationUrl]);
-
-  // SafeTix animated 15-second dynamic rotation countdown
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev <= 1) {
-          setTokenCounter((c) => c + 1);
-          return 15;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [ticket.ticketId]);
+  }, [ticket.ticketId, ticket.barcode, verificationUrl]);
 
   const handleCopyCode = () => {
     if (navigator?.clipboard) {
@@ -108,15 +91,8 @@ export const TicketQRCode: React.FC<TicketQRCodeProps> = ({
       <div 
         className="bg-white text-gray-900 rounded-2xl p-4 sm:p-5 text-center shadow-lg relative overflow-hidden border border-gray-200"
       >
-        {/* Animated SafeTix scanning beam: sweeping light effect */}
-        <div className="absolute inset-x-0 h-1.5 bg-gradient-to-r from-transparent via-[#024ddf] to-transparent animate-pulse top-0" />
-        <div 
-          className="absolute inset-x-0 h-24 bg-gradient-to-b from-[#024ddf]/15 to-transparent pointer-events-none transition-all duration-1000"
-          style={{
-            top: `${((15 - secondsRemaining) / 15) * 100}%`,
-            opacity: displayMode === 'qr' ? 0.7 : 0
-          }}
-        />
+        {/* SafeTix Verified security indicator bar */}
+        <div className="absolute inset-x-0 h-1 bg-[#024ddf] top-0" />
 
         {/* Header with SafeTix Brand & Scanner Status */}
         <div className="flex items-center justify-between border-b border-gray-100 pb-2.5 mb-3">
@@ -209,13 +185,13 @@ export const TicketQRCode: React.FC<TicketQRCodeProps> = ({
               <span>Scan with any phone camera or turnstile reader</span>
             </div>
 
-            {/* Dynamic Anti-Screenshot Security Banner */}
+            {/* Anti-Screenshot Security Banner */}
             <div className="mt-2 flex items-center justify-center space-x-2 text-[11px] text-gray-500 bg-gray-50 border border-gray-200/80 px-3 py-1.5 rounded-full w-full max-w-xs">
-              <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-ping" />
+              <span className="inline-block w-2 h-2 rounded-full bg-green-500" />
               <span className="font-mono text-gray-600 font-bold">Encodes this exact concert</span>
               <span className="text-gray-300">&bull;</span>
-              <span className="text-[#024ddf] font-mono font-bold">
-                Live Token {tokenCounter}
+              <span className="text-emerald-600 font-bold">
+                Active & Verified
               </span>
             </div>
 
