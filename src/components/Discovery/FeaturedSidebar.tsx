@@ -82,6 +82,8 @@ export const FeaturedSidebar: React.FC<FeaturedSidebarProps> = ({ onActionClick 
                   <img 
                     src={item.imageUrl} 
                     alt={item.title}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = item.fallbackImage;
                     }}

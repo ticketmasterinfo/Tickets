@@ -27,7 +27,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Monday, Aug 17, 2026 • 08:55 PM"
+      "full_date_display": "Monday, Aug 17, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "TD Garden",
@@ -91,7 +91,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Thursday, Aug 20, 2026 • 08:55 PM"
+      "full_date_display": "Thursday, Aug 20, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Madison Square Garden",
@@ -153,7 +153,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Monday, Aug 24, 2026 • 08:55 PM"
+      "full_date_display": "Monday, Aug 24, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Crypto.com Arena",
@@ -215,7 +215,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Friday, Aug 28, 2026 • 08:55 PM"
+      "full_date_display": "Friday, Aug 28, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Sphere",
@@ -276,7 +276,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Tuesday, Sep 01, 2026 • 08:55 PM"
+      "full_date_display": "Tuesday, Sep 01, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "United Center",
@@ -334,7 +334,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Saturday, Sep 05, 2026 • 08:55 PM"
+      "full_date_display": "Saturday, Sep 05, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Kaseya Center",
@@ -395,7 +395,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Tuesday, Aug 18, 2026 • 08:55 PM"
+      "full_date_display": "Tuesday, Aug 18, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "TD Garden",
@@ -456,7 +456,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Friday, Aug 21, 2026 • 08:55 PM"
+      "full_date_display": "Friday, Aug 21, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Madison Square Garden",
@@ -517,7 +517,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Tuesday, Aug 25, 2026 • 08:55 PM"
+      "full_date_display": "Tuesday, Aug 25, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Crypto.com Arena",
@@ -580,7 +580,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Saturday, Aug 29, 2026 • 08:55 PM"
+      "full_date_display": "Saturday, Aug 29, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Sphere",
@@ -638,7 +638,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Wednesday, Aug 19, 2026 • 08:55 PM"
+      "full_date_display": "Wednesday, Aug 19, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "United Center",
@@ -696,7 +696,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Sunday, Aug 23, 2026 • 08:55 PM"
+      "full_date_display": "Sunday, Aug 23, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Kaseya Center",
@@ -754,7 +754,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Wednesday, Aug 26, 2026 • 08:55 PM"
+      "full_date_display": "Wednesday, Aug 26, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "TD Garden",
@@ -812,7 +812,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Sunday, Aug 30, 2026 • 08:55 PM"
+      "full_date_display": "Sunday, Aug 30, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Madison Square Garden",
@@ -870,7 +870,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Saturday, Aug 22, 2026 • 08:55 PM"
+      "full_date_display": "Saturday, Aug 22, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Crypto.com Arena",
@@ -933,7 +933,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Thursday, Sep 03, 2026 • 08:55 PM"
+      "full_date_display": "Thursday, Sep 03, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "Sphere",
@@ -991,7 +991,7 @@
       "end_time": "Unspecified",
       "time_zone": "EST",
       "doors_time": "20:00:00",
-      "full_date_display": "Monday, Sep 07, 2026 • 08:55 PM"
+      "full_date_display": "Monday, Sep 07, 2026 \u2022 08:55 PM"
     },
     "location": {
       "venue_name": "United Center",
@@ -1023,6 +1023,1127 @@
       "last_synced_at": "2026-10-20T08:59:24.005Z",
       "event_status": "onsale",
       "is_manual": true
+    }
+  },
+  {
+    "identity": {
+      "event_title": "The Wizard of Oz at Sphere: Live Tour",
+      "event_id": "TM-THEWIZARDOFO",
+      "event_url": "https://www.ticketmaster.com/event/tm-thewizardofo",
+      "category": "Arts & Theater",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "The Wizard of Oz at Sphere",
+      "lineup": [
+        "The Wizard of Oz at Sphere"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/411/3f944dde-1402-4026-9e41-80c1b5d25411_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/411/3f944dde-1402-4026-9e41-80c1b5d25411_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 2:00 PM"
+    },
+    "location": {
+      "venue_name": "Sphere",
+      "venue_url": "https://www.ticketmaster.com/venue/sphere",
+      "city": "Las Vegas",
+      "state": "NV",
+      "country": "United States",
+      "full_address": "Sphere, Las Vegas, NV",
+      "parking_info": "Official parking passes available for Sphere.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: The Wizard of Oz at Sphere at Sphere in Las Vegas, NV. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-THEWIZARDOFO",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "WWE Friday Night SmackDown: Live Tour",
+      "event_id": "TM-WWEFRIDAYNIG",
+      "event_url": "https://www.ticketmaster.com/event/tm-wwefridaynig",
+      "category": "Sports",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "WWE Friday Night SmackDown",
+      "lineup": [
+        "WWE Friday Night SmackDown"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/380/bf11c4a6-7591-40d0-babc-f357525e0380_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/380/bf11c4a6-7591-40d0-babc-f357525e0380_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 4:30 PM"
+    },
+    "location": {
+      "venue_name": "Toyota Arena",
+      "venue_url": "https://www.ticketmaster.com/venue/toyotaarena",
+      "city": "Ontario",
+      "state": "CA",
+      "country": "United States",
+      "full_address": "Toyota Arena, Ontario, CA",
+      "parking_info": "Official parking passes available for Toyota Arena.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: WWE Friday Night SmackDown at Toyota Arena in Ontario, CA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-WWEFRIDAYNIG",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "The Red Clay Strays: Live Tour",
+      "event_id": "TM-THEREDCLAYST",
+      "event_url": "https://www.ticketmaster.com/event/tm-theredclayst",
+      "category": "Concerts",
+      "subcategory": "Country",
+      "subgenre": "Country",
+      "main_performer": "The Red Clay Strays",
+      "lineup": [
+        "The Red Clay Strays"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/ab5/9914ca2d-3115-427b-9cde-424a66230ab5_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/ab5/9914ca2d-3115-427b-9cde-424a66230ab5_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 6:30 PM"
+    },
+    "location": {
+      "venue_name": "Bridgestone Arena",
+      "venue_url": "https://www.ticketmaster.com/venue/bridgestonearena",
+      "city": "Nashville",
+      "state": "TN",
+      "country": "United States",
+      "full_address": "Bridgestone Arena, Nashville, TN",
+      "parking_info": "Official parking passes available for Bridgestone Arena.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: The Red Clay Strays at Bridgestone Arena in Nashville, TN. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-THEREDCLAYST",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Monster Jam: Live Tour",
+      "event_id": "TM-MONSTERJAM",
+      "event_url": "https://www.ticketmaster.com/event/tm-monsterjam",
+      "category": "Sports",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Monster Jam",
+      "lineup": [
+        "Monster Jam"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/648/bee96ceb-7d32-4b5d-bb15-6a8615501648_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/648/bee96ceb-7d32-4b5d-bb15-6a8615501648_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 7:00 PM"
+    },
+    "location": {
+      "venue_name": "Broadmoor World Arena",
+      "venue_url": "https://www.ticketmaster.com/venue/broadmoorworldarena",
+      "city": "Colorado Springs",
+      "state": "CO",
+      "country": "United States",
+      "full_address": "Broadmoor World Arena, Colorado Springs, CO",
+      "parking_info": "Official parking passes available for Broadmoor World Arena.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Monster Jam at Broadmoor World Arena in Colorado Springs, CO. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-MONSTERJAM",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "WEEZER- The Gathering: Live Tour",
+      "event_id": "TM-WEEZERTHEGAT",
+      "event_url": "https://www.ticketmaster.com/event/tm-weezerthegat",
+      "category": "Concerts",
+      "subcategory": "Rock",
+      "subgenre": "Rock",
+      "main_performer": "WEEZER- The Gathering",
+      "lineup": [
+        "WEEZER- The Gathering"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/a2e/4990f811-a315-4173-adcf-405a96de3a2e_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/a2e/4990f811-a315-4173-adcf-405a96de3a2e_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 7:00 PM"
+    },
+    "location": {
+      "venue_name": "T-Mobile Arena",
+      "venue_url": "https://www.ticketmaster.com/venue/tmobilearena",
+      "city": "Las Vegas",
+      "state": "NV",
+      "country": "United States",
+      "full_address": "T-Mobile Arena, Las Vegas, NV",
+      "parking_info": "Official parking passes available for T-Mobile Arena.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: WEEZER- The Gathering at T-Mobile Arena in Las Vegas, NV. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-WEEZERTHEGAT",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "RUSH: Fifty Something: Live Tour",
+      "event_id": "TM-RUSHFIFTYSOM",
+      "event_url": "https://www.ticketmaster.com/event/tm-rushfiftysom",
+      "category": "Concerts",
+      "subcategory": "Rock",
+      "subgenre": "Rock",
+      "main_performer": "RUSH: Fifty Something",
+      "lineup": [
+        "RUSH: Fifty Something"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/6bd/c02199ad-8d22-4668-8973-f400d85826bd_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/6bd/c02199ad-8d22-4668-8973-f400d85826bd_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 7:30 PM"
+    },
+    "location": {
+      "venue_name": "Heritage Bank Center",
+      "venue_url": "https://www.ticketmaster.com/venue/heritagebankcenter",
+      "city": "Cincinnati",
+      "state": "OH",
+      "country": "United States",
+      "full_address": "Heritage Bank Center, Cincinnati, OH",
+      "parking_info": "Official parking passes available for Heritage Bank Center.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: RUSH: Fifty Something at Heritage Bank Center in Cincinnati, OH. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-RUSHFIFTYSOM",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Garth Brooks - Blame It All On My Roots Arena Tour: Live Tour",
+      "event_id": "TM-GARTHBROOKSB",
+      "event_url": "https://www.ticketmaster.com/event/tm-garthbrooksb",
+      "category": "Concerts",
+      "subcategory": "Country",
+      "subgenre": "Country",
+      "main_performer": "Garth Brooks - Blame It All On My Roots Arena Tour",
+      "lineup": [
+        "Garth Brooks - Blame It All On My Roots Arena Tour"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/98d/152fc3eb-991c-4e98-b742-8aaf0285c98d_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/98d/152fc3eb-991c-4e98-b742-8aaf0285c98d_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "BOK Center",
+      "venue_url": "https://www.ticketmaster.com/venue/bokcenter",
+      "city": "Tulsa",
+      "state": "OK",
+      "country": "United States",
+      "full_address": "BOK Center, Tulsa, OK",
+      "parking_info": "Official parking passes available for BOK Center.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Garth Brooks - Blame It All On My Roots Arena Tour at BOK Center in Tulsa, OK. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-GARTHBROOKSB",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Fuerza Regida - This Is Our Dream Tour 2026: Live Tour",
+      "event_id": "TM-FUERZAREGIDA",
+      "event_url": "https://www.ticketmaster.com/event/tm-fuerzaregida",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Fuerza Regida - This Is Our Dream Tour 2026",
+      "lineup": [
+        "Fuerza Regida - This Is Our Dream Tour 2026"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/a5b/d253e4da-483a-4720-b191-7c4be1ceca5b_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/a5b/d253e4da-483a-4720-b191-7c4be1ceca5b_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "Toyota Amphitheatre",
+      "venue_url": "https://www.ticketmaster.com/venue/toyotaamphitheatre",
+      "city": "Wheatland",
+      "state": "CA",
+      "country": "United States",
+      "full_address": "Toyota Amphitheatre, Wheatland, CA",
+      "parking_info": "Official parking passes available for Toyota Amphitheatre.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Fuerza Regida - This Is Our Dream Tour 2026 at Toyota Amphitheatre in Wheatland, CA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-FUERZAREGIDA",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Steve Lacy: Oh yeah? Tour: Live Tour",
+      "event_id": "TM-STEVELACYOHY",
+      "event_url": "https://www.ticketmaster.com/event/tm-stevelacyohy",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Steve Lacy: Oh yeah? Tour",
+      "lineup": [
+        "Steve Lacy: Oh yeah? Tour"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/736/9b65a2e3-c29e-4710-97b1-a60425077736_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/736/9b65a2e3-c29e-4710-97b1-a60425077736_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "Red Hat Amphitheater",
+      "venue_url": "https://www.ticketmaster.com/venue/redhatamphitheater",
+      "city": "Raleigh",
+      "state": "NC",
+      "country": "United States",
+      "full_address": "Red Hat Amphitheater, Raleigh, NC",
+      "parking_info": "Official parking passes available for Red Hat Amphitheater.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Steve Lacy: Oh yeah? Tour at Red Hat Amphitheater in Raleigh, NC. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-STEVELACYOHY",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Tim McGraw: Live in Las Vegas: Live Tour",
+      "event_id": "TM-TIMMCGRAWLIV",
+      "event_url": "https://www.ticketmaster.com/event/tm-timmcgrawliv",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Tim McGraw: Live in Las Vegas",
+      "lineup": [
+        "Tim McGraw: Live in Las Vegas"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/01b/322e6b9c-1a1c-4de5-aa5b-e88badcea01b_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/01b/322e6b9c-1a1c-4de5-aa5b-e88badcea01b_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "The Colosseum at Caesars Palace",
+      "venue_url": "https://www.ticketmaster.com/venue/thecolosseumatcaesarspalace",
+      "city": "Las Vegas",
+      "state": "NV",
+      "country": "United States",
+      "full_address": "The Colosseum at Caesars Palace, Las Vegas, NV",
+      "parking_info": "Official parking passes available for The Colosseum at Caesars Palace.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Tim McGraw: Live in Las Vegas at The Colosseum at Caesars Palace in Las Vegas, NV. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-TIMMCGRAWLIV",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "LIL WAYNE: 20 YEARS OF CARTER CLASSICS: Live Tour",
+      "event_id": "TM-LILWAYNE20YE",
+      "event_url": "https://www.ticketmaster.com/event/tm-lilwayne20ye",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "LIL WAYNE: 20 YEARS OF CARTER CLASSICS",
+      "lineup": [
+        "LIL WAYNE: 20 YEARS OF CARTER CLASSICS"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/feb/da63459e-8148-453b-8863-e464f25acfeb_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/feb/da63459e-8148-453b-8863-e464f25acfeb_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Fri, Oct 23, 2026 \u2022 8:30 PM"
+    },
+    "location": {
+      "venue_name": "Food City Center",
+      "venue_url": "https://www.ticketmaster.com/venue/foodcitycenter",
+      "city": "Knoxville",
+      "state": "TN",
+      "country": "United States",
+      "full_address": "Food City Center, Knoxville, TN",
+      "parking_info": "Official parking passes available for Food City Center.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: LIL WAYNE: 20 YEARS OF CARTER CLASSICS at Food City Center in Knoxville, TN. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-LILWAYNE20YE",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Ed Sheeran: Live Tour",
+      "event_id": "TM-EDSHEERAN",
+      "event_url": "https://www.ticketmaster.com/event/tm-edsheeran",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Ed Sheeran",
+      "lineup": [
+        "Ed Sheeran"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/7ac/222f0ea8-3b7e-4039-b40b-04a68ccde7ac_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/7ac/222f0ea8-3b7e-4039-b40b-04a68ccde7ac_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sat, Oct 24, 2026 \u2022 5:30 PM"
+    },
+    "location": {
+      "venue_name": "AT&T Stadium",
+      "venue_url": "https://www.ticketmaster.com/venue/attstadium",
+      "city": "Arlington",
+      "state": "TX",
+      "country": "United States",
+      "full_address": "AT&T Stadium, Arlington, TX",
+      "parking_info": "Official parking passes available for AT&T Stadium.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Ed Sheeran at AT&T Stadium in Arlington, TX. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-EDSHEERAN",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Breaking Benjamin: Live Tour",
+      "event_id": "TM-BREAKINGBENJ",
+      "event_url": "https://www.ticketmaster.com/event/tm-breakingbenj",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Breaking Benjamin",
+      "lineup": [
+        "Breaking Benjamin"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/255/f4f5706d-5ec7-4cbe-a6fe-7e76a233e255_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/255/f4f5706d-5ec7-4cbe-a6fe-7e76a233e255_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sat, Oct 24, 2026 \u2022 6:00 PM"
+    },
+    "location": {
+      "venue_name": "Jiffy Lube Live",
+      "venue_url": "https://www.ticketmaster.com/venue/jiffylubelive",
+      "city": "Bristow",
+      "state": "VA",
+      "country": "United States",
+      "full_address": "Jiffy Lube Live, Bristow, VA",
+      "parking_info": "Official parking passes available for Jiffy Lube Live.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Breaking Benjamin at Jiffy Lube Live in Bristow, VA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-BREAKINGBENJ",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Bryson Tiller Presents: The Neo Trapsoul Tour: Live Tour",
+      "event_id": "TM-BRYSONTILLER",
+      "event_url": "https://www.ticketmaster.com/event/tm-brysontiller",
+      "category": "Concerts",
+      "subcategory": "Hip-Hop/Rap",
+      "subgenre": "Hip-Hop/Rap",
+      "main_performer": "Bryson Tiller Presents: The Neo Trapsoul Tour",
+      "lineup": [
+        "Bryson Tiller Presents: The Neo Trapsoul Tour"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/433/021fc7b3-815d-4f88-9fce-83b31a96d433_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/433/021fc7b3-815d-4f88-9fce-83b31a96d433_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sat, Oct 24, 2026 \u2022 7:30 PM"
+    },
+    "location": {
+      "venue_name": "North Island Credit Union Amphitheatre",
+      "venue_url": "https://www.ticketmaster.com/venue/northislandcreditunionamphitheatre",
+      "city": "Chula Vista",
+      "state": "CA",
+      "country": "United States",
+      "full_address": "North Island Credit Union Amphitheatre, Chula Vista, CA",
+      "parking_info": "Official parking passes available for North Island Credit Union Amphitheatre.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Bryson Tiller Presents: The Neo Trapsoul Tour at North Island Credit Union Amphitheatre in Chula Vista, CA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-BRYSONTILLER",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "My Chemical Romance The Black Parade 2026: Live Tour",
+      "event_id": "TM-MYCHEMICALRO",
+      "event_url": "https://www.ticketmaster.com/event/tm-mychemicalro",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "My Chemical Romance The Black Parade 2026",
+      "lineup": [
+        "My Chemical Romance The Black Parade 2026"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/b67/0aae6aa9-4e17-482b-81d9-5282ff937b67_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/b67/0aae6aa9-4e17-482b-81d9-5282ff937b67_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sat, Oct 24, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "Hollywood Bowl",
+      "venue_url": "https://www.ticketmaster.com/venue/hollywoodbowl",
+      "city": "Hollywood",
+      "state": "CA",
+      "country": "United States",
+      "full_address": "Hollywood Bowl, Hollywood, CA",
+      "parking_info": "Official parking passes available for Hollywood Bowl.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: My Chemical Romance The Black Parade 2026 at Hollywood Bowl in Hollywood, CA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-MYCHEMICALRO",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Ryan Bingham w/ The Texas Gentlemen: Live Tour",
+      "event_id": "TM-RYANBINGHAMW",
+      "event_url": "https://www.ticketmaster.com/event/tm-ryanbinghamw",
+      "category": "Concerts",
+      "subcategory": "Country",
+      "subgenre": "Country",
+      "main_performer": "Ryan Bingham w/ The Texas Gentlemen",
+      "lineup": [
+        "Ryan Bingham w/ The Texas Gentlemen"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/0f9/1e878bcf-e4fc-425d-8d4f-e90b90a4d0f9_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/0f9/1e878bcf-e4fc-425d-8d4f-e90b90a4d0f9_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sat, Oct 24, 2026 \u2022 8:00 PM"
+    },
+    "location": {
+      "venue_name": "Val Air Ballroom",
+      "venue_url": "https://www.ticketmaster.com/venue/valairballroom",
+      "city": "West Des Moines",
+      "state": "IA",
+      "country": "United States",
+      "full_address": "Val Air Ballroom, West Des Moines, IA",
+      "parking_info": "Official parking passes available for Val Air Ballroom.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Ryan Bingham w/ The Texas Gentlemen at Val Air Ballroom in West Des Moines, IA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-RYANBINGHAMW",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Jonas Brothers: The Burning Up Tour All Over Again: Live Tour",
+      "event_id": "TM-JONASBROTHER",
+      "event_url": "https://www.ticketmaster.com/event/tm-jonasbrother",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Jonas Brothers: The Burning Up Tour All Over Again",
+      "lineup": [
+        "Jonas Brothers: The Burning Up Tour All Over Again"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/378/809a1187-1545-43be-b5ab-e2d220621378_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/378/809a1187-1545-43be-b5ab-e2d220621378_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sun, Oct 25, 2026 \u2022 7:30 PM"
+    },
+    "location": {
+      "venue_name": "Little Caesars Arena",
+      "venue_url": "https://www.ticketmaster.com/venue/littlecaesarsarena",
+      "city": "Detroit",
+      "state": "MI",
+      "country": "United States",
+      "full_address": "Little Caesars Arena, Detroit, MI",
+      "parking_info": "Official parking passes available for Little Caesars Arena.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Jonas Brothers: The Burning Up Tour All Over Again at Little Caesars Arena in Detroit, MI. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-JONASBROTHER",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Avery Anna w/ Jaid Joice: Live Tour",
+      "event_id": "TM-AVERYANNAWJA",
+      "event_url": "https://www.ticketmaster.com/event/tm-averyannawja",
+      "category": "Concerts",
+      "subcategory": "Country",
+      "subgenre": "Country",
+      "main_performer": "Avery Anna w/ Jaid Joice",
+      "lineup": [
+        "Avery Anna w/ Jaid Joice"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/cd1/a54b0fa1-4896-4405-af3a-e3ad915a5cd1_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "banner_url": "https://s1.ticketm.net/dam/a/cd1/a54b0fa1-4896-4405-af3a-e3ad915a5cd1_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sun, Oct 25, 2026 \u2022 7:30 PM"
+    },
+    "location": {
+      "venue_name": "The National",
+      "venue_url": "https://www.ticketmaster.com/venue/thenational",
+      "city": "Richmond",
+      "state": "VA",
+      "country": "United States",
+      "full_address": "The National, Richmond, VA",
+      "parking_info": "Official parking passes available for The National.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Avery Anna w/ Jaid Joice at The National in Richmond, VA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-AVERYANNAWJA",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
+    }
+  },
+  {
+    "identity": {
+      "event_title": "Doja Cat - Tour Ma Vie World Tour: Live Tour",
+      "event_id": "TM-DOJACATTOURM",
+      "event_url": "https://www.ticketmaster.com/event/tm-dojacattourm",
+      "category": "Concerts",
+      "subcategory": "Pop",
+      "subgenre": "Pop",
+      "main_performer": "Doja Cat - Tour Ma Vie World Tour",
+      "lineup": [
+        "Doja Cat - Tour Ma Vie World Tour"
+      ],
+      "supporting_acts": [],
+      "image_url": "https://s1.ticketm.net/dam/a/b3f/bb7ae999-2e8c-4af5-97c5-73e396c67b3f_SOURCE",
+      "banner_url": "https://s1.ticketm.net/dam/a/b3f/bb7ae999-2e8c-4af5-97c5-73e396c67b3f_SOURCE",
+      "is_featured": true,
+      "is_selling_fast": true
+    },
+    "date_time": {
+      "exact_date": "2026-10-24",
+      "day_of_week": "Saturday",
+      "start_time": "19:30:00",
+      "end_time": "23:00:00",
+      "time_zone": "EST",
+      "doors_time": "18:30:00",
+      "full_date_display": "Sun, Oct 25, 2026 \u2022 7:30 PM"
+    },
+    "location": {
+      "venue_name": "Chase Center",
+      "venue_url": "https://www.ticketmaster.com/venue/chasecenter",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "United States",
+      "full_address": "Chase Center, San Francisco, CA",
+      "parking_info": "Official parking passes available for Chase Center.",
+      "accessibility_info": "ADA wheelchair seating and companion tickets available.",
+      "capacity": 19000
+    },
+    "pricing": {
+      "currency": "USD",
+      "min_price": 59.5,
+      "max_price": 395.0
+    },
+    "description": {
+      "full_description": "Official verified live event: Doja Cat - Tour Ma Vie World Tour at Chase Center in San Francisco, CA. Ticketmaster SafeTix encrypted barcodes.",
+      "special_notices": "Mobile barcode tickets only. Screenshots will not be accepted.",
+      "age_restrictions": "All ages welcome.",
+      "entry_requirements": "Clear bag policy enforced."
+    },
+    "sync_metadata": {
+      "tm_event_id": "TM-DOJACATTOURM",
+      "source": "Ticketmaster Discovery API v2 & Database Store",
+      "first_imported_at": "2026-10-24T12:00:00.000Z",
+      "last_updated_at": "2026-10-24T12:00:00.000Z",
+      "last_synced_at": "2026-10-24T12:00:00.000Z",
+      "event_status": "onsale",
+      "is_manual": false
     }
   }
 ]

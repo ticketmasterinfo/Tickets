@@ -39,6 +39,7 @@ try {
 // 1. GET /api/events - Retrieve events from the database with filtering and sorting
 app.get('/api/events', (req: Request, res: Response) => {
   try {
+    res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=300');
     let events = getStoredEvents();
     if (!events || events.length === 0) {
       events = EVENTS_DATA;

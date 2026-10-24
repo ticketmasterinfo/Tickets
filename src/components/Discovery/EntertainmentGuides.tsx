@@ -94,6 +94,8 @@ export const EntertainmentGuides: React.FC<EntertainmentGuidesProps> = ({ onSele
                   <img 
                     src={guide.imageUrl} 
                     alt={guide.title} 
+                    loading="lazy"
+                    decoding="async"
                     className="sc-8e2511ba-2 dYYGfg w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     referrerPolicy="no-referrer"
                   />

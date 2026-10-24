@@ -59,6 +59,8 @@ export const RecentlyViewedSection: React.FC<RecentlyViewedSectionProps> = ({ on
             <img
               src={item.imageUrl}
               alt={item.name}
+              loading="lazy"
+              decoding="async"
               className="w-9 h-9 rounded-full object-cover shrink-0"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = item.fallbackImage;

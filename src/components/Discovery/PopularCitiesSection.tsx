@@ -109,6 +109,8 @@ export const PopularCitiesSection: React.FC<PopularCitiesSectionProps> = ({ onSe
                   <img 
                     src={city.imageUrl} 
                     alt={city.name} 
+                    loading="lazy"
+                    decoding="async"
                     className="sc-8e2511ba-2 dYYGfg w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     referrerPolicy="no-referrer"
                   />

@@ -742,6 +742,26 @@ body {
   min-height: 100dvh;
 }
 
+/* Fast Rendering & Image Smoothness */
+img {
+  content-visibility: auto;
+}
 
+.no-scrollbar,
+.smooth-momentum-scroll {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: scroll-position;
+  contain: layout paint;
+}
 
-
+/* Section Containment for 60fps Performance */
+#hero-highlights-section,
+#trending-searches-section,
+#happening-this-weekend-section,
+#popular-near-you-section,
+#entertainment-guides-section,
+#discover-articles-section,
+#popular-cities-section {
+  contain-intrinsic-size: 1px 360px;
+}

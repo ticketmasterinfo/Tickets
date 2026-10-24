@@ -45,6 +45,8 @@ export const EventCard: React.FC<EventCardProps> = ({
           <img 
             src={event.identity.image_url} 
             alt={event.identity.event_title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
@@ -140,6 +142,8 @@ export const EventCard: React.FC<EventCardProps> = ({
         <img 
           src={event.identity.image_url} 
           alt={event.identity.event_title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
