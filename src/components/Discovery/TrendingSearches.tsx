@@ -12,8 +12,8 @@ export const TRENDING_SEARCHES_DATA: TrendingSearchItem[] = [
   {
     name: 'Calvin Harris',
     genre: 'Pop',
-    imageUrl: 'https://s1.ticketm.net/dam/a/259/9afb1a6e-3bf4-4fa7-a4f1-0c2602b90259_TABLET_LANDSCAPE_LARGE_16_9.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=640&q=80'
+    imageUrl: '/assets/aistudio/IMG_6648_6f59728a.jpeg',
+    fallbackImage: '/assets/aistudio/IMG_6648_6f59728a.jpeg'
   },
   {
     name: 'Olivia Rodrigo',

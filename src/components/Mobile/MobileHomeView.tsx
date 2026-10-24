@@ -78,7 +78,7 @@ export const MobileHomeView: React.FC<MobileHomeViewProps> = ({
       name: 'Calvin Harris',
       genre: 'Pop / Dance',
       genreIcon: '🎧',
-      imageUrl: 'https://s1.ticketm.net/dam/a/259/9afb1a6e-3bf4-4fa7-a4f1-0c2602b90259_TABLET_LANDSCAPE_LARGE_16_9.jpg',
+      imageUrl: '/assets/aistudio/IMG_6648_6f59728a.jpeg',
       eventId: 'VV1aZ9v1005TM'
     },
     {
