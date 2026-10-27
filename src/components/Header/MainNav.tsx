@@ -24,6 +24,8 @@ import { EventItem } from '../../types';
 import { CITIES_LIST } from '../../data/eventsData';
 import { TicketmasterLogo } from '../Common/TicketmasterLogo';
 import { showAppNotification } from '../../utils/notification';
+import { searchCatalogue, SearchResultItem } from '../../utils/searchEngine';
+import { resolveEventForBooking } from '../../utils/eventResolver';
 
 interface MainNavProps {
   activeCategory: string;
@@ -95,19 +97,8 @@ export const MainNav: React.FC<MainNavProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Filter matching suggestions
-  const matchingEvents = searchQuery.trim() === '' 
-    ? [] 
-    : events.filter(e => {
-        const q = searchQuery.toLowerCase();
-        return (
-          e.identity.event_title.toLowerCase().includes(q) ||
-          e.identity.main_performer.toLowerCase().includes(q) ||
-          e.location.venue_name.toLowerCase().includes(q) ||
-          e.location.city.toLowerCase().includes(q) ||
-          e.identity.category.toLowerCase().includes(q)
-        );
-      }).slice(0, 5);
+  // Search catalogue across artists, events, venues and cities
+  const { artists: matchedArtists, events: matchedEvents, cities: matchedCities, allMatches } = searchCatalogue(searchQuery, events);
 
   const handleQueryInputChange = (val: string) => {
     onSearchChange(val);
@@ -130,6 +121,10 @@ export const MainNav: React.FC<MainNavProps> = ({
     e.preventDefault();
     setIsAutocompleteOpen(false);
     setIsMobileSearchOpen(false);
+    if (searchQuery.toLowerCase().includes('calvin harris') && onSelectPerformer) {
+      onSelectPerformer('Calvin Harris');
+      return;
+    }
     onExecuteSearch();
   };
 
@@ -288,11 +283,11 @@ export const MainNav: React.FC<MainNavProps> = ({
             </form>
 
             {/* Instant Predictive Autocomplete Dropdown */}
-            {isAutocompleteOpen && matchingEvents.length > 0 && (
+            {isAutocompleteOpen && allMatches.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-white text-gray-900 rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <div className="p-2 border-b border-gray-100 flex items-center justify-between bg-gray-50">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">
-                    Matching Live Experiences ({matchingEvents.length})
+                    Search Results ({allMatches.length})
                   </span>
                   <button
                     onClick={() => setIsAutocompleteOpen(false)}
@@ -303,67 +298,125 @@ export const MainNav: React.FC<MainNavProps> = ({
                 </div>
 
                 <div className="max-h-96 overflow-y-auto divide-y divide-gray-100">
-                  {matchingEvents.map((evt) => (
-                    <button
-                      key={evt.identity.event_id}
-                      type="button"
-                      onClick={() => {
-                        onSelectEvent(evt);
-                        setIsAutocompleteOpen(false);
-                      }}
-                      className="w-full p-3 flex items-center gap-3 text-left hover:bg-blue-50/60 transition-colors group cursor-pointer"
-                    >
-                      <img 
-                        src={evt.identity.image_url} 
-                        alt={evt.identity.event_title}
-                        className="w-14 h-10 object-cover rounded-md shrink-0 group-hover:scale-105 transition-transform" 
-                      />
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-100 text-[#024ddf]">
-                            {evt.identity.category}
-                          </span>
-                          <span className="text-xs text-gray-500 truncate">
-                            {evt.date_time.exact_date}
+                  {/* Category 1: Artists & Performers */}
+                  {matchedArtists.length > 0 && (
+                    <div>
+                      <div className="px-3 py-1.5 bg-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-wider">
+                        Artists & Performers
+                      </div>
+                      {matchedArtists.slice(0, 4).map((art) => (
+                        <div
+                          key={art.id}
+                          onClick={() => {
+                            setIsAutocompleteOpen(false);
+                            if (onSelectPerformer) {
+                              onSelectPerformer(art.title);
+                            } else {
+                              const resolved = resolveEventForBooking(art.title, events);
+                              onSelectEvent(resolved);
+                            }
+                          }}
+                          className="w-full p-2.5 px-3.5 flex items-center gap-3 text-left hover:bg-blue-50/60 transition-colors group cursor-pointer"
+                        >
+                          <img 
+                            src={art.imageUrl || '/assets/aistudio/IMG_6648_6f59728a.jpeg'} 
+                            alt={art.title}
+                            className="w-10 h-10 rounded-full object-cover shrink-0 group-hover:scale-105 transition-transform border border-gray-200 shadow-xs" 
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-1.5">
+                              <p className="text-sm font-bold text-gray-900 truncate group-hover:text-[#024ddf]">
+                                {art.title}
+                              </p>
+                              <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-blue-100 text-[#024ddf]">
+                                {art.category}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500 truncate" dangerouslySetInnerHTML={{ __html: art.subtitle }} />
+                          </div>
+                          <span className="text-xs font-bold text-[#024ddf] group-hover:translate-x-0.5 transition-transform shrink-0">
+                            View Tour &rarr;
                           </span>
                         </div>
-                        <p className="text-sm font-bold text-gray-900 truncate group-hover:text-[#024ddf]">
-                          {evt.identity.event_title}
-                        </p>
-                        <p className="text-xs text-gray-500 truncate flex items-center space-x-1">
-                          <MapPin className="w-3 h-3 text-gray-400 shrink-0" />
-                          <span>{evt.location.venue_name} • {evt.location.city}, {evt.location.state}</span>
-                        </p>
-                        {onSelectPerformer && evt.identity.main_performer && (
-                          <span 
-                            onClick={(e) => {
-                              e.stopPropagation();
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Category 2: Events & Live Shows */}
+                  {matchedEvents.length > 0 && (
+                    <div>
+                      <div className="px-3 py-1.5 bg-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-wider">
+                        Upcoming Live Shows & Events
+                      </div>
+                      {matchedEvents.slice(0, 5).map((evt) => {
+                        const resolved = evt.eventItem || resolveEventForBooking(evt.title, events);
+                        return (
+                          <button
+                            key={evt.id}
+                            type="button"
+                            onClick={() => {
+                              onSelectEvent(resolved);
                               setIsAutocompleteOpen(false);
-                              onSelectPerformer(evt.identity.main_performer);
                             }}
-                            className="inline-block text-[11px] font-bold text-[#024ddf] hover:underline mt-0.5 cursor-pointer"
+                            className="w-full p-2.5 px-3.5 flex items-center gap-3 text-left hover:bg-blue-50/60 transition-colors group cursor-pointer"
                           >
-                            View {evt.identity.main_performer} Tour Page &rarr;
-                          </span>
-                        )}
+                            <img 
+                              src={evt.imageUrl || resolved.identity.image_url} 
+                              alt={evt.title}
+                              className="w-12 h-10 object-cover rounded-md shrink-0 group-hover:scale-105 transition-transform" 
+                            />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-bold text-gray-900 truncate group-hover:text-[#024ddf]">
+                                {evt.title}
+                              </p>
+                              <p className="text-xs text-gray-500 truncate flex items-center space-x-1">
+                                <MapPin className="w-3 h-3 text-gray-400 shrink-0" />
+                                <span>{evt.venue ? `${evt.venue} • ` : ''}{evt.city} • {evt.date}</span>
+                              </p>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <span className="block text-xs font-extrabold text-gray-900">
+                                From ${resolved.pricing?.min_price ? resolved.pricing.min_price.toFixed(0) : '55'}
+                              </span>
+                              <span className="inline-block text-[11px] text-[#024ddf] font-semibold group-hover:underline">
+                                See Tickets &rarr;
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Category 3: Cities */}
+                  {matchedCities.length > 0 && (
+                    <div>
+                      <div className="px-3 py-1.5 bg-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-wider">
+                        Explore by City
                       </div>
-                      <div className="text-right shrink-0">
-                        <span className="block text-xs font-extrabold text-gray-900">
-                          From ${evt.pricing.min_price}
-                        </span>
-                        <span className="inline-block text-[11px] text-[#024ddf] font-semibold group-hover:underline">
-                          See Tickets &rarr;
-                        </span>
-                      </div>
-                    </button>
-                  ))}
+                      {matchedCities.slice(0, 3).map((c) => (
+                        <div
+                          key={c.id}
+                          onClick={() => {
+                            setIsAutocompleteOpen(false);
+                            if (c.city) onCityChange(c.city);
+                            onExecuteSearch();
+                          }}
+                          className="p-2 px-3 hover:bg-blue-50/80 cursor-pointer flex items-center space-x-2 text-xs font-bold text-gray-700 hover:text-[#024ddf]"
+                        >
+                          <MapPin className="w-3.5 h-3.5 text-[#024ddf] shrink-0" />
+                          <span>All events in {c.title}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-2.5 bg-gray-50 text-center border-t border-gray-100">
                   <button
                     type="button"
                     onClick={handleSearchSubmit}
-                    className="text-xs font-bold text-[#024ddf] hover:underline"
+                    className="text-xs font-bold text-[#024ddf] hover:underline cursor-pointer"
                   >
                     View all results for &ldquo;{searchQuery}&rdquo; &rarr;
                   </button>
@@ -540,29 +593,58 @@ export const MainNav: React.FC<MainNavProps> = ({
             )}
           </form>
 
-          {matchingEvents.length > 0 && (
-            <div className="mt-2 bg-white text-gray-900 rounded-xl shadow-xl overflow-hidden divide-y divide-gray-100 max-h-64 overflow-y-auto">
-              {matchingEvents.map((evt) => (
-                <button
-                  key={evt.identity.event_id}
+          {allMatches.length > 0 && (
+            <div className="mt-2 bg-white text-gray-900 rounded-xl shadow-xl overflow-hidden divide-y divide-gray-100 max-h-72 overflow-y-auto">
+              {matchedArtists.slice(0, 3).map((art) => (
+                <div
+                  key={art.id}
                   onClick={() => {
-                    onSelectEvent(evt);
                     setIsMobileSearchOpen(false);
+                    if (onSelectPerformer) {
+                      onSelectPerformer(art.title);
+                    } else {
+                      const resolved = resolveEventForBooking(art.title, events);
+                      onSelectEvent(resolved);
+                    }
                   }}
-                  className="w-full p-2.5 flex items-center gap-2.5 text-left hover:bg-blue-50"
+                  className="w-full p-2.5 flex items-center gap-2.5 text-left hover:bg-blue-50 cursor-pointer"
                 >
                   <img 
-                    src={evt.identity.image_url} 
-                    alt={evt.identity.event_title} 
-                    className="w-10 h-8 object-cover rounded" 
+                    src={art.imageUrl || '/assets/aistudio/IMG_6648_6f59728a.jpeg'} 
+                    alt={art.title} 
+                    className="w-8 h-8 rounded-full object-cover border border-gray-200" 
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold truncate text-gray-900">{evt.identity.event_title}</p>
-                    <p className="text-[10px] text-gray-500 truncate">{evt.location.venue_name} • {evt.location.city}</p>
+                    <p className="text-xs font-bold truncate text-gray-900">{art.title}</p>
+                    <p className="text-[10px] text-gray-500 truncate" dangerouslySetInnerHTML={{ __html: art.subtitle }} />
                   </div>
-                  <span className="text-xs font-bold text-[#024ddf] shrink-0">${evt.pricing.min_price}</span>
-                </button>
+                  <span className="text-[11px] font-bold text-[#024ddf] shrink-0">View Tour &rarr;</span>
+                </div>
               ))}
+              {matchedEvents.slice(0, 4).map((evt) => {
+                const resolved = evt.eventItem || resolveEventForBooking(evt.title, events);
+                return (
+                  <button
+                    key={evt.id}
+                    onClick={() => {
+                      onSelectEvent(resolved);
+                      setIsMobileSearchOpen(false);
+                    }}
+                    className="w-full p-2.5 flex items-center gap-2.5 text-left hover:bg-blue-50 cursor-pointer"
+                  >
+                    <img 
+                      src={evt.imageUrl || resolved.identity.image_url} 
+                      alt={evt.title} 
+                      className="w-10 h-8 object-cover rounded" 
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold truncate text-gray-900">{evt.title}</p>
+                      <p className="text-[10px] text-gray-500 truncate">{evt.venue ? `${evt.venue} • ` : ''}{evt.city}</p>
+                    </div>
+                    <span className="text-xs font-bold text-[#024ddf] shrink-0">${resolved.pricing?.min_price ? resolved.pricing.min_price.toFixed(0) : '55'}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>

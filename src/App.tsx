@@ -32,6 +32,7 @@ import { HappeningThisWeekend } from './components/Discovery/HappeningThisWeeken
 import { SponsoredPresales } from './components/Discovery/SponsoredPresales';
 import { RecentlyViewedSection } from './components/Discovery/RecentlyViewedSection';
 import { PopularNearYou } from './components/Discovery/PopularNearYou';
+import { CalvinHarrisPageView } from './components/Artist/CalvinHarrisPageView';
 import { resolveEventForBooking } from './utils/eventResolver';
 import { FeaturedSidebar } from './components/Discovery/FeaturedSidebar';
 import { EventCarousel } from './components/Events/EventCarousel';
@@ -99,6 +100,7 @@ export default function App() {
   const [isBrowsingPausedOpen, setIsBrowsingPausedOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isTravelOpen, setIsTravelOpen] = useState(false);
+  const [isCalvinHarrisOpen, setIsCalvinHarrisOpen] = useState(false);
   const [scannedPassData, setScannedPassData] = useState<{ event: EventItem; ticket: PurchasedTicket } | null>(null);
 
   // Mobile App Dedicated States
@@ -297,7 +299,18 @@ export default function App() {
     }
   };
 
+  const isCalvin = (name?: string) => {
+    return Boolean(name && name.toLowerCase().includes('calvin'));
+  };
+
   const handleOpenArtist = (performerName: string) => {
+    if (isCalvin(performerName)) {
+      setIsCalvinHarrisOpen(true);
+      setBookingEvent(null);
+      setSelectedArtist(null);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const profile = getArtistProfile(performerName, events);
     setSelectedArtist(profile);
     setBookingEvent(null);
@@ -309,6 +322,13 @@ export default function App() {
 
   const handleOpenBooking = (event?: EventItem) => {
     const targetEvent = event || EVENTS_DATA[0];
+    if (
+      isCalvin(targetEvent.identity?.main_performer) ||
+      isCalvin(targetEvent.identity?.event_title)
+    ) {
+      setIsCalvinHarrisOpen(true);
+      return;
+    }
     setBookingEvent(targetEvent);
     const zones = getEventSeatZones(targetEvent);
     setSelectedZone(zones[1] || zones[0]);
@@ -343,9 +363,32 @@ export default function App() {
   };
 
   const handleSearchPerformer = (performerName: string) => {
+    if (isCalvin(performerName)) {
+      setIsCalvinHarrisOpen(true);
+      setBookingEvent(null);
+      setSelectedArtist(null);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const resolved = resolveEventForBooking(performerName, events);
     handleOpenBooking(resolved);
   };
+
+  if (isCalvinHarrisOpen) {
+    return (
+      <CalvinHarrisPageView 
+        onBack={() => setIsCalvinHarrisOpen(false)}
+        onOpenBooking={(event) => {
+          setIsCalvinHarrisOpen(false);
+          setBookingEvent(event);
+          const zones = getEventSeatZones(event);
+          setSelectedZone(zones[1] || zones[0]);
+          setSelectedSeats([]);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
+    );
+  }
 
   if (isTravelOpen) {
     return (
@@ -506,6 +549,10 @@ export default function App() {
             onSelectEvent={handleOpenBooking}
             onSelectPerformer={handleOpenArtist}
             onExecuteSearch={() => {
+              if (isCalvin(filters.searchQuery)) {
+                setIsCalvinHarrisOpen(true);
+                return;
+              }
               const el = document.getElementById('discovery-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
@@ -559,6 +606,10 @@ export default function App() {
               onSelectEvent={handleOpenBooking}
               onSelectPerformer={handleOpenArtist}
               onExecuteSearch={() => {
+                if (isCalvin(filters.searchQuery)) {
+                  setIsCalvinHarrisOpen(true);
+                  return;
+                }
                 const el = document.getElementById('discovery-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
